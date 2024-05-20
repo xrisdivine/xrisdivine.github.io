@@ -15,8 +15,6 @@ html, body {
     height: 100%;
 }
 
-
-
 header {
     background-color: #000; /* Black background */
     color: #fff; /* White text */
@@ -103,4 +101,29 @@ footer {
 
 .cv-container .experience {
     margin-bottom: 20px; /* Space between experiences */
+}
+
+/* Style for the intro section */
+.intro {
+    background-color: #fff; /* White background */
+    padding: 20px; /* Padding inside the white box */
+    margin: 20px auto; /* Center the box horizontally with some vertical spacing */
+    width: 30%; /* Set the width of the box */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+}
+
+
+/* Flexbox styles for image and text */
+.image-and-text {
+    display: flex;
+    align-items: center; /* Vertically center the items */
+}
+
+.image {
+    flex: 1; /* Image takes up 1 part of the available space */
+    margin-right: 20px; /* Space between image and text */
+}
+
+.text {
+    flex: 2; /* Text takes up 2 parts of the available space */
 }

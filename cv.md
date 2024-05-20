@@ -1,0 +1,94 @@
+---
+layout: default
+title: CV
+---
+
+<div class="cv-container">
+    <h1>Experiences</h1>
+    <div class="experience">
+        <h3>Senior AR/VR Software Engineer</h3>
+        <p>Apple | Feb 2023 - Present </p>
+        <p>
+            As the Directly Responsible Individual (DRI) for future spatial computing initiatives at Apple, I spearheaded the conceptualization and development of a novel idea in my first year. Expanding my expertise into software engineering, Bringing the vision to life, leading the execution, engineering, and strategic direction of the project while leveraging AI and spatial computing. This initiative profoundly impacted our team’s and the Vision Product Group’s roadmap, broadening our scope and guiding the work of others. I lead regular cross-functional syncs to align and drive collective progress, drive features towards novel technical frameworks, actively filing patents, and ensuring continuous development towards a future product.
+        </p>
+    </div>
+    <div class="experience">
+        <h3>Senior Research Scientist</h3>
+        <p>Apple | Jan 2022 - Feb 2023 </p>
+        <p>
+            As part of a small fundamental research team in the Vision Product Group, I accelerated innovation towards future AR/VR experiences, including spatial computing. I led research ideation, engineering, and execution among core team and cross-functional partners, delivering key insights for the launch of the Vision Pro. My efforts resulted in a broader allocation of resources towards AR/VR initiatives. I oversaw the technical implementation of research prototypes and tools, developed a novel track of research, managed vendors across multiple research sites, presented to VPs and executives, and submitted three patent applications.
+        </p>
+    </div>
+    <div class="experience">
+        <h3>Ethicist</h3>
+        <p>Meta | Oct 2021 - Dec 2021 </p>
+        <p>
+            I was brought in for my expertise in ethical considerations of AR/VR and AI, demonstrated during my previous time at Reality Labs. In this role, I met with leads of Reality Labs to consult and guide ethical considerations relating to future products. I worked on an undisclosed project, providing critical insights and recommendations to ensure the ethical development and deployment of Meta’s innovative technologies.
+        </p>
+    </div>
+    <div class="experience">
+        <h3>Research Intern</h3>
+        <p>Microsoft | Jul 2021 - Oct 2021 </p>
+        <p>
+            During my PhD internship at Microsoft, I was brought in to work on Intelligent AI, leveraging my expertise in AR/VR and AI. I conducted research in Intelligent AI, contributing to innovative project initiatives and incorporating my knowledge to advance the work towards MSFT suite of software solutions.
+        </p>
+    </div>
+    <div class="experience">
+        <h3>Research Scientist Intern (Reality Labs)</h3>
+        <p>Meta | Jan 2021 - Jul 2021 </p>
+        <p>
+            During my PhD internship at Meta's Reality Labs, I was brought in to work on an undisclosed project with a group in Reality Labs, leveraging my expertise in AR/VR and ethical considerations of design. In this role, I worked on the future roadmap, created small prototypes to demonstrate key concepts, and contributed to the beginnings of a novel research area, applying my knowledge to guide and advance the project while balancing ethical considerations with technological innovation.
+        </p>
+    </div>
+    <div class="experience">
+        <h3>Co-Founder</h3>
+        <p>Br8krm | Jul 2020 - Dec 2020 </p>
+        <p>
+            As a co-founder of Br8krm, I used research insights to create an MVP to help co-workers connect during the COVID-19 pandemic. Our startup was awarded an Epic Games Mega Grant and invited to interview with Y Combinator.
+        </p>
+    </div>
+    <div class="experience">
+        <h3>Research Intern (Microsoft Research AI)</h3>
+        <p>Microsoft | May 2019 - Aug 2019 </p>
+        <p>
+            This was the first time I was not working on AR/VR, where I learned about ethical design and research fundamentals. Our project's goal was to investigate ways to increase empathy in the world. I researched initiatives to achieve this and built prototypes to demonstrate and investigate this concept.
+        </p>
+    </div>
+    <div class="experience">
+        <h3>Virtual Reality Research Engineer</h3>
+        <p>Columbia University | May 2018 - May 2019 </p>
+        <p>
+            At Columbia University, I created VR experiences for social media education for youth and the adults, agencies, and organizations that leverage social media to make decisions about youth behavior.
+        </p>
+    </div>
+    <div class="experience">
+        <h3>Research Assistant</h3>
+        <p>MIT Media Lab/Harvard Berkman Klein Center | May 2017 - Aug 2017</p>
+        <p>
+            I conducted research in augmented reality and social computing during my time at MIT Media Lab and Harvard's Berkman Klein Center.
+        </p>
+    </div>
+    <div class="experience">
+        <h3>Augmented Reality Research Assistant</h3>
+        <p>University of Central Florida | May 2016 - Aug 2016</p>
+        <p>
+            At the University of Central Florida, I created experiment designs for social presence in augmented reality, developed environments in Unity for Oculus Rift and Microsoft Hololens. Resuling in multiple peer reviewed publications. 
+        </p>
+    </div>
+ <div class="experience">
+       <h3>Virtual Reality Research Assistant</h3>
+       <p>Vanderbilt University | May 2015 - Aug 2015</p>
+       <p>
+           At Vanderbilt University, I created VR worlds with Oculus DK2, developed simulations for vection in virtual reality, designed and performed experiments on vection, and presented a poster on the induction of linear and circular vection in real and virtual worlds at IEEE VR 2016.
+       </p>
+   </div>
+
+  <h1>Education</h1>
+<div class="education">
+        <h4>Ph.D. | Human-Centered Computing | Clemson University</h4>
+        <p>
+			Thesis: <i> A Youthful Metaverse: Towards Designing Safe, Equitable, and Emotionally Fulfilling Social Virtual Reality Spaces for Younger Users </i>
+        </p>
+        <p> Advisors: Dr. Andrew Robb and Dr. Guo Freeman
+        <h4>B.A.| Computer Science and Spanish | Sewanee: The University of the South</h4>
+      

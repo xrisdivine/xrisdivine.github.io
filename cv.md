@@ -17,7 +17,7 @@ title: CV
         <h3>Senior AR/VR Software Engineer</h3>
         <p>Apple | Feb 2023 - Present</p>
         <p>
-            As the Directly Responsible Individual (DRI) for future spatial computing initiatives at Apple, I spearheaded the conceptualization and development of a novel idea in my first year. Expanding my expertise into software engineering, bringing the vision to life, leading the execution, engineering, and strategic direction of the project while leveraging AI and spatial computing. This initiative profoundly impacted our team’s and the Vision Product Group’s roadmap, broadening our scope and guiding the work of others. I lead regular cross-functional syncs to align and drive collective progress, drive features towards novel technical frameworks, actively file patents, and ensure continuous development towards a future product.
+            As the directly responsible individual (DRI) for future spatial computing initiatives at Apple, I spearheaded the conceptualization and development of a novel idea in my first year. Expanding my expertise into software engineering, bringing the vision to life, leading the execution, engineering, and strategic direction of the project while leveraging AI and spatial computing. This initiative profoundly impacted our team’s and the Vision Product Group’s roadmap, broadening our scope and guiding the work of others. I lead regular cross-functional syncs to align and drive collective progress, drive features towards novel technical frameworks, actively file patents, and ensure continuous development towards a future product.
         </p>
     </div>
     <div class="experience">
@@ -59,7 +59,7 @@ title: CV
         <h3>Research Intern (Microsoft Research AI)</h3>
         <p>Microsoft | May 2019 - Aug 2019</p>
         <p>
-            This was the first time I was not working on AR/VR, where I learned about ethical design and research fundamentals. Our project's goal was to investigate ways to increase empathy in the world. I researched initiatives to achieve this and built prototypes to demonstrate and investigate this concept.
+            This was the first time I was not working on AR/VR, where I learned about ethical design. Our project's goal was to investigate ways to increase empathy in the world. I researched initiatives to achieve this and built prototypes to demonstrate and investigate this concept.
         </p>
     </div>
     <div class="experience">

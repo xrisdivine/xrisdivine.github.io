@@ -6,7 +6,7 @@ title: CV
 <div class="cv-container">
 	    <nav>
         <ul>
-            <li><a href="/index.md">Home</a></li>
+            <li><a href="/index">Home</a></li>
             <li><a href="#experience">Experience</a></li>
             <li><a href="#education">Education</a></li>
         </ul>

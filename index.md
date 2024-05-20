@@ -19,7 +19,7 @@ title: Home
                     <h4>Some Links:</h4>
                         <ul>
                             <li>Curriculum vitae <a href="/cv">[CV]</a></li>
-                            <li>Prior academic work <a href="https://scholar.google.com/citations?user=JnR2AhoAAAAJ&hl=en&oi=ao">[here]</a></li>
+                            <li>Google Scholar <a href="https://scholar.google.com/citations?user=JnR2AhoAAAAJ&hl=en&oi=ao">[here]</a></li>
                             <li>Best way to reach me is via <a href="https://www.linkedin.com/in/divine-maloney/">[LinkedIn]</a></li>
                         </ul>
                 </p>

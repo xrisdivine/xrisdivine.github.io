@@ -29,7 +29,7 @@ title: CV
     </div>
     <div class="experience">
         <h3>Ethicist</h3>
-        <p>Meta | Oct 2021 - Dec 2021</p>
+        <p>Meta Reality Labs | Oct 2021 - Dec 2021</p>
         <p>
             I was brought in for my expertise in ethical considerations of AR/VR and AI, demonstrated during my previous time at Reality Labs. In this role, I met with leads of Reality Labs to consult and guide ethical considerations relating to future products. I worked on an undisclosed project, providing critical insights and recommendations to ensure the ethical development and deployment of Meta’s innovative technologies.
         </p>
@@ -42,8 +42,8 @@ title: CV
         </p>
     </div>
     <div class="experience">
-        <h3>Research Scientist Intern (Reality Labs)</h3>
-        <p>Meta | Jan 2021 - Jul 2021</p>
+        <h3>Research Scientist Intern </h3>
+        <p>Meta Reality Labs | Jan 2021 - Jul 2021</p>
         <p>
             During my PhD internship at Meta's Reality Labs, I was brought in to work on an undisclosed project with a group in Reality Labs, leveraging my expertise in AR/VR and ethical considerations of design. In this role, I worked on the future roadmap, created small prototypes to demonstrate key concepts, and contributed to the beginnings of a novel research area, applying my knowledge to guide and advance the project while balancing ethical considerations with technological innovation.
         </p>
@@ -56,8 +56,8 @@ title: CV
         </p>
     </div>
     <div class="experience">
-        <h3>Research Intern (Microsoft Research AI)</h3>
-        <p>Microsoft | May 2019 - Aug 2019</p>
+        <h3>Research Intern</h3>
+        <p>Microsoft Research AI | May 2019 - Aug 2019</p>
         <p>
             This was the first time I was not working on AR/VR, where I learned about ethical design. Our project's goal was to investigate ways to increase empathy in the world. I researched initiatives to achieve this and built prototypes to demonstrate and investigate this concept.
         </p>

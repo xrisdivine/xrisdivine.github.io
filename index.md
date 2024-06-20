@@ -21,7 +21,6 @@ title: Home
                             <li>Curriculum vitae <a href="/cv">[CV]</a></li>
                             <li>Google Scholar <a href="https://scholar.google.com/citations?user=Dw1QA6sAAAAJ&hl=en&oi=ao">[here]</a></li>
                             <li>Best way to reach me is via <a href="https://www.linkedin.com/in/divine-maloney/">[LinkedIn]</a> or <a href="mailto:divinekmaloney@gmail.com">[email]</a></li>
-                             <li>Some things i've learned along the way <a href="/memo">[memo's]</a> </li>
                         </ul>
                 </p>
             </div>

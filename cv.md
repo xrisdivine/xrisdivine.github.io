@@ -15,14 +15,14 @@ title: CV
     <h1>Experience</h1>
     <div class="experience">
         <h3>Senior AR/VR Software Engineer</h3>
-        <p>Apple | Feb 2023 - Present</p>
+        <p>Apple | Sept 2022 - Present</p>
         <p>
             As the directly responsible individual (DRI) for future spatial computing initiatives at Apple, I spearheaded the conceptualization and development of a novel idea in my first year. Expanding my expertise into software engineering, bringing the vision to life, leading the execution, engineering, and strategic direction of the project while leveraging AI and spatial computing. This initiative profoundly impacted our team’s and the Vision Product Group’s roadmap, broadening our scope and guiding the work of others. I lead regular cross-functional syncs to align and drive collective progress, drive features towards novel technical frameworks, actively file patents, and ensure continuous development towards a future product.
         </p>
     </div>
     <div class="experience">
         <h3>Senior Research Scientist</h3>
-        <p>Apple | Jan 2022 - Feb 2023</p>
+        <p>Apple | Jan 2022 - Sept 2022</p>
         <p>
             As part of a small fundamental research team in the Vision Product Group, I accelerated innovation towards future AR/VR experiences, including spatial computing. I led research ideation, engineering, and execution among core team and cross-functional partners, delivering key insights for the launch of the Vision Pro. My efforts resulted in a broader allocation of resources towards AR/VR initiatives. I oversaw the technical implementation of research prototypes and tools, developed a novel track of research, managed vendors across multiple research sites, presented to VPs and executives, and submitted three patent applications.
         </p>

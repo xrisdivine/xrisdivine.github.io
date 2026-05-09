@@ -1,130 +1,127 @@
-/* Global styles */
-/*D*/
-* {
-    margin: 0;
-    padding: 0;
-    border: none;
-    outline: none;
-    box-sizing: border-box;
-    font-family: "Courier New", Courier, monospace; /* Monospaced font */
+html {
+    font-size: 100%;
+    overflow-y: scroll;
+    -webkit-text-size-adjust: 100%;
 }
 
-html, body {
-    background-color: #FFFFE8; /* Lighter background color */
-    color: #000; /* Black text color */
-    width: 100%;
-    height: 100%;
+body {
+    color: #444;
+    font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
+    font-size: 12px;
+    line-height: 1.5;
+    padding: 1em;
+    margin: auto;
+    max-width: 60em;
+    background: #fefefe;
 }
 
-header {
-    background-color: #000; /* Black background */
-    color: #fff; /* White text */
-    padding: 10px; /* Padding around text */
-    text-transform: uppercase; /* Uppercase text */
-    letter-spacing: 2px; /* Spacing between letters */
-    text-align: center;
-}
-
-nav {
-    background-color: #f8f8f8;
-    border-bottom: 1px solid #e7e7e7;
-    padding: 10px 0;
-}
-
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-}
-
-nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-nav ul li a {
+a {
+    color: #0645ad;
     text-decoration: none;
-    color: #333;
-    font-weight: bold;
 }
 
-nav ul li a:hover {
-    color: #0073e6;
+a:visited {
+    color: #0b0080;
 }
 
-main {
-    padding: 20px; /* Padding around content */
+a:hover {
+    color: #06e;
 }
 
-footer {
-    background-color: #000; /* Black background */
-    color: #fff; /* White text */
-    padding: 5px; /* Padding around text */
-    position: fixed; /* Fixed position at bottom */
-    bottom: 0;
-    width: 100%; /* Full width */
-    font-size: 12px; /* Smaller text */
+p {
+    margin: 1em 0;
+}
+
+img {
+    max-width: 100%;
+}
+
+h1, h2, h3, h4 {
+    color: #111;
+    font-weight: normal;
+}
+
+h1 { font-size: 2.5em; }
+h2 { font-size: 2em; }
+h3 { font-size: 1.5em; }
+h4 { font-size: 1.2em; }
+
+hr {
+    display: block;
+    height: 2px;
+    border: 0;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #eee;
+    margin: 1em 0;
+    padding: 0;
+}
+
+ul, ol {
+    margin: 1em 0;
+    padding: 0 0 0 2em;
+}
+
+li {
+    margin-bottom: 0.3em;
+}
+
+.topnav {
+    background-color: #333;
+    overflow: hidden;
+    margin: -1em -1em 1em -1em;
+    padding: 0;
+}
+
+.topnav a {
+    float: left;
+    color: #f2f2f2;
     text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
 }
 
+.topnav a:hover {
+    color: #ddd;
+}
+
+/* CV page */
 .cv-container {
-    max-width: 800px; /* Maximum width of container */
-    margin: auto; /* Center container */
-    padding: 20px; /* Padding around content */
-    text-align: left; /* Left-aligned text */
-}
-
-.cv-container h1, .cv-container h2, .cv-container h3 {
-    margin-bottom: 10px; /* Space below headings */
+    max-width: 60em;
+    margin: auto;
 }
 
 .cv-container h1 {
-    font-size: 36px; /* Adjust heading size */
-    margin-bottom: 20px; /* Space below heading */
+    font-size: 2em;
+    margin-bottom: 0.5em;
 }
 
 .cv-container h2 {
-    font-size: 28px; /* Adjust heading size */
-    margin-bottom: 20px; /* Space below heading */
+    margin-top: 1.5em;
 }
 
 .cv-container h3 {
-    font-size: 24px; /* Adjust heading size */
-    margin-bottom: 10px; /* Space below heading */
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 0.2em;
 }
 
-.cv-container p {
-    font-size: 16px; /* Adjust paragraph size */
-    margin-bottom: 10px; /* Space below paragraph */
-    line-height: 1.6; /* Line spacing */
+.experience {
+    margin-bottom: 1.5em;
 }
 
-.cv-container .experience {
-    margin-bottom: 20px; /* Space between experiences */
+.experience p {
+    margin: 0.3em 0;
 }
 
-/* Style for the intro section */
-.intro {
-    background-color: #fff; /* White background */
-    padding: 20px; /* Padding inside the white box */
-    margin: 20px auto; /* Center the box horizontally with some vertical spacing */
-    width: 30%; /* Set the width of the box */
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+.education p {
+    margin: 0.3em 0;
 }
 
-
-/* Flexbox styles for image and text */
-.image-and-text {
-    display: flex;
-    align-items: center; /* Vertically center the items */
+@media only screen and (min-width: 480px) {
+    body { font-size: 14px; }
 }
 
-.image {
-    flex: 1; /* Image takes up 1 part of the available space */
-    margin-right: 20px; /* Space between image and text */
-}
-
-.text {
-    flex: 2; /* Text takes up 2 parts of the available space */
+@media only screen and (min-width: 768px) {
+    body { font-size: 16px; }
 }

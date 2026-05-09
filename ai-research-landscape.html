@@ -1,0 +1,1756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Research Landscape 2023-2026</title>
+<meta name="description" content="Comprehensive primer on the highest-impact AI research spanning LLMs, Human-AI Interaction, and Voice/Audio AI.">
+<meta name="theme-color" content="#0a0a0f">
+<link rel="manifest" crossorigin="use-credentials">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --surface2: #1a1a28;
+    --surface3: #222236;
+    --border: #2a2a40;
+    --text: #e8e8f0;
+    --text-dim: #8888a8;
+    --text-dimmer: #5a5a78;
+    --accent-1: #6366f1;
+    --accent-1-dim: #4f46e520;
+    --accent-2: #ec4899;
+    --accent-2-dim: #ec489920;
+    --accent-3: #14b8a6;
+    --accent-3-dim: #14b8a620;
+    --accent-4: #f59e0b;
+    --accent-4-dim: #f59e0b20;
+    --accent-5: #8b5cf6;
+    --gradient-1: linear-gradient(135deg, #6366f1, #8b5cf6);
+    --gradient-2: linear-gradient(135deg, #ec4899, #f43f5e);
+    --gradient-3: linear-gradient(135deg, #14b8a6, #06b6d4);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background:
+      radial-gradient(circle at 30% 40%, #6366f130 0%, transparent 50%),
+      radial-gradient(circle at 70% 60%, #ec489920 0%, transparent 50%),
+      radial-gradient(circle at 50% 80%, #14b8a615 0%, transparent 50%);
+    animation: heroGlow 15s ease-in-out infinite alternate;
+  }
+
+  @keyframes heroGlow {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(-5%, -3%) rotate(5deg); }
+  }
+
+  .hero-content { position: relative; z-index: 1; max-width: 900px; }
+
+  .hero h1 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #e8e8f0 0%, #6366f1 50%, #ec4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero .subtitle {
+    font-size: 1.25rem;
+    color: var(--text-dim);
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+  }
+
+  .hero .meta-info {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-size: 0.85rem;
+    color: var(--text-dimmer);
+  }
+
+  .nav-pills {
+    position: relative; z-index: 1;
+    display: flex; gap: 0.75rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav-pill {
+    padding: 0.6rem 1.25rem;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.3s;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .nav-pill:hover, .nav-pill:active {
+    color: var(--text);
+  }
+
+  .nav-pill.s1:hover { border-color: var(--accent-1); background: var(--accent-1-dim); }
+  .nav-pill.s2:hover { border-color: var(--accent-2); background: var(--accent-2-dim); }
+  .nav-pill.s3:hover { border-color: var(--accent-3); background: var(--accent-3-dim); }
+  .nav-pill.s4:hover { border-color: var(--accent-4); background: var(--accent-4-dim); }
+
+  /* Sections */
+  .section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 1.5rem;
+  }
+
+  .section-header { margin-bottom: 3rem; }
+
+  .section-number {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: inline-block;
+    padding: 0.25rem 0.7rem;
+    border-radius: 100px;
+  }
+
+  .s1 .section-number { color: var(--accent-1); background: var(--accent-1-dim); }
+  .s2 .section-number { color: var(--accent-2); background: var(--accent-2-dim); }
+  .s3 .section-number { color: var(--accent-3); background: var(--accent-3-dim); }
+
+  .section-header h2 {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-header p {
+    font-size: 1rem;
+    color: var(--text-dim);
+    max-width: 700px;
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+
+  /* Subsection */
+  .subsection { margin-bottom: 3.5rem; }
+
+  .subsection h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .subsection h3 .icon {
+    width: 30px; height: 30px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+  }
+
+  .s1 .icon { background: var(--accent-1-dim); }
+  .s2 .icon { background: var(--accent-2-dim); }
+  .s3 .icon { background: var(--accent-3-dim); }
+
+  /* Paper Cards */
+  .paper-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1rem;
+  }
+
+  .paper-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s;
+    position: relative;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .paper-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .s1 .paper-card::before { background: var(--gradient-1); }
+  .s2 .paper-card::before { background: var(--gradient-2); }
+  .s3 .paper-card::before { background: var(--gradient-3); }
+
+  .paper-card:hover {
+    border-color: var(--surface3);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  }
+
+  .paper-card:hover::before { opacity: 1; }
+  .paper-card.expanded::before { opacity: 1; }
+  .paper-card.expanded { border-color: var(--surface3); }
+
+  .card-preview {
+    padding: 1.25rem;
+  }
+
+  .card-preview .title {
+    font-weight: 600;
+    font-size: 0.92rem;
+    margin-bottom: 0.4rem;
+    line-height: 1.35;
+    padding-right: 1.5rem;
+  }
+
+  .card-preview .authors {
+    font-size: 0.78rem;
+    color: var(--text-dimmer);
+    margin-bottom: 0.6rem;
+  }
+
+  .card-preview .desc {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    line-height: 1.55;
+  }
+
+  .card-preview .tags {
+    display: flex;
+    gap: 0.35rem;
+    margin-top: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.45rem;
+    border-radius: 100px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  .tag-high { background: #22c55e20; color: #22c55e; }
+  .tag-very-high { background: #f59e0b20; color: #f59e0b; }
+  .tag-paradigm { background: #6366f120; color: #6366f1; }
+  .tag-open { background: #14b8a620; color: #14b8a6; }
+  .tag-venue { background: #8b5cf620; color: #8b5cf6; }
+
+  .expand-indicator {
+    position: absolute;
+    top: 1.25rem;
+    right: 1rem;
+    font-size: 0.75rem;
+    color: var(--text-dimmer);
+    transition: transform 0.3s;
+  }
+
+  .paper-card.expanded .expand-indicator {
+    transform: rotate(180deg);
+  }
+
+  /* Expanded detail panel */
+  .card-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    background: var(--surface2);
+    border-top: 1px solid transparent;
+  }
+
+  .paper-card.expanded .card-details {
+    max-height: 1200px;
+    border-top-color: var(--border);
+  }
+
+  .card-details-inner {
+    padding: 1.25rem;
+  }
+
+  .detail-section {
+    margin-bottom: 1rem;
+  }
+
+  .detail-section:last-child { margin-bottom: 0; }
+
+  .detail-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.35rem;
+  }
+
+  .s1 .detail-label { color: var(--accent-1); }
+  .s2 .detail-label { color: var(--accent-2); }
+  .s3 .detail-label { color: var(--accent-3); }
+  .detail-label.cross { color: var(--accent-4); }
+
+  .detail-text {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  .detail-text ul {
+    padding-left: 1.1rem;
+    margin: 0;
+  }
+
+  .detail-text li {
+    margin-bottom: 0.3rem;
+  }
+
+  .paper-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.75rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 100px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: 1px solid var(--border);
+    color: var(--text);
+    background: var(--surface);
+  }
+
+  .paper-link:hover {
+    background: var(--surface3);
+  }
+
+  .s1 .paper-link:hover { border-color: var(--accent-1); }
+  .s2 .paper-link:hover { border-color: var(--accent-2); }
+  .s3 .paper-link:hover { border-color: var(--accent-3); }
+
+  /* Tension Cards */
+  .tension-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .tension-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    position: relative;
+  }
+
+  .tension-card .number {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--surface3);
+    position: absolute;
+    top: 0.75rem;
+    right: 1rem;
+    line-height: 1;
+  }
+
+  .tension-card h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    padding-right: 2rem;
+  }
+
+  .tension-card p {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  /* Theme Cards */
+  .theme-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  .theme-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    transition: all 0.3s;
+  }
+
+  .theme-card:hover { border-color: var(--surface3); }
+
+  .theme-card .label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+
+  .theme-card h4 {
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .theme-card p {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    line-height: 1.55;
+  }
+
+  /* Cross-cutting section */
+  .cross-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.5rem;
+    margin-top: 2rem;
+  }
+
+  .cross-section h3 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+  }
+
+  .cross-item {
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cross-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .cross-item h4 {
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.95rem;
+  }
+
+  .cross-item p {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  .dot-1 { background: var(--accent-1); }
+  .dot-2 { background: var(--accent-2); }
+  .dot-3 { background: var(--accent-3); }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: var(--text-dimmer);
+    font-size: 0.78rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .paper-grid, .tension-grid, .theme-grid {
+      grid-template-columns: 1fr;
+    }
+    .cross-section { padding: 1.25rem; }
+    .section { padding: 3rem 1rem; }
+    .hero { min-height: 90vh; padding: 1.5rem; }
+    .hero .subtitle { font-size: 1.05rem; }
+    .nav-pills { gap: 0.5rem; }
+    .nav-pill { padding: 0.5rem 1rem; font-size: 0.8rem; }
+  }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--surface3); border-radius: 3px; }
+
+  /* Smooth scroll */
+  html { scroll-behavior: smooth; }
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>AI Research Landscape</h1>
+    <p class="subtitle">A comprehensive primer on the highest-impact work shaping AI from 2023 to 2026 &mdash; spanning foundation models, human-AI interaction, and voice/audio intelligence.</p>
+    <div class="meta-info">
+      <span>May 2026</span>
+      <span>150+ Papers &amp; Systems</span>
+      <span>3 Domains</span>
+    </div>
+    <nav class="nav-pills">
+      <a href="#section-1" class="nav-pill s1">LLM Models &amp; Architecture</a>
+      <a href="#section-2" class="nav-pill s2">Human-AI Interaction</a>
+      <a href="#section-3" class="nav-pill s3">Voice &amp; Audio AI</a>
+      <a href="#section-4" class="nav-pill s4">Cross-Cutting Themes</a>
+    </nav>
+  </div>
+</section>
+
+<!-- ========================================================================= -->
+<!-- SECTION 1: LLM MODELS -->
+<!-- ========================================================================= -->
+<div class="divider"></div>
+<section id="section-1" class="section s1">
+  <div class="section-header">
+    <div class="section-number">Section 01</div>
+    <h2>LLM Models, Architecture &amp; Capabilities</h2>
+    <p>From a GPT-4 monopoly to a rich open/closed ecosystem, with architectural leaps in efficiency, reasoning, and multimodality.</p>
+  </div>
+
+  <!-- Foundation Models -->
+  <div class="subsection">
+    <h3><span class="icon">&#x1f9e0;</span> Foundation Models</h3>
+    <div class="paper-grid" id="foundation-models"></div>
+  </div>
+
+  <!-- Architecture -->
+  <div class="subsection">
+    <h3><span class="icon">&#x2699;</span> Architecture Innovations</h3>
+    <div class="paper-grid" id="architecture"></div>
+  </div>
+
+  <!-- Training & Alignment -->
+  <div class="subsection">
+    <h3><span class="icon">&#x1f3af;</span> Training &amp; Alignment</h3>
+    <div class="paper-grid" id="training"></div>
+  </div>
+
+  <!-- Reasoning & Agents -->
+  <div class="subsection">
+    <h3><span class="icon">&#x1f916;</span> Reasoning &amp; Agents</h3>
+    <div class="paper-grid" id="reasoning"></div>
+  </div>
+
+  <!-- Scaling & Efficiency -->
+  <div class="subsection">
+    <h3><span class="icon">&#x26a1;</span> Scaling &amp; Efficiency</h3>
+    <div class="paper-grid" id="scaling"></div>
+  </div>
+
+  <!-- Multimodal -->
+  <div class="subsection">
+    <h3><span class="icon">&#x1f5bc;</span> Multimodal &amp; Generation</h3>
+    <div class="paper-grid" id="multimodal"></div>
+  </div>
+
+  <!-- Safety -->
+  <div class="subsection">
+    <h3><span class="icon">&#x1f6e1;</span> Safety &amp; Evaluation</h3>
+    <div class="paper-grid" id="safety"></div>
+  </div>
+</section>
+
+<!-- ========================================================================= -->
+<!-- SECTION 2: HUMAN-AI INTERACTION -->
+<!-- ========================================================================= -->
+<div class="divider"></div>
+<section id="section-2" class="section s2">
+  <div class="section-header">
+    <div class="section-number">Section 02</div>
+    <h2>Human-AI Interaction</h2>
+    <p>Research from CHI, CSCW, UIST, and related venues on how humans use, trust, collaborate with, and are affected by AI systems.</p>
+  </div>
+
+  <div class="subsection">
+    <h3><span class="icon">&#x1f4bb;</span> LLM-Powered Interfaces &amp; Tools</h3>
+    <div class="paper-grid" id="hci-interfaces"></div>
+  </div>
+
+  <div class="subsection">
+    <h3><span class="icon">&#x1f50d;</span> Trust, Transparency &amp; Explainability</h3>
+    <div class="paper-grid" id="hci-trust"></div>
+  </div>
+
+  <div class="subsection">
+    <h3><span class="icon">&#x1f91d;</span> Human-AI Collaboration</h3>
+    <div class="paper-grid" id="hci-collab"></div>
+  </div>
+
+  <div class="subsection">
+    <h3><span class="icon">&#x1f3a8;</span> AI &amp; Creativity</h3>
+    <div class="paper-grid" id="hci-creativity"></div>
+  </div>
+
+  <div class="subsection">
+    <h3><span class="icon">&#x2696;</span> Fairness, Bias &amp; Ethics</h3>
+    <div class="paper-grid" id="hci-fairness"></div>
+  </div>
+
+  <div class="subsection">
+    <h3><span class="icon">&#x1f4ca;</span> Evaluation Methods</h3>
+    <div class="paper-grid" id="hci-eval"></div>
+  </div>
+
+  <div class="subsection">
+    <h3><span class="icon">&#x1f3ae;</span> AI Agents &amp; Autonomous Systems</h3>
+    <div class="paper-grid" id="hci-agents"></div>
+  </div>
+
+  <div class="subsection">
+    <h3><span class="icon">&#x267f;</span> Accessibility &amp; Inclusive AI</h3>
+    <div class="paper-grid" id="hci-access"></div>
+  </div>
+</section>
+
+<!-- ========================================================================= -->
+<!-- SECTION 3: VOICE & AUDIO -->
+<!-- ========================================================================= -->
+<div class="divider"></div>
+<section id="section-3" class="section s3">
+  <div class="section-header">
+    <div class="section-number">Section 03</div>
+    <h2>Voice &amp; Audio AI</h2>
+    <p>From speech foundation models to real-time conversational AI, audio is becoming a first-class interface for AI systems.</p>
+  </div>
+
+  <div class="subsection">
+    <h3><span class="icon">&#x1f399;</span> Speech Foundation Models</h3>
+    <div class="paper-grid" id="voice-foundation"></div>
+  </div>
+
+  <div class="subsection">
+    <h3><span class="icon">&#x1f50a;</span> Voice Synthesis &amp; TTS</h3>
+    <div class="paper-grid" id="voice-tts"></div>
+  </div>
+
+  <div class="subsection">
+    <h3><span class="icon">&#x1f4ac;</span> Conversational AI &amp; Voice Assistants</h3>
+    <div class="paper-grid" id="voice-convo"></div>
+  </div>
+
+  <div class="subsection">
+    <h3><span class="icon">&#x1f3b5;</span> Audio &amp; Music Generation</h3>
+    <div class="paper-grid" id="voice-music"></div>
+  </div>
+
+  <div class="subsection">
+    <h3><span class="icon">&#x1f442;</span> Speech Understanding &amp; Analysis</h3>
+    <div class="paper-grid" id="voice-understanding"></div>
+  </div>
+</section>
+
+<!-- ========================================================================= -->
+<!-- SECTION 4: CROSS-CUTTING -->
+<!-- ========================================================================= -->
+<div class="divider"></div>
+<section id="section-4" class="section">
+  <div class="section-header">
+    <div class="section-number" style="color: var(--accent-4); background: var(--accent-4-dim);">Section 04</div>
+    <h2>Cross-Cutting Themes, Tensions &amp; Debates</h2>
+    <p>The most important dynamics shaping the field emerge at the intersection of all three domains.</p>
+  </div>
+
+  <div class="subsection">
+    <h3 style="margin-bottom: 1.25rem;">Emerging Themes Across Domains</h3>
+    <div class="theme-grid">
+      <div class="theme-card"><div class="label" style="color: var(--accent-1);">Models + HCI + Voice</div><h4>Agents Going Mainstream</h4><p>MCP standardization, Claude Code, LangGraph in production. UIST papers on monitoring/steering agents. Voice becoming an agentic interface. The full stack is converging on autonomous AI agents.</p></div>
+      <div class="theme-card"><div class="label" style="color: var(--accent-2);">HCI + Voice</div><h4>From Tools to Teammates to Mediators</h4><p>CHI 2025 Best Papers feature AI as intergroup mediator and delegated communicator. Voice agents handle calls on your behalf. The metaphor is shifting from tool to social actor.</p></div>
+      <div class="theme-card"><div class="label" style="color: var(--accent-3);">Models + Voice</div><h4>The Codec Language Model Paradigm</h4><p>Treating speech as discrete tokens and applying LLM architectures (VALL-E, Dia, Moshi). The same transformer scaling that powers text now powers speech.</p></div>
+      <div class="theme-card"><div class="label" style="color: var(--accent-4);">Models</div><h4>Reasoning as a Product Category</h4><p>o1/o3, DeepSeek-R1, Claude extended thinking created a distinct tier. Users trade latency/cost for accuracy. Inference-time compute may be the primary axis of improvement.</p></div>
+      <div class="theme-card"><div class="label" style="color: var(--accent-5);">Models + HCI</div><h4>Small Models Getting Smarter</h4><p>Phi-4 (14B) beating GPT-4 on math. Distilled reasoning models. On-device deployment. Accessibility as killer app for small, local models.</p></div>
+      <div class="theme-card"><div class="label" style="color: var(--accent-2);">HCI</div><h4>Cultural &amp; Value Plurality</h4><p>Universal AI design is dead. Writing homogenization, dialect bias, cross-cultural trust all point to culture-specific AI interaction design.</p></div>
+      <div class="theme-card"><div class="label" style="color: var(--accent-3);">Voice</div><h4>Full-Duplex Dialogue</h4><p>Moving beyond half-duplex to simultaneous processing. Moshi pioneered dual-stream; GPT-4o and Gemini Live implement variants. From turn-taking to true conversation.</p></div>
+      <div class="theme-card"><div class="label" style="color: var(--accent-1);">Models + Voice</div><h4>Multimodal Unification</h4><p>Models becoming natively multimodal rather than bolting on modalities. GPT-4o's unified architecture, video with native audio. The modular pipeline era is ending.</p></div>
+      <div class="theme-card"><div class="label" style="color: var(--accent-2);">HCI + Models</div><h4>Capabilities Over Accuracy</h4><p>Shift from "did the AI get it right?" to "did the AI expand what people can do?" Reframing evaluation around human empowerment, not task completion.</p></div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <h3 style="margin-bottom: 1.25rem;">Key Tensions &amp; Debates</h3>
+    <div class="tension-grid">
+      <div class="tension-card"><div class="number">01</div><h4>Open vs. Closed Weights</h4><p>DeepSeek-R1 showed open models match frontier closed models. HCI's reproducibility crisis is directly linked to studying closed models. Safety implications cut both ways.</p></div>
+      <div class="tension-card"><div class="number">02</div><h4>Automation vs. Augmentation</h4><p>Copilot creates new costs (50% time inspecting/repairing). Most "collaborative" systems are automation with a thin human veneer. Voice agents escalate the same question.</p></div>
+      <div class="tension-card"><div class="number">03</div><h4>Safety vs. Capabilities Race</h4><p>FLI Safety Index shows gap between ambition and safeguards. RSPs and ASL frameworks accelerate, but so do capabilities. The race between governance and capability continues.</p></div>
+      <div class="tension-card"><div class="number">04</div><h4>The Explanation Paradox</h4><p>Explanations increase acceptance regardless of correctness (Bansal, CHI 2021). Only help for hard tasks (Vasconcelos, CSCW 2023). When do explanations help vs. hurt?</p></div>
+      <div class="tension-card"><div class="number">05</div><h4>Creativity: Catalyst or Crutch?</h4><p>AI reduces divergent thinking (CHI 2024) but enhances as lateral inspiration (CHI 2025). Resolution is design-dependent: AI-as-starting-point harms; AI-as-lateral-input helps.</p></div>
+      <div class="tension-card"><div class="number">06</div><h4>Voice Cloning: Utility vs. Ethics</h4><p>3-second cloning enables accessibility and deepfake fraud. ELVIS Act, EU AI Act, TAKE IT DOWN Act respond. Consent frameworks lag technology.</p></div>
+      <div class="tension-card"><div class="number">07</div><h4>Modular Pipelines vs. End-to-End</h4><p>ASR&rarr;LLM&rarr;TTS is debuggable but lossy. End-to-end is faster and richer but harder to audit. Production uses pipelines; research moves toward unified.</p></div>
+      <div class="tension-card"><div class="number">08</div><h4>Pre-training Scale vs. Inference Compute</h4><p>Evidence of pre-training plateaus. o1/o3 and R1 show inference compute substitutes. Profound implications for deployment economics and accessibility.</p></div>
+    </div>
+  </div>
+
+  <div class="cross-section">
+    <h3>Where the Domains Converge</h3>
+    <div class="cross-item"><h4><span class="dot dot-1"></span><span class="dot dot-2"></span> Alignment Meets Interaction Design</h4><p>Constitutional AI and RLHF are technical alignment; trust calibration and explanation design are interaction alignment. These communities are converging.</p></div>
+    <div class="cross-item"><h4><span class="dot dot-1"></span><span class="dot dot-2"></span><span class="dot dot-3"></span> The Evaluation Crisis</h4><p>ML benchmarks saturate. HCI user studies don't scale. Audio has no conversational quality standard. All three need new methods &mdash; the HEAL workshop bridges them.</p></div>
+    <div class="cross-item"><h4><span class="dot dot-1"></span><span class="dot dot-3"></span> Agent Architectures Need UX</h4><p>ML builds capable agents; HCI shows capability without controllability creates unusable systems. Voice adds real-time. How do humans maintain control over autonomous AI?</p></div>
+    <div class="cross-item"><h4><span class="dot dot-2"></span><span class="dot dot-3"></span> Accessibility as Killer App</h4><p>LLMs enable fundamentally new accessibility interactions: NL computer control for blind users, real-time scene description, automated auditing. Voice is transformative for non-visual interfaces.</p></div>
+    <div class="cross-item"><h4><span class="dot dot-1"></span><span class="dot dot-2"></span><span class="dot dot-3"></span> The Reproducibility Problem</h4><p>HCI studies closed models. Audio depends on proprietary APIs. ML benchmarks are gamed. All three build on proprietary, shifting foundations. Open weights help, but the gap persists.</p></div>
+  </div>
+</section>
+
+<footer>
+  <p>Compiled May 2026 &mdash; 150+ papers, systems, and products from 2023&ndash;2026</p>
+  <p style="margin-top: 0.3rem;">Tap any card to see full breakdown: summary, key findings, takeaways, and paper link</p>
+</footer>
+
+<script>
+// =========================================================================
+// DATA: All papers with full details
+// =========================================================================
+const papers = {
+  // ── SECTION 1: LLM ──────────────────────────────────────────────────────
+
+  "foundation-models": [
+    {
+      title: "GPT-4 Technical Report",
+      authors: "OpenAI \u00b7 Mar 2023",
+      desc: "First model to achieve human-level performance on professional exams. Multimodal from inception. Defined the frontier for over a year.",
+      tags: [["Very High Impact","tag-very-high"],["Paradigm Shift","tag-paradigm"]],
+      link: "https://arxiv.org/abs/2303.08774",
+      summary: "OpenAI's GPT-4 demonstrated unprecedented performance across professional and academic benchmarks, including passing the bar exam in the 90th percentile. Architecture details were largely withheld, but it introduced native multimodal capabilities (text + vision) and an estimated 1.7T+ parameters via a mixture-of-experts architecture.",
+      findings: ["Human-level performance on 34 professional/academic exams including bar, SAT, GRE", "Multimodal from the ground up \u2014 not vision bolted onto text", "Significant improvements in factuality, steerability, and safety refusal over GPT-3.5", "Still exhibits hallucinations, reasoning errors, and social biases"],
+      takeaways: ["The \u201cone model to rule them all\u201d moment: proved a single model could be competitive across nearly all knowledge domains", "Withholding architecture details set a precedent that changed how frontier labs communicate research", "Established multimodality as table stakes for frontier models going forward"],
+      whyMatters: "GPT-4 proved that scaling + RLHF could produce genuinely useful AI across professional domains. Every subsequent model \u2014 Gemini, Claude 3, Llama 3 \u2014 was benchmarked against GPT-4. It catalyzed the enterprise AI adoption wave and set the competitive dynamics that define the current landscape."
+    },
+    {
+      title: "Gemini: A Family of Highly Capable Multimodal Models",
+      authors: "Google DeepMind \u00b7 Dec 2023",
+      desc: "Natively multimodal (text, image, audio, video). Ultra achieved human-expert MMLU. Gemini 1.5 introduced 1M-token context via MoE.",
+      tags: [["Very High Impact","tag-very-high"]],
+      link: "https://arxiv.org/abs/2312.11805",
+      summary: "Google DeepMind's Gemini family was designed as natively multimodal from the ground up, processing text, images, audio, and video in a unified architecture. Gemini Ultra was the first model to surpass human expert performance on MMLU. Gemini 1.5 introduced a 1M-token context window using mixture-of-experts.",
+      findings: ["Gemini Ultra: first model to exceed human expert performance on MMLU (90.0%)", "Native multimodality outperforms \u201cbolt-on\u201d approaches where vision/audio are added after text pretraining", "1M-token context enables processing of entire codebases, books, and hour-long videos in a single prompt", "MoE architecture enables scaling without proportional compute cost"],
+      takeaways: ["Google's answer to GPT-4 validated that native multimodality is the right architecture direction", "1M context windows changed how people think about RAG vs. in-context learning", "Gemini 1.5 Pro became the go-to for tasks requiring massive context (document analysis, code review)"],
+      whyMatters: "Gemini demonstrated that the multimodal frontier is where the real competition lies. Its 1M-token context fundamentally changed the economics of document processing and made in-context learning viable for enterprise-scale workflows. The MoE architecture influenced DeepSeek and every subsequent efficient frontier model."
+    },
+    {
+      title: "Claude 3 / 3.5 / 4 / 4.5 / 4.6",
+      authors: "Anthropic \u00b7 Mar 2024\u2013Present",
+      desc: "Opus/Sonnet/Haiku tiering. Extended thinking with tool use. Sonnet 4.6 preferred over previous-gen Opus in coding evals.",
+      tags: [["Very High Impact","tag-very-high"]],
+      link: "https://www.anthropic.com/news/claude-4",
+      summary: "Anthropic's Claude model family introduced a tiered approach (Opus/Sonnet/Haiku) balancing capability and cost. Claude 3.5 Sonnet was a breakthrough \u2014 outperforming Claude 3 Opus at lower cost. Claude 4 introduced extended thinking with interleaved tool use during reasoning. Claude 4.6 Sonnet was the first Sonnet-tier model preferred over previous-generation Opus in coding evaluations.",
+      findings: ["Claude 3.5 Sonnet: proved that newer, cheaper models can surpass previous-gen flagships", "Extended thinking: alternating between reasoning and tool use enables multi-step problem-solving that was previously impossible", "Strong performance on SWE-bench and coding tasks, driving adoption among developers", "Constitutional AI approach yields lower jailbreak rates compared to competitors"],
+      takeaways: ["The tiered model strategy (Opus/Sonnet/Haiku) became an industry standard copied by Google and others", "Extended thinking represents a fundamentally different approach to reasoning than chain-of-thought", "Claude Code demonstrated that agentic coding assistants are a viable product category"],
+      whyMatters: "Anthropic's approach \u2014 safety-first development with strong capabilities \u2014 proved commercially viable. Claude's extended thinking with tool use is a key differentiator that enables the kind of complex, multi-step reasoning that powers production agent systems. The Sonnet-surpasses-Opus pattern proved that capability improvements don't require larger models."
+    },
+    {
+      title: "Llama 2 / 3 / 3.1 / 3.2",
+      authors: "Meta \u00b7 Jul 2023\u20132024",
+      desc: "Most widely used open-weight models. Llama 3 scaled to 405B. Catalyzed the open-weight ecosystem. Thousands of citations.",
+      tags: [["Very High Impact","tag-very-high"],["Open Weights","tag-open"]],
+      link: "https://arxiv.org/abs/2407.21783",
+      summary: "Meta's Llama family became the foundation of the open-weight LLM ecosystem. Llama 2 (Jul 2023) democratized access to competitive models. Llama 3 (Jul 2024) scaled to 405B parameters with state-of-the-art open performance. Llama 3.2 added vision capabilities and small models (1B-3B) for edge deployment.",
+      findings: ["Llama 2 70B matched or exceeded GPT-3.5 on most benchmarks while being freely available", "Llama 3 405B closed the gap with GPT-4 on many tasks, proving open weights can be frontier-competitive", "Llama 3.2 1B/3B showed that small open models are viable for on-device deployment", "Training on 15T+ tokens validated Chinchilla-optimal training at scale"],
+      takeaways: ["Released under a permissive license, spawning thousands of fine-tuned variants and an entire ecosystem", "Proved that open-weight models can be commercially successful (driving Meta's AI platform strategy)", "Established the standard open-weight training recipe that DeepSeek, Qwen, and others build upon"],
+      whyMatters: "Llama fundamentally changed the AI landscape by making competitive LLMs freely available. The ecosystem it created \u2014 fine-tuning, quantization, deployment tools \u2014 lowered the barrier to AI adoption by orders of magnitude. Without Llama, the open-weight revolution (DeepSeek, Mistral, Qwen) would look very different."
+    },
+    {
+      title: "DeepSeek-V3 / R1",
+      authors: "DeepSeek AI \u00b7 2024\u20132025",
+      desc: "671B total params, 37B active (MoE). Frontier-competitive at a fraction of Western lab costs. R1 induced emergent chain-of-thought via pure RL.",
+      tags: [["Very High Impact","tag-very-high"],["Open Weights","tag-open"],["Cost Breakthrough","tag-paradigm"]],
+      link: "https://arxiv.org/abs/2412.19437",
+      summary: "DeepSeek-V3 is a 671B-parameter MoE model with only 37B active per token, trained for 2.788M H800 GPU hours \u2014 a fraction of Western lab costs. It introduced Multi-Head Latent Attention (MLA) for KV cache efficiency and validated FP8 training at extreme scale. DeepSeek-R1 used pure RL with verifiable rewards (RLVR) to induce emergent chain-of-thought reasoning without supervised fine-tuning.",
+      findings: ["Frontier-competitive performance at estimated $5.6M training cost (vs. hundreds of millions for GPT-4)", "MLA reduces KV cache memory by 5-13x compared to standard multi-head attention", "FP8 training at 671B scale with no quality degradation \u2014 first successful demonstration", "R1 showed that RL alone (no supervised CoT examples) can produce emergent reasoning behaviors"],
+      takeaways: ["Cost efficiency breakthrough: proved frontier AI doesn't require frontier budgets", "MLA is now being adopted across the industry as the standard approach to KV cache optimization", "R1's open weights enabled distillation into smaller reasoning models, democratizing reasoning capability", "Challenged the assumption that only well-funded Western labs can produce frontier models"],
+      whyMatters: "DeepSeek changed the economics of frontier AI permanently. V3 proved that architectural innovation (MoE + MLA + FP8) can substitute for raw compute budget. R1 showed that reasoning can emerge from pure RL, opening a new training paradigm. Together, they demonstrated that the AI capabilities frontier is more accessible than previously believed."
+    },
+    {
+      title: "Mixtral 8x7B / Mistral 7B",
+      authors: "Mistral AI \u00b7 Sep\u2013Dec 2023",
+      desc: "Mistral 7B outperformed Llama 2 13B. Mixtral validated MoE as the dominant efficiency architecture.",
+      tags: [["High Impact","tag-high"],["Open Weights","tag-open"]],
+      link: "https://arxiv.org/abs/2401.04088",
+      summary: "Mistral AI released two models that reshaped expectations for efficient LLMs. Mistral 7B outperformed Llama 2 13B on every benchmark. Mixtral 8x7B used a sparse mixture-of-experts architecture with 45B total but only 14B active parameters, outperforming Llama 2 70B with 6x faster inference.",
+      findings: ["Mistral 7B: best-in-class at its size, outperforming models nearly twice as large", "Mixtral 8x7B: 6x faster inference than Llama 2 70B while matching or exceeding its quality", "Sparse MoE routing allows scaling total knowledge without proportional compute cost", "Apache 2.0 license enabled unrestricted commercial deployment"],
+      takeaways: ["Validated MoE as the dominant paradigm for efficient frontier models", "Proved that a small European startup could compete with Meta and OpenAI on model quality", "The architecture directly influenced DeepSeek-V2/V3, Gemini, and Qwen's MoE variants"],
+      whyMatters: "Mixtral was the proof-of-concept that MoE could work at production scale for LLMs. Every subsequent efficient frontier model \u2014 DeepSeek, Gemini 1.5, Qwen \u2014 adopted some form of MoE, making it arguably the most influential architecture decision in the 2023-2026 period."
+    },
+    {
+      title: "Phi-3 / Phi-4",
+      authors: "Microsoft \u00b7 2024",
+      desc: "Phi-3-mini (3.8B) rivaled Mixtral. Phi-4 (14B) beats GPT-4 on MATH. Proved data quality can substitute for scale.",
+      tags: [["High Impact","tag-high"],["Small Model Revolution","tag-paradigm"]],
+      link: "https://arxiv.org/abs/2404.14219",
+      summary: "Microsoft's Phi series demonstrated that carefully curated synthetic data can enable small models to match or exceed much larger ones. Phi-3-mini (3.8B parameters) rivaled Mixtral 8x7B. Phi-4 (14B) beat GPT-4 on MATH and GPQA benchmarks. Phi-4-Reasoning outperformed DeepSeek-R1 on AIME 2025.",
+      findings: ["3.8B model matching 45B MoE model performance \u2014 12x parameter efficiency advantage", "Synthetic textbook-style training data is the key ingredient, not scale", "Phi-4 at 14B beats GPT-4 (1.7T+) on mathematical reasoning \u2014 120x smaller", "On-device deployment viable: Phi-3-mini runs on modern phones"],
+      takeaways: ["Data quality > data quantity > model size for specialized capabilities", "Small, capable models enable on-device AI, reducing latency and privacy concerns", "The \u201cbigger is better\u201d assumption is definitively broken for many task categories"],
+      whyMatters: "Phi proved that the AI democratization path runs through data engineering, not compute scaling. This has profound implications: capable AI on edge devices, reduced energy consumption, and lower barriers to entry for AI development. The synthetic data paradigm Phi pioneered is now standard practice."
+    },
+    {
+      title: "Qwen 2.5",
+      authors: "Alibaba \u00b7 Dec 2024",
+      desc: "Pre-trained on 18T tokens. Models from 0.5B to 72B + MoE. Leading open-weight family alongside Llama.",
+      tags: [["High Impact","tag-high"],["Open Weights","tag-open"]],
+      link: "https://arxiv.org/abs/2412.15115",
+      summary: "Alibaba's Qwen 2.5 family represents China's most successful open-weight model series. Pre-trained on 18 trillion tokens (up from 7T for Qwen 2), with models spanning 0.5B to 72B parameters plus MoE variants. Achieves top-tier performance across reasoning, math, and coding benchmarks.",
+      findings: ["18T token training corpus \u2014 one of the largest disclosed for any open model", "100+ model variants on Hugging Face, from tiny to frontier-scale", "Top-5 on most major benchmarks among open-weight models", "Strong multilingual performance, particularly for Chinese and East Asian languages"],
+      takeaways: ["China's AI ecosystem is producing models competitive with Western open-weight offerings", "The proliferation of model sizes enables deployment across the full device spectrum", "Combined with DeepSeek, establishes a viable non-Western open-weight ecosystem"],
+      whyMatters: "Qwen represents the maturation of China's independent AI ecosystem. Its breadth of model sizes and strong multilingual performance make it the go-to choice for Asian-language applications. Together with DeepSeek, it ensures the open-weight ecosystem isn't dependent on any single country or company."
+    }
+  ],
+
+  "architecture": [
+    {
+      title: "Mixture of Experts (MoE)",
+      authors: "Mixtral, DeepSeek, Gemini, Qwen, Jamba",
+      desc: "Dominant efficiency paradigm. Scale total parameters while keeping inference cost constant by routing to expert subsets.",
+      tags: [["Architecture Paradigm","tag-paradigm"]],
+      link: "https://arxiv.org/abs/2401.04088",
+      summary: "MoE became the dominant architecture for efficient frontier models in 2023-2025. Instead of activating all parameters for every token, MoE routes each token to a small subset of \u201cexpert\u201d sub-networks. This allows scaling total model knowledge without proportionally increasing inference cost.",
+      findings: ["Mixtral 8x7B validated MoE at production scale with Apache 2.0 license", "DeepSeek-V3 pushed MoE to 671B total / 37B active, the largest successful deployment", "Expert routing strategies (top-k, load balancing) significantly affect quality and efficiency", "Hybrid MoE (combined with Mamba/SSM layers) emerging as next evolution"],
+      takeaways: ["MoE is now the default architecture choice for any team building efficient large models", "The key design decision is the expert count and routing strategy, not total parameter count", "Training MoE models requires careful load balancing to prevent expert collapse"],
+      whyMatters: "MoE transformed the economics of AI deployment. A 671B MoE model (DeepSeek-V3) can run with the compute budget of a 37B dense model while having access to 671B parameters of learned knowledge. This architecture is why frontier AI is becoming more accessible, not less."
+    },
+    {
+      title: "Mamba: Linear-Time Sequence Modeling with Selective State Spaces",
+      authors: "Gu & Dao \u00b7 Dec 2023",
+      desc: "Eliminates attention's quadratic complexity via selective state spaces. Mamba-2 showed SSMs and linear attention are equivalent.",
+      tags: [["Very High Impact","tag-very-high"],["Alternative to Attention","tag-paradigm"]],
+      link: "https://arxiv.org/abs/2312.00752",
+      summary: "Mamba introduced selective state space models (SSMs) as a linear-time alternative to the transformer's quadratic attention mechanism. Instead of attending to all previous tokens, Mamba uses a recurrent state that selectively remembers or forgets information. Mamba-2 proved that SSMs and linear attention are mathematically dual, unifying two research threads.",
+      findings: ["Linear-time sequence processing: O(n) vs O(n\u00b2) for attention, enabling much longer sequences", "Selective state spaces: the model learns which information to remember vs. forget at each step", "Competitive with transformers on language modeling while being significantly faster for long sequences", "Mamba-2: formal proof that SSMs and linear attention are equivalent (Structured State Space Duality)"],
+      takeaways: ["Attention is not the only viable sequence modeling mechanism \u2014 alternatives exist and work", "Pure Mamba replacement of transformers hasn't happened; hybrids (Jamba) are the practical winner", "The duality result means insights from either SSM or linear attention research transfer to the other"],
+      whyMatters: "Mamba challenged the transformer monopoly on sequence modeling. While pure replacement hasn't happened, hybrid architectures (Jamba: Transformer + Mamba + MoE) are showing that combining attention with linear-time layers yields the best of both worlds. This architectural diversity will be critical as context windows push to millions of tokens."
+    },
+    {
+      title: "Multi-Head Latent Attention (MLA)",
+      authors: "DeepSeek \u00b7 2024",
+      desc: "Compresses KV cache by projecting keys/values into lower-dimensional latent space. Critical for long-context inference.",
+      tags: [["High Impact","tag-high"]],
+      link: "https://arxiv.org/abs/2405.04434",
+      summary: "DeepSeek introduced Multi-Head Latent Attention as a replacement for standard multi-head attention that dramatically reduces KV cache memory. Instead of storing full key and value vectors for each token, MLA projects them into a shared lower-dimensional latent space, achieving 5-13x memory reduction.",
+      findings: ["5-13x reduction in KV cache memory compared to standard multi-head attention", "No quality degradation \u2014 MLA matches or exceeds standard attention performance", "Enables much longer context windows within the same memory budget", "Adopted across the entire DeepSeek model family (V2, V3, R1)"],
+      takeaways: ["KV cache is the primary memory bottleneck for long-context inference; MLA directly addresses it", "The latent projection can be viewed as a learned compression of attention patterns", "This technique is complementary to other efficiency methods (MoE, quantization, speculative decoding)"],
+      whyMatters: "As context windows expand to millions of tokens, KV cache memory becomes the binding constraint. MLA provides a clean architectural solution that reduces this bottleneck by an order of magnitude without sacrificing quality. It's likely to become standard in future model architectures."
+    },
+    {
+      title: "Long Context: From 4K to 1M+ Tokens",
+      authors: "2023\u20132025",
+      desc: "Context windows expanded 250x in two years. Ring Attention, YaRN, positional encoding extensions. Entire codebases fit in-context.",
+      tags: [["Paradigm Shift","tag-paradigm"]],
+      link: "https://arxiv.org/abs/2403.05530",
+      summary: "Context window length expanded from 4K tokens (GPT-3.5) to 1M+ tokens (Gemini 1.5) in roughly two years. Key innovations include Ring Attention (distributed attention across devices), YaRN (rotary position embedding extension), and architectural choices like MoE and MLA that reduce per-token memory footprint.",
+      findings: ["Gemini 1.5 Pro processes 1M tokens (equivalent to ~700K words or multiple full-length books)", "Claude supports 200K-1M token contexts with strong recall throughout", "In-context learning at 1M tokens can match fine-tuned models for many tasks", "Needle-in-a-haystack tests show near-perfect retrieval across full context for leading models"],
+      takeaways: ["RAG is no longer the only option for processing large document collections \u2014 in-context is viable", "Entire codebases can be loaded into context for comprehensive code understanding", "Long context enables new applications: full-book analysis, multi-document synthesis, codebase-wide refactoring"],
+      whyMatters: "Long context is a capability multiplier that changes what's possible with LLMs. Instead of complex retrieval pipelines, users can simply provide all relevant information. This simplification of the AI application stack reduces engineering complexity and improves reliability for document-heavy workflows."
+    }
+  ],
+
+  "training": [
+    {
+      title: "Direct Preference Optimization (DPO)",
+      authors: "Rafailov et al. \u00b7 May 2023",
+      desc: "Eliminates the separate reward model. Simpler and more stable than PPO-based RLHF. Spawned IPO, KTO, ORPO, SimPO.",
+      tags: [["Very High Impact","tag-very-high"],["Alignment Method","tag-paradigm"]],
+      link: "https://arxiv.org/abs/2305.18290",
+      summary: "DPO showed that the RLHF objective can be analytically solved to derive a simple classification loss on preference pairs, eliminating the need for a separate reward model and the instabilities of PPO training. This dramatically simplified the alignment pipeline while maintaining or improving quality.",
+      findings: ["Mathematically equivalent to RLHF under certain assumptions, but far simpler to implement", "Eliminates reward model training, reward hacking, and PPO instability issues", "Competitive with or superior to PPO-based RLHF on standard benchmarks", "Spawned a family of variants: IPO (robust to noise), KTO (single responses), ORPO (no reference model), SimPO (simplified)"],
+      takeaways: ["Alignment became accessible to small teams: no reward model, no RL infrastructure needed", "The DPO family makes it practical to align any open-weight model with modest compute", "Preference data is the bottleneck, not the training algorithm"],
+      whyMatters: "DPO democratized model alignment. Before DPO, alignment required significant RL infrastructure. After DPO, any team with preference data can align a model. This single paper accelerated the entire open-weight ecosystem by making alignment tractable for non-frontier labs."
+    },
+    {
+      title: "Constitutional AI / RLAIF",
+      authors: "Anthropic \u00b7 2022\u20132023",
+      desc: "AI-generated feedback replaces human labelers. Model critiques its own outputs against a constitution. Foundational to Claude.",
+      tags: [["High Impact","tag-high"]],
+      link: "https://arxiv.org/abs/2212.08073",
+      summary: "Constitutional AI (CAI) trains models to be helpful, harmless, and honest by having the model critique and revise its own outputs according to a set of principles (the \u201cconstitution\u201d). RLAIF extends this by using AI-generated preference labels instead of human annotators for RL training.",
+      findings: ["AI feedback can substitute for human feedback in harmlessness training with comparable quality", "The \u201cconstitution\u201d approach makes alignment principles explicit and auditable", "Reduces reliance on expensive and potentially traumatic human annotation of harmful content", "Self-critique-and-revise is more scalable than human red-teaming"],
+      takeaways: ["Alignment principles should be explicit and inspectable, not implicit in training data", "AI-generated feedback is viable for safety training, enabling rapid iteration", "The approach is foundational to Claude's safety properties and competitive positioning"],
+      whyMatters: "CAI introduced the idea that alignment can be principled and transparent rather than implicit. The explicit constitution makes it possible to reason about, audit, and update a model's values. This transparency-first approach to alignment has influenced the entire field's thinking about how to build trustworthy AI systems."
+    },
+    {
+      title: "Reinforcement Learning with Verifiable Rewards (RLVR)",
+      authors: "DeepSeek \u00b7 2025",
+      desc: "Pure RL with verifiable correctness rewards. Induced emergent chain-of-thought reasoning without supervised fine-tuning.",
+      tags: [["Very High Impact","tag-very-high"],["Emergent Reasoning","tag-paradigm"]],
+      link: "https://arxiv.org/abs/2501.12948",
+      summary: "DeepSeek-R1 was trained using RL with rewards based on verifiable correctness (math proofs, code execution) rather than human preference judgments. Remarkably, this pure RL approach induced emergent chain-of-thought reasoning \u2014 the model learned to \u201cthink step by step\u201d without any supervised examples of reasoning traces.",
+      findings: ["Chain-of-thought reasoning emerged from RL alone \u2014 no supervised CoT examples needed", "Verifiable rewards (math correctness, code tests) provide cleaner signal than human preference", "The resulting model (R1) matches o1-level reasoning on mathematical benchmarks", "Distillation of R1 into smaller models (1.5B-70B) preserves significant reasoning capability"],
+      takeaways: ["Reasoning behavior can be an emergent property of RL training, not a manually engineered feature", "Verifiable domains (math, code) may be the best training ground for general reasoning ability", "Open-weight reasoning models are viable: R1's weights are publicly available"],
+      whyMatters: "RLVR suggests that reasoning is a naturally emerging capability when models are trained with the right reward signal. This has enormous implications: instead of hand-crafting reasoning demonstrations, we may be able to train models that discover better reasoning strategies than humans would design. The open release of R1 weights accelerated reasoning model development across the entire ecosystem."
+    },
+    {
+      title: "Textbooks Are All You Need",
+      authors: "Gunasekar et al. (Microsoft) \u00b7 Jun 2023",
+      desc: "Phi-1 trained on synthetic textbook data achieved remarkable coding ability at 1.3B params. Launched the synthetic data paradigm.",
+      tags: [["High Impact","tag-high"]],
+      link: "https://arxiv.org/abs/2306.11644",
+      summary: "Microsoft demonstrated that a 1.3B parameter model (Phi-1) trained primarily on synthetically generated \u201ctextbook-quality\u201d data could achieve coding performance rivaling models 10x its size. The key insight: data quality, specifically clarity and pedagogical structure, matters more than raw quantity.",
+      findings: ["1.3B model matching coding performance of 10x larger models trained on web crawls", "Synthetic textbook-style data is more sample-efficient than web-scraped data", "Mixing synthetic + natural data outperforms either alone", "The quality of training data has a larger impact on capability than model size"],
+      takeaways: ["Data engineering is the highest-leverage intervention for model capability", "Synthetic data generation is a viable and scalable training strategy", "Small models can be highly capable in specific domains with the right training data"],
+      whyMatters: "This paper launched the synthetic data paradigm that now underpins the training of Phi-4, many open-weight models, and parts of frontier model training pipelines. The insight that data quality beats quantity reshapes how teams allocate resources: invest in data curation, not just compute."
+    }
+  ],
+
+  "reasoning": [
+    {
+      title: "OpenAI o1 / o3 / o4-mini",
+      authors: "OpenAI \u00b7 Sep 2024\u2013Apr 2025",
+      desc: "First \u201creasoning models\u201d using inference-time compute scaling. o1 solved 74-93% of AIME. o3 scored 76-88% on ARC-AGI-1.",
+      tags: [["Very High Impact","tag-very-high"],["Inference Scaling","tag-paradigm"]],
+      link: "https://openai.com/index/introducing-o3-and-o4-mini/",
+      summary: "OpenAI's o-series introduced \u201creasoning models\u201d that use significantly more compute at inference time to solve harder problems. o1 (Sep 2024) used hidden chain-of-thought and RL training to solve 74-93% of AIME math competition problems (vs. GPT-4o's 12%). o3 (Dec 2024) scored 76-88% on ARC-AGI-1, the first model to surpass the human baseline on abstract reasoning.",
+      findings: ["Inference-time compute scaling yields log-linear performance gains, analogous to pretraining scaling", "o1 improved AIME performance from 12% (GPT-4o) to 74-93% \u2014 a 6-8x jump", "o3 scored 76-88% on ARC-AGI-1, the first model to match human performance on abstract reasoning", "o4-mini: 20% fewer major errors than o1 at significantly lower cost"],
+      takeaways: ["There are now two axes of scaling: pretraining compute and inference compute", "Users can explicitly trade latency and cost for accuracy on hard problems", "Reasoning models are a distinct product category requiring different UX patterns (longer wait times, streaming partial results)"],
+      whyMatters: "The o-series proved that AI capability can scale at inference time, not just training time. This changes the economics of AI: instead of one massive training run, capability can be dialed up per-query based on difficulty. It also suggests that as pretraining scaling slows, inference scaling can continue to drive progress."
+    },
+    {
+      title: "Model Context Protocol (MCP)",
+      authors: "Anthropic \u00b7 Nov 2024",
+      desc: "Open standard for connecting AI to external tools and data. Adopted by OpenAI, Google, Microsoft. De facto standard.",
+      tags: [["Very High Impact","tag-very-high"],["Standard","tag-paradigm"]],
+      link: "https://modelcontextprotocol.io",
+      summary: "MCP is an open protocol for connecting AI models to external tools, data sources, and services. It provides a standardized way for models to discover and use tools, replacing the fragmented landscape of proprietary tool-use APIs. Adopted by all major AI labs and donated to the Linux Foundation's Agentic AI Foundation.",
+      findings: ["Standardized tool discovery and invocation across different AI models and providers", "Adopted by OpenAI, Google, Microsoft, AWS, and Cloudflare in addition to Anthropic", "Thousands of community-built MCP servers covering databases, APIs, file systems, and more", "SDKs available in Python, TypeScript, Java, Go, and Rust"],
+      takeaways: ["Tool use is no longer a differentiator between models \u2014 it's standardized infrastructure", "MCP servers are composable: any combination of tools can be made available to any model", "The agent ecosystem now has a shared protocol layer, reducing vendor lock-in"],
+      whyMatters: "MCP is to AI agents what HTTP was to the web: a shared protocol that enables an ecosystem. By standardizing how models interact with tools, MCP makes it possible to build agent applications that work across providers and to create a marketplace of tool integrations. This infrastructure layer is essential for agents to move from demos to production."
+    },
+    {
+      title: "ReAct: Synergizing Reasoning and Acting",
+      authors: "Yao et al. \u00b7 ICLR 2023",
+      desc: "Interleaved reasoning traces and actions. Foundational pattern for all subsequent agent frameworks.",
+      tags: [["Very High Impact","tag-very-high"],["ICLR 2023","tag-venue"]],
+      link: "https://arxiv.org/abs/2210.03629",
+      summary: "ReAct introduced the pattern of interleaving reasoning traces (\u201cI need to find X\u201d) with actions (searching, reading, computing) in a single prompt-based loop. This simple but powerful pattern became the foundation for every subsequent agent framework.",
+      findings: ["Interleaving thought and action outperforms either reasoning-only or action-only approaches", "The pattern is general: works for question answering, fact verification, web navigation, and more", "Thought traces make agent behavior interpretable and debuggable", "The approach is prompt-based, requiring no model fine-tuning"],
+      takeaways: ["Think-act loops are the fundamental building block of all modern AI agents", "LangChain, CrewAI, AutoGen, and every production agent system implements some variant of ReAct", "The interpretability benefit is critical: you can read the agent's reasoning to understand failures"],
+      whyMatters: "ReAct is the design pattern that made AI agents practical. Before ReAct, language models could reason or take actions but struggled to do both. The interleaved approach is so effective that it's embedded in every agent framework built since. Understanding ReAct is essential for understanding modern agentic AI."
+    },
+    {
+      title: "Agent Frameworks: LangGraph, CrewAI, AutoGen",
+      authors: "2023\u2013Present",
+      desc: "LangGraph: ~400 companies in production. CrewAI: 44K+ stars. AutoGen merged into Microsoft Agent Framework.",
+      tags: [["High Impact","tag-high"]],
+      link: "https://www.langchain.com/langgraph",
+      summary: "The agent framework ecosystem matured rapidly from 2023-2025. LangGraph (LangChain) provides stateful multi-agent applications as directed cyclic graphs, used by ~400 companies including Cisco, Uber, and JPMorgan. CrewAI enables role-playing AI agents for collaborative tasks (44K+ GitHub stars, 5.2M monthly downloads). Microsoft's AutoGen merged with Semantic Kernel into a unified Agent Framework.",
+      findings: ["Production agent deployments grew from near-zero to hundreds of enterprise customers in 18 months", "Graph-based architectures (LangGraph) provide better state management than simple chain architectures", "Multi-agent patterns (delegation, review, debate) are more reliable than single-agent approaches", "Agent reliability (not capability) is the primary bottleneck for production deployment"],
+      takeaways: ["The agent framework layer is stabilizing: LangGraph and CrewAI are the leading open-source options", "Production agents require careful error handling, state management, and human-in-the-loop checkpoints", "MCP integration is becoming table stakes for agent frameworks"],
+      whyMatters: "These frameworks represent the transition from AI demos to AI production systems. They encode hard-won lessons about agent reliability, state management, and human oversight. As agents become more autonomous, the framework layer will determine how safely and reliably they operate."
+    }
+  ],
+
+  "scaling": [
+    {
+      title: "QLoRA: Efficient Finetuning of Quantized LLMs",
+      authors: "Dettmers et al. \u00b7 May 2023 \u00b7 NeurIPS 2023",
+      desc: "4-bit quantization + LoRA. Fine-tune 65B models on a single 48GB GPU. One of the most impactful efficiency papers.",
+      tags: [["Very High Impact","tag-very-high"],["NeurIPS 2023","tag-venue"]],
+      link: "https://arxiv.org/abs/2305.14314",
+      summary: "QLoRA combined 4-bit NormalFloat quantization with Low-Rank Adaptation (LoRA) to enable fine-tuning 65B-parameter models on a single 48GB GPU. It introduced double quantization (quantizing the quantization constants) and paged optimizers to further reduce memory. This made fine-tuning frontier-scale models accessible to individuals and small teams.",
+      findings: ["Fine-tune 65B models on a single 48GB GPU (previously required 780GB+ of GPU memory)", "4-bit NormalFloat (NF4) data type is information-theoretically optimal for normally distributed weights", "Minimal quality loss: QLoRA-finetuned models match full 16-bit finetuning on benchmarks", "Double quantization saves an additional 0.37 bits per parameter"],
+      takeaways: ["Fine-tuning is no longer a privilege of well-resourced labs", "The combination of quantization + PEFT methods is strictly superior to either alone", "QLoRA recipes are now standard for adapting open-weight models to specific use cases"],
+      whyMatters: "QLoRA democratized model customization. Before QLoRA, fine-tuning a 65B model required expensive multi-GPU setups. After QLoRA, a single consumer GPU suffices. This opened the door to thousands of specialized models for specific domains, languages, and tasks \u2014 the long tail of AI applications."
+    },
+    {
+      title: "Speculative Decoding",
+      authors: "Leviathan et al.; Chen et al. \u00b7 2023",
+      desc: "Small draft model proposes tokens verified in parallel by the large model. Lossless 2-3x speedup.",
+      tags: [["High Impact","tag-high"]],
+      link: "https://arxiv.org/abs/2302.01318",
+      summary: "Speculative decoding uses a small, fast \u201cdraft\u201d model to propose multiple tokens at once, which are then verified in parallel by the large target model. Because verification is cheaper than generation (it's a single forward pass over all proposed tokens), this yields 2-3x speedup with zero quality loss.",
+      findings: ["2-3x inference speedup with mathematically guaranteed identical output distribution", "Works with any autoregressive model pair (small draft + large target)", "Variants: self-speculative (model skips its own layers), QuantSpec (quantized KV cache)", "Scaling laws for speculative decoding formalized in 2026"],
+      takeaways: ["This is \u201cfree\u201d speedup: identical outputs, just faster", "Particularly effective when the draft model has high acceptance rates (common tokens)", "Now integrated into major inference engines (vLLM, TGI, llama.cpp)"],
+      whyMatters: "Speculative decoding is one of the rare \u201cfree lunch\u201d optimizations in AI: faster inference with zero quality cost. As LLMs deploy at scale, inference cost dominates. This technique is becoming standard infrastructure, saving billions in compute costs across the industry."
+    },
+    {
+      title: "Quantization: GPTQ, AWQ, GGUF",
+      authors: "2023",
+      desc: "Post-training quantization to 4-bit with minimal loss. Enabled running large models on consumer hardware.",
+      tags: [["High Impact","tag-high"],["Democratization","tag-open"]],
+      link: "https://arxiv.org/abs/2210.17323",
+      summary: "Three quantization approaches converged to make large models runnable on consumer hardware. GPTQ (layer-wise post-training quantization) reduces models to 4-bit. AWQ (Activation-Aware Weight Quantization) protects important weights based on activation patterns. GGUF (llama.cpp format) enables CPU inference with mixed quantization levels.",
+      findings: ["4-bit quantization retains 95-99% of full-precision quality on most benchmarks", "AWQ outperforms GPTQ at the same bit-width by protecting salient weights", "GGUF format enables running 7B-13B models on laptops without GPU", "Combined with QLoRA, enables full train-deploy cycle on consumer hardware"],
+      takeaways: ["Large models are now accessible to anyone with a modern laptop", "The GGUF ecosystem (llama.cpp) created a grassroots LLM community", "Quantization is not just an optimization \u2014 it's a democratization tool"],
+      whyMatters: "Quantization made AI personal. The ability to run capable models on a laptop changed the conversation about AI access, privacy, and sovereignty. It enabled the local LLM movement and proved that frontier-class models can be compressed to consumer-friendly sizes."
+    },
+    {
+      title: "Inference-Time Compute Scaling Laws",
+      authors: "OpenAI; DeepSeek \u00b7 2024\u20132025",
+      desc: "Spending more compute at inference (longer thinking) yields reliable gains, analogous to pretraining scaling laws.",
+      tags: [["Paradigm Shift","tag-paradigm"]],
+      link: "https://openai.com/index/learning-to-reason-with-llms/",
+      summary: "o1/o3 and DeepSeek-R1 demonstrated that performance improves log-linearly with inference-time compute, just as it does with pretraining compute. By \u201cthinking longer\u201d (generating more reasoning tokens), models achieve substantially better results on hard problems. This represents a second scaling axis alongside training compute.",
+      findings: ["Log-linear relationship between inference compute and performance on reasoning tasks", "Diminishing returns on pretraining scale can be compensated by inference-time scaling", "Users can dynamically adjust the cost-quality tradeoff per query", "Combined pretraining + inference scaling may yield super-additive improvements"],
+      takeaways: ["The AI scaling story isn't over \u2014 it has a second chapter at inference time", "This enables \u201cpay per difficulty\u201d pricing models for AI services", "Hard problems that seemed intractable become solvable with sufficient thinking time"],
+      whyMatters: "If pretraining scaling is approaching diminishing returns (the \u201cscaling wall\u201d), inference-time scaling provides a new growth axis. This insight reframes the future of AI capability: progress may come from smarter inference rather than bigger models. It also enables a fundamentally different economic model where compute is allocated based on problem difficulty."
+    }
+  ],
+
+  "multimodal": [
+    {
+      title: "Stable Diffusion 3: Scaling Rectified Flow Transformers",
+      authors: "Stability AI \u00b7 2024",
+      desc: "Replaced U-Net with MMDiT. Rectified flow: deterministic transport from noise to data, faster than diffusion.",
+      tags: [["High Impact","tag-high"]],
+      link: "https://arxiv.org/abs/2403.03206",
+      summary: "SD3 replaced the U-Net backbone with a Multimodal Diffusion Transformer (MMDiT) and introduced rectified flow as a training and sampling method. Rectified flow uses deterministic ODE transport from noise to data, which is faster and more controllable than stochastic diffusion.",
+      findings: ["MMDiT with separate text/image streams + bidirectional attention outperforms U-Net architectures", "Rectified flow enables fewer sampling steps for equivalent quality", "Scaling behavior follows predictable laws: larger MMDiT = better quality", "Architecture influenced FLUX and subsequent image generators"],
+      takeaways: ["Transformers are replacing U-Nets in image generation, just as they replaced RNNs in NLP", "Rectified flow is becoming the default training method for flow-based generative models", "The shift to transformer-based diffusion enables better text understanding in generated images"],
+      whyMatters: "SD3 marked the transition from convolutional to transformer architectures in image generation. This architectural unification \u2014 transformers for text, images, video, and audio \u2014 enables shared scaling insights and infrastructure across modalities. FLUX, the current state-of-the-art, builds directly on SD3's innovations."
+    },
+    {
+      title: "Sora: Video Generation Models as World Simulators",
+      authors: "OpenAI \u00b7 Feb 2024",
+      desc: "Diffusion transformer on spacetime patches. Set the research agenda for video generation. Discontinued Apr 2026.",
+      tags: [["Very High Impact","tag-very-high"]],
+      link: "https://openai.com/index/video-generation-models-as-world-simulators/",
+      summary: "Sora demonstrated that diffusion transformers operating on spacetime patches could generate high-quality videos of variable duration, resolution, and aspect ratio. OpenAI framed it as a step toward \u201cworld simulators\u201d \u2014 models that understand physical dynamics. Despite being discontinued in Apr 2026, Sora set the research agenda for the entire video generation field.",
+      findings: ["Spacetime patch-based processing enables flexible video dimensions", "Temporal coherence across long clips improved dramatically over prior work", "Videos showed rudimentary physics understanding (object permanence, lighting consistency)", "Despite impressive demos, production reliability was insufficient (hence discontinuation)"],
+      takeaways: ["Video generation is a tractable problem for transformer-scale architectures", "The \u201cworld model\u201d framing influenced how the field thinks about video generation's purpose", "Production video generation requires solving reliability and controllability, not just quality"],
+      whyMatters: "Sora's conceptual contribution \u2014 video generation as world simulation \u2014 reframed the field's ambitions. Even though the product was discontinued, the research agenda it set (spacetime transformers, physical understanding, variable-length generation) is now pursued by Runway, Kling, Veo, and others. Its discontinuation also carries lessons about the gap between impressive demos and reliable products."
+    },
+    {
+      title: "FLUX",
+      authors: "Black Forest Labs \u00b7 Aug 2024",
+      desc: "Rectified flow transformer. State-of-the-art image generation. Superior typography, spatial reasoning, fine detail.",
+      tags: [["High Impact","tag-high"]],
+      link: "https://blackforestlabs.ai",
+      summary: "FLUX, from the creators of Stable Diffusion, is a rectified flow transformer that generates images in latent space. It's considered the current state-of-the-art for text-to-image generation, surpassing SD3, DALL-E 3, and Midjourney on typography, spatial relationships, and fine details.",
+      findings: ["Best-in-class text rendering in generated images", "Superior spatial reasoning: correctly places objects based on textual descriptions", "Multiple model sizes: FLUX.1 [pro], [dev] (open-weight), [schnell] (fast, Apache 2.0)", "Rectified flow enables high quality in fewer sampling steps than diffusion-based methods"],
+      takeaways: ["The team that created Stable Diffusion continues to push the state of the art independently", "Open-weight image generation (FLUX [dev], [schnell]) remains competitive with proprietary options", "Typography in generated images is now good enough for many production use cases"],
+      whyMatters: "FLUX represents the current frontier of image generation quality. Its open-weight variants ensure that state-of-the-art image generation remains accessible outside major labs. The architectural choices (rectified flow transformer) are likely to define the next generation of generative models across modalities."
+    },
+    {
+      title: "Video Generation Convergence",
+      authors: "Runway, Kling, Veo \u00b7 2024\u20132026",
+      desc: "By Feb 2026, 4/6 major models generate synchronized audio natively. Native 4K, multi-shot, cinematic camera.",
+      tags: [["Emerging Standard","tag-paradigm"]],
+      link: "https://runwayml.com",
+      summary: "Video generation rapidly matured from single-shot silent clips to production-quality content with native audio, 4K resolution, multi-shot sequences, and cinematic camera control. By Feb 2026, 4 of 6 major video generators include synchronized audio, and features like subject consistency across shots are becoming standard.",
+      findings: ["Native audio generation (music, dialogue, sound effects) now integrated in most video generators", "4K resolution at 24+ FPS is standard for leading models", "Multi-shot sequences with consistent characters across camera angles (Kling 3.0)", "Cinematic camera controls (dolly, pan, zoom) are user-specifiable"],
+      takeaways: ["Video generation is approaching production usability for short-form content", "The integration of audio marks a shift from \u201cvideo\u201d to \u201cmedia\u201d generation", "Character consistency across shots was the critical missing piece, now being solved"],
+      whyMatters: "Video generation is crossing the utility threshold for marketing, social media, and creative prototyping. The rapid convergence on audio + video in unified models suggests that full media production (script to finished short) may be automated within 1-2 years for certain content types."
+    }
+  ],
+
+  "safety": [
+    {
+      title: "ARC-AGI / ARC-AGI-2 / ARC-AGI-3",
+      authors: "Chollet \u00b7 2019\u20132026",
+      desc: "Tests novel abstract reasoning. o3 scored 76-88% on AGI-1. ARC-AGI-3 added interactive games \u2014 all frontier models scored zero.",
+      tags: [["Very High Impact","tag-very-high"]],
+      link: "https://arcprize.org",
+      summary: "ARC-AGI is the benchmark most directly designed to measure genuine generalization. Each puzzle requires recognizing a novel pattern from a few examples and applying it \u2014 explicitly testing out-of-distribution reasoning. ARC-AGI-1 was partially solved by o3 (76-88%, but at $200-$20K per task). ARC-AGI-2 increased difficulty. ARC-AGI-3 (2026) added interactive games requiring real-time adaptation \u2014 all frontier models scored zero.",
+      findings: ["SotA progressed from 33% to 55.5% in 2024, then o3 reached 76-88% at extreme compute cost", "ARC-AGI-2 (2025) demonstrated that harder puzzles remain intractable for current models", "ARC-AGI-3 (2026): interactive games with real-time feedback \u2014 zero performance from all models", "The cost per task for high scores ($200-$20K) makes practical deployment prohibitive"],
+      takeaways: ["Current AI excels at pattern matching within training distribution but struggles with genuine novelty", "Interactive reasoning (real-time adaptation) is a qualitatively harder challenge than static puzzles", "ARC-AGI-3's zero scores suggest fundamental limitations in current architectures for open-ended reasoning"],
+      whyMatters: "ARC-AGI is the closest thing the field has to a test for \u201creal\u201d intelligence. The fact that ARC-AGI-3 yields zero scores from all frontier models reveals a genuine capability gap: current AI cannot engage in the kind of real-time, adaptive reasoning that humans do naturally. This benchmark will likely drive architectural innovation for the next several years."
+    },
+    {
+      title: "SWE-bench",
+      authors: "Jimenez et al. \u00b7 2023",
+      desc: "Real-world GitHub issue resolution. AI went from 4.4% to 71.7% solved in one year. Most important coding agent benchmark.",
+      tags: [["Very High Impact","tag-very-high"]],
+      link: "https://www.swebench.com",
+      summary: "SWE-bench tests AI systems on real-world software engineering: given a GitHub issue, generate the code changes that resolve it. Performance jumped from 4.4% (early 2023) to 71.7% (end of 2024), driven by improvements in agentic coding systems, tool use, and reasoning models.",
+      findings: ["4.4% to 71.7% resolution rate in one year \u2014 the fastest benchmark improvement in AI history", "Agentic approaches (iterating on code, running tests, reading error messages) vastly outperform single-shot generation", "Best systems use multiple tools: file search, code editing, test execution, error analysis", "Performance correlates strongly with real-world coding assistant utility"],
+      takeaways: ["AI coding capabilities are improving faster than any other capability measured by benchmarks", "SWE-bench success requires reasoning + tool use + iteration, not just code generation", "The benchmark directly predicts production utility: high SWE-bench scores = useful coding assistant"],
+      whyMatters: "SWE-bench is the benchmark that most directly measures whether AI can do real software engineering work. The rapid improvement from 4.4% to 71.7% signals that AI coding assistants are approaching genuine utility for professional developers. This benchmark drives investment and product decisions across the AI coding tool landscape."
+    },
+    {
+      title: "Responsible Scaling Policies",
+      authors: "Anthropic \u00b7 2023\u20132025",
+      desc: "AI Safety Level (ASL) framework. Capability thresholds trigger safety requirements. Most concrete safety commitment from a major lab.",
+      tags: [["High Impact","tag-high"]],
+      link: "https://www.anthropic.com/news/anthropics-responsible-scaling-policy",
+      summary: "Anthropic's RSP defines AI Safety Levels (ASL-1 through ASL-5) analogous to biosafety levels. As models reach capability thresholds (e.g., ability to assist with bioweapons or autonomous self-replication), corresponding safety measures are required before deployment. Includes a Responsible Scaling Officer, internal whistleblowing channels, and public capability reports.",
+      findings: ["ASL framework provides concrete, testable thresholds for safety requirements", "Safety measures are proportional to capability: more powerful models require more safeguards", "Public accountability: capability reports and third-party audits are part of the policy", "Influenced similar frameworks at Google DeepMind (Frontier Safety Framework) and OpenAI (Preparedness Framework)"],
+      takeaways: ["The most operationally concrete safety framework from any major lab", "Provides a template for how safety requirements can scale with capabilities", "Makes the safety-capability tradeoff explicit and auditable"],
+      whyMatters: "RSP offers a practical answer to \u201chow do we develop powerful AI safely?\u201d Instead of abstract principles, it provides testable thresholds and mandatory safety measures. As models approach ASL-4/5 territory (autonomous agents, science automation), these frameworks will determine whether the transition is managed or chaotic."
+    },
+    {
+      title: "AI Safety Index",
+      authors: "Future of Life Institute \u00b7 2025",
+      desc: "Found that safety commitments lag far behind capability ambitions. Quantified the safety-capability gap across the industry.",
+      tags: [["High Impact","tag-high"]],
+      link: "https://futureoflife.org/ai-safety-index-summer-2025/",
+      summary: "FLI's AI Safety Index systematically assessed safety commitments across major AI labs. The key finding: even the strongest performers lack concrete safeguards and independent oversight mechanisms. Safety commitments are qualitatively weaker than capability commitments across the board.",
+      findings: ["Safety commitments are vague and aspirational where capability plans are specific and funded", "No major lab has fully independent external oversight of its safety practices", "The gap between stated safety principles and operational implementation is significant", "Competitive dynamics are the primary driver of under-investment in safety"],
+      takeaways: ["Industry self-regulation is insufficient: safety lags capabilities at every lab", "External oversight mechanisms (government regulation, independent audits) are needed", "The safety-capability gap is growing, not shrinking, as models become more powerful"],
+      whyMatters: "The Safety Index provides empirical evidence for what many suspected: AI labs are better at promising safety than delivering it. This quantified gap is critical context for policymakers, researchers, and users. As models approach dangerous capability thresholds, the gap between safety commitments and implementation becomes an existential risk factor."
+    }
+  ],
+
+  // ── SECTION 2: HCI ──────────────────────────────────────────────────────
+
+  "hci-interfaces": [
+    {
+      title: "Why Johnny Can\u2019t Prompt: How Non-AI Experts Try (and Fail) to Design LLM Prompts",
+      authors: "Zamfirescu-Pereira et al. \u00b7 CHI 2023",
+      desc: "Non-AI experts approach prompting opportunistically, overgeneralizing from human instruction norms.",
+      tags: [["Very High Impact","tag-very-high"],["CHI 2023","tag-venue"]],
+      link: "https://dl.acm.org/doi/10.1145/3544548.3581388",
+      summary: "A study of how non-AI-experts approach LLM prompting revealed fundamental mismatches between human-to-human instruction norms and effective LLM prompting. Participants assumed LLMs understand context the way humans do, leading to underspecified and ambiguous prompts.",
+      findings: ["Non-experts approach prompting like giving instructions to a smart colleague, not programming a system", "Common failures: underspecification, assuming shared context, overgeneralizing from single examples", "Prompt engineering skill doesn't transfer automatically from domain expertise", "Users need scaffolding to understand LLM capabilities and limitations"],
+      takeaways: ["The \u201cprompt engineering\u201d gap is a fundamental UX problem, not a training problem", "Better tools and interfaces are needed to bridge human mental models and LLM requirements", "Prompt engineering may be a temporary skill \u2014 better interfaces should make it unnecessary"],
+      whyMatters: "This paper defined the core UX challenge of the LLM era: humans and AI have fundamentally different communication norms. Every chatbot, copilot, and AI tool must address this gap. The paper's influence is visible in the shift toward structured interfaces, prompt templates, and guided interaction patterns."
+    },
+    {
+      title: "ChainForge: Visual Toolkit for Prompt Engineering & LLM Hypothesis Testing",
+      authors: "Arawjo et al. \u00b7 CHI 2024 (Best Paper HM)",
+      desc: "Open-source visual programming for comparing LLM responses across prompt variations and models.",
+      tags: [["High Impact","tag-high"],["CHI 2024","tag-venue"]],
+      link: "https://dl.acm.org/doi/10.1145/3613904.3642016",
+      summary: "ChainForge provides a visual, node-based programming environment for systematically testing LLM prompts. Users can compare responses across multiple prompt variations, models, and evaluation criteria simultaneously, turning prompt engineering from an ad-hoc process into a structured experimental workflow.",
+      findings: ["Visual prompt comparison reduces the effort to identify optimal prompting strategies", "Supports parallel evaluation across multiple models and prompt variants", "Enables hypothesis testing about LLM behavior without writing code", "Open-source: adopted by researchers and practitioners for LLM auditing and prompt development"],
+      takeaways: ["LLM evaluation needs purpose-built tools, not just chat interfaces", "Visual programming paradigms translate well to prompt engineering workflows", "Systematic prompt testing should be standard practice for any production LLM deployment"],
+      whyMatters: "ChainForge created a new tool category: the \u201cLLM evaluation IDE.\u201d As organizations deploy LLMs in production, systematic prompt testing becomes critical for quality, safety, and cost optimization. This tool and its successors will be essential infrastructure for responsible LLM deployment."
+    },
+    {
+      title: "Reading Between the Lines: Modeling User Behavior and Costs in AI-Assisted Programming",
+      authors: "Mozannar et al. (Microsoft) \u00b7 CHI 2024",
+      desc: "CUPS taxonomy of programmer activities with Copilot. ~50% of time goes to inspecting/repairing, not coding.",
+      tags: [["High Impact","tag-high"],["CHI 2024","tag-venue"]],
+      link: "https://dl.acm.org/doi/abs/10.1145/3613904.3641936",
+      summary: "Through detailed observation of developers using GitHub Copilot, the authors developed the CUPS taxonomy: Constructing prompts, Understanding suggestions, Processing/editing accepted suggestions, and Seeking alternatives. The key finding: ~50% of developer time goes to overhead activities (inspecting, understanding, repairing suggestions) rather than productive coding.",
+      findings: ["50% of developer time with Copilot is spent on overhead, not productive coding", "Developers spend significant time understanding whether suggestions are correct before accepting", "Repairing partially-correct suggestions creates a new category of cognitive work", "Net productivity gain exists but is smaller than vendor claims suggest"],
+      takeaways: ["AI coding tools create new costs even as they reduce others \u2014 the net benefit is real but nuanced", "Tool design should minimize inspection and repair overhead, not just maximize suggestion quality", "Measuring productivity requires accounting for the full CUPS cycle, not just acceptance rate"],
+      whyMatters: "This paper provides the most rigorous evidence about the real costs and benefits of AI coding assistants. It challenges the industry narrative of dramatic productivity gains and provides a framework (CUPS) for understanding and optimizing human-AI programming workflows. Essential reading for anyone building or evaluating coding tools."
+    },
+    {
+      title: "Vibe Coding: Programming Through Conversation with AI",
+      authors: "Sarkar, Drosos et al. (Microsoft) \u00b7 2025",
+      desc: "First empirical study of \u201cvibe coding\u201d \u2014 programming primarily through LLM conversation rather than writing code.",
+      tags: [["High Impact","tag-high"],["Emerging Paradigm","tag-paradigm"]],
+      link: "https://advait.org/publications",
+      summary: "The first empirical study of \u201cvibe coding\u201d \u2014 the practice of programming primarily through natural language conversation with an LLM, with minimal direct code writing. The study analyzed 8+ hours of vibe coding sessions, documenting an emerging paradigm shift in how people create software.",
+      findings: ["Vibe coding represents a qualitatively different programming practice, not just \u201cautocomplete++\u201d", "Practitioners develop new skills: conversation management, intent specification, output validation", "Code understanding becomes reading comprehension rather than construction skill", "Works well for prototyping and one-off scripts; limitations emerge for complex systems"],
+      takeaways: ["Programming is evolving from \u201cwriting code\u201d to \u201cspecifying intent and validating output\u201d", "New educational approaches may be needed: teaching people to work WITH AI rather than to code FROM SCRATCH", "The skill distribution shifts: domain expertise becomes more valuable than syntax knowledge"],
+      whyMatters: "Vibe coding may represent the future of programming for a large class of applications. If natural language specification becomes the primary interface to computation, it redefines who can create software and what programming education should look like. This paper provides the first empirical foundation for understanding this shift."
+    },
+    {
+      title: "Understanding the LLM-ification of CHI",
+      authors: "Pang et al. \u00b7 CHI 2025",
+      desc: "Systematic review of 153 CHI papers on LLMs. Found reproducibility concerns from closed-model dependence.",
+      tags: [["High Impact","tag-high"],["CHI 2025","tag-venue"]],
+      link: "https://dl.acm.org/doi/full/10.1145/3706598.3713726",
+      summary: "A systematic review of 153 CHI papers (2020-2024) that engage with LLMs. Found that LLMs are transforming not just HCI research topics but HCI methodology itself (using LLMs as simulated participants, evaluation tools, data analysis aids). Raised serious concerns about reproducibility when studying proprietary, frequently-updated models.",
+      findings: ["LLM papers grew from 2% of CHI (2020) to 15%+ (2024) \u2014 rapid field transformation", "80%+ of papers study closed-source models (GPT-4, ChatGPT) \u2014 a reproducibility crisis", "LLMs are being used as both research subjects and research tools, blurring methodological lines", "Many papers lack details about model versions, prompts, and configuration \u2014 unreplicable by design"],
+      takeaways: ["HCI research on LLMs faces a fundamental reproducibility challenge that the field must address", "Papers should specify exact model versions, full prompts, and test on open-weight alternatives when possible", "The field needs new methodological standards for LLM-engaged research"],
+      whyMatters: "This meta-analysis holds a mirror to HCI research and reveals structural problems: if 80% of research uses closed models that change monthly, what is the shelf life of our findings? The paper's call for methodological reform will shape how the field conducts and evaluates LLM research for years to come."
+    },
+    {
+      title: "Design Principles for Generative AI Applications",
+      authors: "Weisz et al. (IBM) \u00b7 CHI 2024",
+      desc: "Six design principles for GenAI UX. Three reinterpret known issues; three identify novel concerns.",
+      tags: [["High Impact","tag-high"],["CHI 2024","tag-venue"]],
+      link: "https://dl.acm.org/doi/10.1145/3613904.3642466",
+      summary: "IBM Research proposed six design principles for generative AI applications, derived through iterative practitioner feedback and validated against deployed systems. Three principles reinterpret known AI-UX issues through a generative lens; three identify challenges unique to generative AI (output non-determinism, prompt sensitivity, creative ownership).",
+      findings: ["GenAI introduces novel UX challenges beyond traditional AI: non-determinism, prompt sensitivity, ownership ambiguity", "Users need different mental models for generative vs. analytical AI", "Existing AI design guidelines (e.g., Google's PAIR) are insufficient for generative applications", "Practitioner feedback revealed gaps between academic guidelines and real-world design needs"],
+      takeaways: ["Design for non-determinism: same input can produce different outputs, and users need to understand this", "Prompt sensitivity means small changes in wording can dramatically affect output quality", "Creative ownership questions arise whenever AI generates content users present as their own"],
+      whyMatters: "These are the first empirically grounded design principles specifically for generative AI. As every product adds GenAI features, design teams need concrete guidance. These principles address the unique challenges (non-determinism, prompt sensitivity, ownership) that traditional UX guidelines don't cover."
+    }
+  ],
+
+  "hci-trust": [
+    {
+      title: "AI Transparency in the Age of LLMs: A Human-Centered Research Roadmap",
+      authors: "Liao & Vaughan \u00b7 Harvard Data Science Review, 2024",
+      desc: "Distinguishes functional understanding from mechanistic understanding. Transparency for LLMs is a design problem.",
+      tags: [["Very High Impact","tag-very-high"]],
+      link: "https://arxiv.org/abs/2306.01941",
+      summary: "Liao and Vaughan argue that LLM transparency must be reframed as a human-centered design problem rather than a technical reporting exercise. They distinguish between functional understanding (what can this AI do, when does it fail?) and mechanistic understanding (how does it work internally?), arguing that functional understanding is more actionable for users.",
+      findings: ["Users need functional transparency (capabilities, limitations, failure modes) more than mechanistic transparency", "Model cards and technical documentation are necessary but insufficient for user understanding", "Different stakeholders (end users, developers, auditors) need different transparency artifacts", "LLMs' emergent behaviors make traditional transparency approaches (feature importance, decision boundaries) inadequate"],
+      takeaways: ["Stop trying to explain HOW LLMs work to users; help them understand WHAT they can and cannot do", "Transparency is not a single artifact but a design system tailored to stakeholder needs", "Interactive, experiential transparency (letting users probe boundaries) may be more effective than documentation"],
+      whyMatters: "This roadmap redirects the transparency conversation from technical explainability to practical utility. As LLMs are deployed in high-stakes settings (healthcare, legal, education), knowing when to trust them matters more than knowing how they work. This human-centered reframing will guide transparency research and regulation for years."
+    },
+    {
+      title: "Explanations Can Reduce Overreliance on AI During Decision-Making",
+      authors: "Vasconcelos et al. \u00b7 CSCW 2023",
+      desc: "Behavioral economics framework: explanations only help for hard tasks. No effect for easy/medium.",
+      tags: [["High Impact","tag-high"],["CSCW 2023","tag-venue"]],
+      link: "https://arxiv.org/abs/2212.06823",
+      summary: "Using a cost-benefit framework from behavioral economics, this paper shows that people strategically choose whether to engage with AI explanations. For easy and medium tasks, explanations have no effect on reliance behavior. For hard tasks, explanations reduce overreliance by helping users identify AI errors. This undermines the blanket recommendation to \u201cjust add explanations.\u201d",
+      findings: ["Explanations reduce overreliance only for hard tasks \u2014 no effect for easy or medium difficulty", "Users rationally engage with explanations only when the cognitive cost is justified by task difficulty", "Cost-benefit model from behavioral economics explains when explanations will and won't work", "One-size-fits-all explanation strategies are ineffective"],
+      takeaways: ["Don't add explanations by default \u2014 match explanation depth to task difficulty", "For easy tasks, simple confidence scores may be more effective than detailed explanations", "Explanation design should be task-aware, not model-aware"],
+      whyMatters: "This paper provides the theoretical foundation for when explanations actually help. Instead of assuming explanations are always beneficial, designers can now make evidence-based decisions about explanation strategies. This nuanced understanding is critical as AI explanations are increasingly required by regulation (EU AI Act)."
+    },
+    {
+      title: "Does the Whole Exceed Its Parts? Effect of AI Explanations on Complementary Team Performance",
+      authors: "Bansal et al. \u00b7 CHI 2021 (343+ citations)",
+      desc: "Explanations increase acceptance of AI recommendations regardless of correctness. The explanation paradox.",
+      tags: [["Very High Impact","tag-very-high"],["CHI 2021","tag-venue"]],
+      link: "https://dl.acm.org/doi/10.1145/3411764.3445717",
+      summary: "In a landmark study, Bansal et al. showed that providing AI explanations increases user acceptance of AI recommendations regardless of whether the AI is correct or incorrect. Rather than enabling selective appropriate reliance, explanations act as a blanket persuasion tool. This finding created the \u201cexplanation paradox\u201d that the field continues to grapple with.",
+      findings: ["Explanations increase AI recommendation acceptance regardless of AI correctness", "This means explanations can increase overreliance just as easily as they reduce it", "The complementary team performance (human + AI > either alone) promised by XAI rarely materializes", "Users treat explanations as evidence of AI confidence rather than evaluating explanation quality"],
+      takeaways: ["Explanations are not a silver bullet for human-AI decision-making \u2014 they can make things worse", "The XAI field's assumption that \u201cmore transparency = better decisions\u201d is empirically wrong", "Alternative approaches (cognitive forcing, selective disclosure, disagreement highlighting) may be more effective"],
+      whyMatters: "With 343+ citations, this is one of the most influential papers on human-AI interaction. It fundamentally challenged the XAI community's core assumption and redirected research toward understanding WHEN explanations help. Every subsequent paper on AI trust and transparency must engage with this finding."
+    }
+  ],
+
+  "hci-collab": [
+    {
+      title: "Generative Agents: Interactive Simulacra of Human Behavior",
+      authors: "Park et al. \u00b7 UIST 2023 (~5000+ citations)",
+      desc: "25 LLM-powered agents simulate daily life with emergent social behavior. Opened believable agent simulation.",
+      tags: [["Very High Impact","tag-very-high"],["UIST 2023","tag-venue"],["Paradigm Shift","tag-paradigm"]],
+      link: "https://dl.acm.org/doi/10.1145/3586183.3606763",
+      summary: "Twenty-five LLM-powered agents inhabit a simulated Smallville-like environment, forming relationships, coordinating activities, and exhibiting emergent social behaviors. Each agent has a memory stream, reflection capability, and planning module. Without explicit programming, agents organized a Valentine's Day party, spread information, and formed social groups.",
+      findings: ["Emergent social behavior arises from individual agents with memory + reflection + planning", "Agents form relationships, spread gossip, coordinate events \u2014 without explicit social programming", "The architecture (memory stream + retrieval + reflection) is general and transferable", "~5000+ citations \u2014 one of the most impactful papers across all of AI/HCI"],
+      takeaways: ["Believable AI agents are possible with current LLM technology + the right cognitive architecture", "Memory, reflection, and planning are the minimal components for coherent long-term agent behavior", "The \u201cSimulacra\u201d framing opens applications in social science, game design, and organizational simulation"],
+      whyMatters: "This paper proved that LLMs can power believable autonomous agents that exhibit complex social behavior. It launched an entire research area (agent simulation) and demonstrated the cognitive architecture (memory + reflection + planning) that underlies most modern AI agent systems. Its influence extends from academic research to commercial products (NPCs, virtual worlds, organizational modeling)."
+    },
+    {
+      title: "Relational AI: Facilitating Intergroup Cooperation with Socially Aware Conversational Support",
+      authors: "Claggett, Kraut, Shirado \u00b7 CHI 2025 (Best Paper)",
+      desc: "AI as mediator, not tool. Uses socially aware conversation to facilitate cooperation between groups.",
+      tags: [["High Impact","tag-high"],["CHI 2025 Best Paper","tag-venue"]],
+      link: "https://chi2025.acm.org/best-paper-and-honorable-mention-awards-at-chi-2025/",
+      summary: "Instead of AI as a tool that helps individuals, Relational AI positions AI as a social mediator that facilitates cooperation between groups. The system uses socially aware conversation strategies to reduce intergroup conflict and improve collaborative outcomes.",
+      findings: ["AI mediation improves intergroup cooperation compared to unmediated interaction", "Socially aware strategies (perspective-taking prompts, common ground identification) are key mechanisms", "The AI doesn't replace human judgment but creates conditions for better human-human collaboration", "Shifts the AI role from tool/assistant to social infrastructure"],
+      takeaways: ["AI can serve social functions beyond individual productivity: mediation, facilitation, peacemaking", "The most impactful AI applications may be human-human rather than human-AI", "This represents a fundamental expansion of what \u201cAI-assisted\u201d can mean"],
+      whyMatters: "Relational AI opens a new design space: AI as social infrastructure rather than personal tool. If AI can improve how groups collaborate, negotiate, and resolve conflicts, the societal impact could far exceed individual productivity gains. This paper points toward AI's potential for prosocial applications."
+    },
+    {
+      title: "Conversational Agents on Your Behalf: Shared Autonomy in Voice Communication",
+      authors: "Cheng, Shirado, Kasahara \u00b7 CHI 2025 (Best Paper)",
+      desc: "AI agents handle voice calls on your behalf during multitasking. Delegation vs. control in everyday communication.",
+      tags: [["High Impact","tag-high"],["CHI 2025 Best Paper","tag-venue"]],
+      link: "https://chi2025.acm.org/best-paper-and-honorable-mention-awards-at-chi-2025/",
+      summary: "This paper explores a near-future scenario: AI agents that handle phone calls on your behalf while you're busy. It examines the tension between the convenience of delegation and the loss of control over your own communication, studying how people set boundaries and monitor AI agents acting as their voice proxy.",
+      findings: ["Users want delegation but struggle to specify communication boundaries precisely", "Trust calibration for voice agents is harder than for text agents (voice feels more personal)", "Users develop new monitoring behaviors to oversee agents speaking \u201cas them\u201d", "Social norms around AI-mediated communication are nascent and fraught"],
+      takeaways: ["Voice delegation raises unique identity and authenticity concerns not present in text-based AI", "The \u201cshared autonomy\u201d framework from robotics transfers to conversational AI", "Design patterns for agent oversight, interruption, and correction are critical for voice agents"],
+      whyMatters: "As voice AI agents become capable of handling real conversations (GPT-4o voice, Gemini Live), the question of when and how to delegate communication becomes urgent. This paper provides the first empirical framework for understanding the human experience of AI speaking on your behalf."
+    },
+    {
+      title: "Human-AI Collaboration is Not Very Collaborative Yet",
+      authors: "Frontiers in Computer Science \u00b7 2024",
+      desc: "Most \u201ccollaborative\u201d AI systems implement simple recommend-accept/reject. Calls for richer interaction models.",
+      tags: [["High Impact","tag-high"]],
+      link: "https://www.frontiersin.org/journals/computer-science/articles/10.3389/fcomp.2024.1521066/full",
+      summary: "A systematic review found that most AI systems described as \u201ccollaborative\u201d actually implement simple interaction patterns: the AI recommends, the human accepts or rejects. True collaboration \u2014 mutual adaptation, shared goals, negotiation, complementary contributions \u2014 is rare in practice.",
+      findings: ["Dominant pattern: AI suggests, human accepts/rejects \u2014 this is automation, not collaboration", "True collaboration requires mutual adaptation, which few systems implement", "The gap between \u201ccollaboration\u201d in paper titles and actual interaction patterns is significant", "Richer interaction models exist in CSCW literature but are rarely applied to human-AI systems"],
+      takeaways: ["The field overuses \u201ccollaboration\u201d to describe what is really \u201cautomation with a human veto\u201d", "Real collaboration requires the AI to understand and adapt to the human's approach, not just optimize its own output", "CSCW's decades of human-human collaboration research should inform human-AI system design"],
+      whyMatters: "This paper is a wake-up call for the field. If we aspire to human-AI collaboration, we need to move beyond the recommend-accept pattern toward genuine mutual adaptation. This reframing has implications for every AI tool, from coding assistants to creative tools to decision support systems."
+    }
+  ],
+
+  "hci-creativity": [
+    {
+      title: "The Effects of Generative AI on Design Fixation and Divergent Thinking",
+      authors: "CHI 2024",
+      desc: "AI image generators during ideation led to higher fixation, fewer ideas, lower originality vs. baseline.",
+      tags: [["High Impact","tag-high"],["CHI 2024","tag-venue"]],
+      link: "https://dl.acm.org/doi/full/10.1145/3613904.3642919",
+      summary: "A 60-participant controlled experiment testing whether AI image generators help or hinder creative ideation. Participants using AI during brainstorming produced fewer ideas, less variety, and lower originality compared to a no-AI baseline. The AI outputs acted as \u201canchor points\u201d that fixated thinking.",
+      findings: ["AI exposure during ideation reduces the number and variety of ideas generated", "AI-generated images act as fixation anchors, constraining rather than expanding the design space", "Originality ratings were lower for AI-assisted ideation than for unassisted ideation", "The effect is stronger when AI outputs are presented early in the ideation process"],
+      takeaways: ["AI is not automatically a creativity booster \u2014 the timing and framing of AI introduction matters", "AI as a starting point harms exploration; AI as a later-stage refinement tool may help", "Creative workflows should be designed to prevent premature convergence on AI suggestions"],
+      whyMatters: "This is the strongest empirical evidence that AI can harm creativity under specific conditions. It challenges the tech industry's blanket claim that \u201cAI enhances creativity\u201d and provides concrete design guidance: introduce AI later in the creative process, not at the beginning."
+    },
+    {
+      title: "AI Suggestions Homogenize Writing Toward Western Styles",
+      authors: "Agarwal et al. (Cornell) \u00b7 CHI 2025",
+      desc: "GPT-4o autocomplete pushed Indian writers toward Western norms, altering content and style.",
+      tags: [["High Impact","tag-high"],["CHI 2025","tag-venue"]],
+      link: "https://dl.acm.org/doi/10.1145/3706598.3713564",
+      summary: "In a study with 118 participants from India and the US, GPT-4o's autocomplete suggestions were shown to push Indian writers toward Western writing norms, altering not just content but fundamental writing style. The effect was cultural homogenization: diverse writing traditions converge toward a narrow, Western-influenced norm.",
+      findings: ["Indian writers' style shifted toward Western norms when using GPT-4o autocomplete", "The homogenization affected both content (topics, framing) and style (sentence structure, word choice)", "US writers were less affected because their baseline style already aligned with the AI's tendencies", "Users were largely unaware of the cultural influence on their writing"],
+      takeaways: ["AI writing tools are not culturally neutral \u2014 they encode and propagate specific cultural norms", "Monoculture in AI training data creates monoculture in AI-assisted writing", "Culturally adaptive AI (adjusting to the user's writing tradition) is needed but doesn't exist yet"],
+      whyMatters: "This paper demonstrates a concrete cultural harm of AI tools that extends far beyond bias in outputs. When AI shapes how people write, it shapes how they think. The homogenization effect threatens linguistic and cultural diversity at global scale. This finding should inform AI writing tool design, training data curation, and cultural AI policy."
+    },
+    {
+      title: "AMUSE: Human-AI Collaborative Songwriting with Multimodal Inspirations",
+      authors: "Kim, Lee, Donahue \u00b7 CHI 2025 (Best Paper)",
+      desc: "Multimodal AI songwriting using images, text, audio as inspiration. AI as catalyst vs. creator.",
+      tags: [["High Impact","tag-high"],["CHI 2025 Best Paper","tag-venue"]],
+      link: "https://chi2025.acm.org/best-paper-and-honorable-mention-awards-at-chi-2025/",
+      summary: "AMUSE is a collaborative songwriting tool where AI uses multimodal inputs (images, text snippets, audio samples) as creative inspiration rather than generating songs directly. Users provide evocative inputs and the AI generates musical ideas inspired by them, which users then refine, combine, and develop.",
+      findings: ["Multimodal inspiration (images + text + audio) produces more diverse musical ideas than text-only prompting", "Users reported feeling more ownership over AI-assisted compositions compared to direct generation tools", "The \u201cinspiration\u201d framing reduced the fixation effects seen in direct generation studies", "AI as lateral creative input enhances divergent thinking; AI as direct solution hinders it"],
+      takeaways: ["How AI contributes matters more than whether it contributes: inspiration > direct generation", "Multimodal inputs create richer creative starting points than text prompts alone", "Design pattern: use AI for lateral thinking (unexpected connections) rather than direct solution"],
+      whyMatters: "AMUSE resolves the creativity tension identified by the fixation study: the key variable is not AI involvement but AI role. When AI provides lateral inspiration rather than direct solutions, it enhances rather than constrains creativity. This design pattern applies across creative domains: writing, visual art, music, design."
+    }
+  ],
+
+  "hci-fairness": [
+    {
+      title: "Bias and Fairness in Large Language Models: A Survey",
+      authors: "Gallegos et al. \u00b7 Computational Linguistics (ACL), 2024",
+      desc: "Comprehensive taxonomy of social bias in NLP. Defines distinct facets of harm. Core reference for the field.",
+      tags: [["Very High Impact","tag-very-high"]],
+      link: "https://arxiv.org/abs/2309.00770",
+      summary: "The most comprehensive survey of bias and fairness in LLMs, covering 200+ papers. Establishes a taxonomy of bias types (representational, allocative, quality-of-service), measurement approaches, and mitigation strategies. Defines desiderata for operationalizing fairness in LLM-powered applications.",
+      findings: ["LLM biases manifest differently than traditional ML biases due to generative nature", "Representational harms (stereotyping, erasure) are more common in LLMs than allocative harms", "Debiasing techniques often address one type of bias while exacerbating another", "Evaluation of fairness in generative models requires fundamentally new metrics"],
+      takeaways: ["There is no single \u201cbias\u201d problem \u2014 multiple distinct types require different mitigation strategies", "Fairness evaluation for LLMs is still an open problem without consensus methods", "Practitioners need to be specific about which type of bias they're measuring and mitigating"],
+      whyMatters: "As LLMs are deployed in hiring, education, healthcare, and criminal justice, understanding their biases is critical. This survey provides the conceptual framework that practitioners and regulators need to reason about LLM fairness. It's the starting point for any serious fairness work with LLMs."
+    },
+    {
+      title: "Position is Power: System Prompts as a Mechanism of Bias in LLMs",
+      authors: "FAccT 2025",
+      desc: "System prompts can encode and amplify biases. The \u201chidden\u201d layer of LLM configuration as a fairness concern.",
+      tags: [["High Impact","tag-high"],["FAccT 2025","tag-venue"]],
+      link: "https://facctconference.org/2025/acceptedpapers.html",
+      summary: "This paper demonstrates that system prompts \u2014 the hidden instructions that configure LLM behavior \u2014 can encode and amplify biases in model outputs. Because system prompts are typically invisible to end users, they represent a hidden layer of bias that existing fairness auditing approaches don't address.",
+      findings: ["System prompts can systematically bias outputs in ways invisible to end users", "The positional advantage of system prompts (first in context, high attention weight) amplifies their influence", "Current fairness auditing approaches don't examine system prompts", "The same model with different system prompts can produce dramatically different bias profiles"],
+      takeaways: ["System prompt auditing should be part of any fairness assessment for deployed LLMs", "The hidden nature of system prompts creates an accountability gap", "Regulation should address system prompt transparency, not just model-level fairness"],
+      whyMatters: "System prompts are where values are operationalized in deployed LLMs. If they can encode and amplify bias, then fairness cannot be assessed at the model level alone \u2014 the entire deployment stack (model + system prompt + interface) must be audited. This has direct implications for AI regulation and accountability."
+    },
+    {
+      title: "AI Could Have Written This: Birth of a Classist Slur in Knowledge Work",
+      authors: "Sarkar \u00b7 CHI EA 2025",
+      desc: "How \u201cAI could have written this\u201d became a dismissive label. Social dynamics of AI content stigma.",
+      tags: [["High Impact","tag-high"],["CHI 2025","tag-venue"]],
+      link: "https://advait.org/publications",
+      summary: "Sarkar examines how \u201cAI could have written this\u201d has become a dismissive label in knowledge work, functioning as a classist marker that devalues certain types of writing and, by extension, certain types of workers. The paper analyzes the social dynamics of AI-generated content stigma.",
+      findings: ["The phrase functions as a quality judgment wrapped in a technology claim", "It disproportionately affects non-native English speakers and early-career professionals", "The stigma creates a chilling effect: people avoid useful AI tools to prevent being labeled", "Paradoxically, AI-polished text may be dismissed while \u201cauthentic\u201d text with errors is valued"],
+      takeaways: ["AI content stigma is a new form of classism in knowledge work", "The social dynamics of AI use matter as much as the technical capabilities", "Organizations need policies that address AI-use stigma, not just AI-use guidelines"],
+      whyMatters: "As AI tools become ubiquitous in knowledge work, the social dynamics of their use become critical. If using AI is stigmatized, the benefits of AI tools will accrue unevenly based on social position, not capability. This paper identifies a new dimension of AI inequality that policy and organizational design must address."
+    }
+  ],
+
+  "hci-eval": [
+    {
+      title: "Who Validates the Validators? Aligning LLM-Assisted Evaluation with Human Preferences",
+      authors: "Shankar et al. \u00b7 UIST 2024",
+      desc: "EvalGen: humans grade a subset, system selects aligned evaluation functions. The recursive evaluation problem.",
+      tags: [["High Impact","tag-high"],["UIST 2024","tag-venue"]],
+      link: "https://dl.acm.org/doi/abs/10.1145/3654777.3676450",
+      summary: "EvalGen addresses the recursive problem of using LLMs to evaluate LLMs: who validates the validator? The system lets humans grade a subset of outputs, then automatically selects evaluation functions that align with those grades, creating a human-grounded evaluation pipeline that scales.",
+      findings: ["LLM-as-judge approaches can diverge significantly from human preferences without calibration", "A small number of human grades (~50-100) is sufficient to select aligned evaluation functions", "The mixed-initiative approach (human grades + automated function selection) outperforms either alone", "Different human evaluators may have different preferences, requiring the system to handle disagreement"],
+      takeaways: ["Always calibrate LLM evaluators against human judgments before trusting them at scale", "The evaluation problem is solvable with modest human input + automated alignment", "This pipeline should be standard for any production LLM evaluation workflow"],
+      whyMatters: "As AI systems become more complex, evaluation becomes the bottleneck. You can't improve what you can't measure, and you can't measure effectively with automated evaluators that haven't been human-calibrated. EvalGen provides a practical solution to this chicken-and-egg problem."
+    },
+    {
+      title: "Nurturing Capabilities: Unpacking the Gap in Human-Centered Evaluations",
+      authors: "Khullar et al. \u00b7 CHI 2025 (Honorable Mention)",
+      desc: "Evaluations should measure AI's ability to expand human capabilities (Amartya Sen), not just task accuracy.",
+      tags: [["High Impact","tag-high"],["CHI 2025","tag-venue"]],
+      link: "https://dl.acm.org/doi/full/10.1145/3706598.3713278",
+      summary: "Drawing on Amartya Sen's capabilities approach from development economics, this paper argues that AI evaluation should measure whether systems expand what people can do (capabilities), not just whether they complete tasks correctly (accuracy). It introduces a capabilities-based evaluation framework for human-AI interaction.",
+      findings: ["Current AI evaluation focuses on task accuracy but misses capability expansion", "Users value AI that helps them learn and grow, not just AI that does tasks for them", "The capabilities framework captures dimensions (autonomy, agency, learning) that accuracy metrics miss", "Evaluation should account for whether AI empowers or deskills users over time"],
+      takeaways: ["Shift evaluation from \u201cdid the AI get it right?\u201d to \u201cdid the AI expand what this person can do?\u201d", "Long-term capability effects matter: does the tool make users more or less capable over time?", "Sen's capabilities approach provides a principled framework for human-centered AI evaluation"],
+      whyMatters: "This paper reframes what it means for AI to be \u201csuccessful.\u201d If we only measure accuracy, we'll build AI that does things for people. If we measure capability expansion, we'll build AI that helps people do more than they could before. This distinction will shape the next generation of AI tool design and evaluation."
+    }
+  ],
+
+  "hci-agents": [
+    {
+      title: "What\u2019s the Game, then? Opportunities and Challenges for Runtime Behavior Generation",
+      authors: "UIST 2024 (Best Paper)",
+      desc: "GROMIT: LLM-generated game NPC behaviors at runtime from player input.",
+      tags: [["High Impact","tag-high"],["UIST 2024 Best Paper","tag-venue"]],
+      link: "https://www.deep-hci.org/e/uist-2024-best-paper-whats-the-game-then-opportunities-and-challenges-for-runtime-behavior-generation/",
+      summary: "GROMIT generates game NPC behaviors at runtime using LLMs, responding to player actions with novel behaviors that weren't pre-programmed. The paper explores the unique challenges of AI agents that must act autonomously in real-time entertainment contexts, where creativity and coherence must coexist.",
+      findings: ["LLMs can generate coherent NPC behaviors from player input without pre-programmed scripts", "Real-time constraints require careful balance between LLM generation quality and latency", "Players preferred LLM-generated behaviors for novelty but pre-programmed behaviors for reliability", "The approach opens possibilities for infinite, player-responsive game content"],
+      takeaways: ["Runtime behavior generation is a compelling use case for LLMs in interactive entertainment", "The quality-latency tradeoff is the key design challenge for real-time agent applications", "This pattern extends beyond games to any interactive system requiring adaptive agent behavior"],
+      whyMatters: "GROMIT demonstrates a future where AI agents don't follow scripts but genuinely respond to user actions in real time. This has implications far beyond gaming: customer service, education, simulation, and any interactive system where pre-programmed responses are insufficient."
+    },
+    {
+      title: "WaitGPT: Monitoring and Steering Conversational LLM Agents in Data Analysis",
+      authors: "UIST 2024",
+      desc: "On-the-fly code visualization lets users monitor and steer agent behavior mid-task.",
+      tags: [["High Impact","tag-high"],["UIST 2024","tag-venue"]],
+      link: "https://dl.acm.org/doi/10.1145/3654777",
+      summary: "WaitGPT addresses the \u201cblack box\u201d problem of AI agent execution by providing real-time visualization of what the agent is doing during data analysis tasks. Users can see the code being generated and executed, intervene mid-task, and steer the agent toward different approaches.",
+      findings: ["Users feel significantly more confident in agent outputs when they can monitor the process", "Mid-task intervention reduces error rates compared to only reviewing final outputs", "Visualization granularity matters: too much detail overwhelms, too little doesn't help", "Monitoring capability changes how users delegate tasks \u2014 they attempt more complex delegations"],
+      takeaways: ["Agent transparency during execution is critical for trust and error prevention", "The UX pattern: show enough of the agent's work to enable informed intervention", "This \u201cmonitor and steer\u201d pattern is essential for any agentic AI system in production"],
+      whyMatters: "As AI agents become more autonomous, the ability to monitor and steer them mid-execution becomes critical. WaitGPT establishes the design patterns for agent oversight that every production agent system will need. The alternative \u2014 blind delegation with post-hoc review \u2014 is insufficient for high-stakes applications."
+    },
+    {
+      title: "CoLadder: Manipulating Code Generation via Multi-Level Blocks",
+      authors: "UIST 2024",
+      desc: "Hierarchical control over LLM code generation. Tunable autonomy at multiple abstraction levels.",
+      tags: [["High Impact","tag-high"],["UIST 2024","tag-venue"]],
+      link: "https://dl.acm.org/doi/10.1145/3654777",
+      summary: "CoLadder gives users hierarchical control over LLM code generation at multiple abstraction levels: high-level architecture, mid-level function design, and low-level implementation details. Users can specify how much control they want at each level, enabling tunable autonomy.",
+      findings: ["Users want different levels of AI autonomy at different abstraction levels", "Hierarchical control reduces both over-reliance (blind acceptance) and under-reliance (ignoring suggestions)", "The multi-level approach produces better code than either fully manual or fully automated generation", "Users develop personal autonomy preferences that the system can learn and adapt to"],
+      takeaways: ["One level of autonomy doesn't fit all: AI should offer tunable control at each abstraction level", "Hierarchical decomposition of AI tasks enables more nuanced human-AI collaboration", "This \u201cslider\u201d model of autonomy applies beyond coding to any complex AI-assisted task"],
+      whyMatters: "CoLadder solves a fundamental design problem for AI tools: how much control should the user have? By enabling per-level autonomy tuning, it avoids the binary choice between \u201cfull human control\u201d and \u201cfull AI automation.\u201d This design pattern will be essential for enterprise AI tools where different users have different expertise and preferences."
+    }
+  ],
+
+  "hci-access": [
+    {
+      title: "Savant: Enabling Uniform Computer Interaction for Blind Users through LLMs",
+      authors: "ASSETS 2024",
+      desc: "Blind screen reader users interact with any application through natural language. Significant efficiency gains.",
+      tags: [["High Impact","tag-high"],["ASSETS 2024","tag-venue"]],
+      link: "https://dl.acm.org/doi/10.1145/3663548.3675605",
+      summary: "Savant uses LLMs to enable blind screen reader users to interact with any computer application through natural language commands. Instead of navigating complex screen reader hierarchies, users describe what they want to do, and the system translates that into the appropriate UI actions.",
+      findings: ["Natural language commands dramatically reduce interaction steps for screen reader users", "11-user study showed significant efficiency improvements across multiple application types", "The approach generalizes across applications without application-specific training", "Users particularly valued the ability to automate repetitive multi-step tasks"],
+      takeaways: ["LLMs can bridge the accessibility gap by translating intent to UI actions", "Natural language is a more accessible interaction paradigm than hierarchical screen reading", "This pattern extends to motor impairments and other accessibility needs beyond vision"],
+      whyMatters: "Savant demonstrates that LLMs can fundamentally change the accessibility landscape. Instead of retrofitting each application for accessibility, a single LLM layer can make any application accessible through natural language. This is potentially the most unambiguously positive application of current AI technology."
+    },
+    {
+      title: "ScreenAudit: Detecting Screen Reader Accessibility Errors with LLMs",
+      authors: "CHI 2025",
+      desc: "GPT-4o catches 69.2% of expert-identified accessibility errors. LLMs as automated accessibility auditors.",
+      tags: [["High Impact","tag-high"],["CHI 2025","tag-venue"]],
+      link: "https://dl.acm.org/doi/10.1145/3706598",
+      summary: "ScreenAudit uses GPT-4o to interpret screen reader outputs and identify accessibility errors in mobile applications. By comparing what a screen reader announces with what a sighted user would see, the system catches 69.2% of expert-identified errors with 71.3% precision \u2014 sufficient for automated triage.",
+      findings: ["GPT-4o catches 69.2% of expert-identified accessibility errors with 71.3% precision", "Automated auditing can triage applications before expensive human expert review", "The system identifies categories of errors (missing labels, incorrect descriptions, navigation issues)", "False positives are generally conservative (flagging potential issues rather than missing real ones)"],
+      takeaways: ["LLM-powered accessibility auditing can scale expert reviews by orders of magnitude", "Automated triage + human expert review is more efficient than human-only auditing", "This approach could make accessibility compliance economically viable for smaller developers"],
+      whyMatters: "Accessibility compliance is expensive because it requires human experts. If LLMs can automate 70% of the auditing process, accessibility testing becomes viable for every app, not just those with dedicated accessibility teams. This could dramatically improve the digital accessibility landscape."
+    },
+    {
+      title: "WorldScribe: Context-Aware Live Visual Descriptions",
+      authors: "UIST 2024 (Best Paper)",
+      desc: "Real-time, context-aware visual descriptions for blind users in dynamic environments.",
+      tags: [["High Impact","tag-high"],["UIST 2024 Best Paper","tag-venue"]],
+      link: "https://dl.acm.org/doi/10.1145/3654777",
+      summary: "WorldScribe generates context-aware visual descriptions in real time for blind and low-vision users navigating dynamic environments. Unlike static scene descriptions, it adapts its descriptions based on what the user is doing, where they're going, and what's changed in the environment.",
+      findings: ["Context-aware descriptions are significantly more useful than static scene descriptions", "The system prioritizes safety-relevant information (obstacles, changes) over exhaustive description", "Real-time operation requires careful balance between description quality and latency", "Users develop more spatial awareness with context-aware descriptions than with traditional aids"],
+      takeaways: ["Context is everything: the same scene needs different descriptions depending on user intent and activity", "Real-time visual AI assistance is now feasible thanks to fast multimodal models", "This technology could extend to AR glasses, making real-time visual AI assistance practical"],
+      whyMatters: "WorldScribe represents the convergence of multimodal AI and accessibility: real-time visual understanding delivered as natural language. As this technology moves to wearable devices (smart glasses), it could provide continuous visual awareness to blind users \u2014 a transformative quality-of-life improvement."
+    }
+  ],
+
+  // ── SECTION 3: VOICE & AUDIO ──────────────────────────────────────────
+
+  "voice-foundation": [
+    {
+      title: "Whisper / Whisper Large-v3-Turbo",
+      authors: "OpenAI \u00b7 2022\u20132024",
+      desc: "Dominant ASR model. 680K hours, 99 languages. Turbo: 216x real-time speed with ~1% WER degradation.",
+      tags: [["Very High Impact","tag-very-high"]],
+      link: "https://huggingface.co/openai/whisper-large-v3-turbo",
+      summary: "Whisper is the dominant speech recognition foundation model, trained on 680K hours of multilingual data across 99 languages. The large-v3-turbo variant reduces the decoder from 32 to 4 layers, achieving 216x real-time speed with approximately 1% WER degradation. Distil-Whisper further demonstrated 4x speedup via INT8 quantization.",
+      findings: ["De facto standard ASR across the industry, open-sourced and widely integrated", "Turbo variant trades <1% accuracy for 216x real-time processing speed", "Robust to accents, background noise, and domain-specific vocabulary", "Multilingual capability (99 languages) without language-specific fine-tuning"],
+      takeaways: ["Speech recognition is effectively a solved problem for major languages", "Speed-accuracy tradeoffs are well-characterized: choose the right variant for your latency requirements", "Whisper's open availability created a vibrant ecosystem (WhisperX, faster-whisper, etc.)"],
+      whyMatters: "Whisper made high-quality speech recognition universally accessible. It's the foundation layer that enables every voice AI application \u2014 from meeting transcription to voice assistants to accessibility tools. Its open-source availability ensured that speech recognition is not a proprietary bottleneck."
+    },
+    {
+      title: "SeamlessM4T / SeamlessExpressive / SeamlessStreaming",
+      authors: "Meta \u00b7 2023",
+      desc: "Multilingual multimodal translation (~100 languages). Preserves prosody. Enables real-time translation.",
+      tags: [["High Impact","tag-high"]],
+      link: "https://ai.meta.com/research/seamless-communication/",
+      summary: "Meta's Seamless family represents the most complete multilingual speech translation system. SeamlessM4T covers ~100 languages across speech and text modalities. SeamlessExpressive preserves prosody and speaking style during translation. SeamlessStreaming enables simultaneous (real-time) translation without waiting for complete utterances.",
+      findings: ["~100 languages covered for speech-to-speech, speech-to-text, text-to-speech, and text-to-text translation", "Prosody preservation: translated speech maintains the speaker's emotion and emphasis", "Streaming mode enables real-time interpretation with <2 second latency", "End-to-end approach outperforms cascaded (ASR \u2192 MT \u2192 TTS) systems"],
+      takeaways: ["Real-time speech translation is approaching consumer viability", "Prosody preservation transforms translation from \u201cinformation transfer\u201d to \u201ccommunication transfer\u201d", "The end-to-end approach is superior to cascaded pipelines for preserving non-textual information"],
+      whyMatters: "Seamless brings real-time translation earbuds from science fiction to engineering reality. Preserving prosody and emotion across languages means that translated speech can carry the full communicative intent, not just the words. This technology could eliminate language barriers in face-to-face communication within the next few years."
+    },
+    {
+      title: "MMS: Massively Multilingual Speech",
+      authors: "Meta \u00b7 2023",
+      desc: "Speech processing for 4,017 languages. Largest language coverage in speech AI history.",
+      tags: [["High Impact","tag-high"]],
+      link: "https://ai.meta.com/blog/multilingual-model-speech-recognition/",
+      summary: "MMS extended speech processing to 4,017 languages (vs. ~100 for competitors), using religious text recordings and self-supervised learning. This 40x expansion in language coverage makes speech technology accessible to communities that were previously excluded.",
+      findings: ["4,017 languages supported \u2014 40x more than any prior system", "Self-supervised pre-training + fine-tuning on limited data works for low-resource languages", "Religious text recordings (widely available across languages) provide a practical training data source", "Word error rates are higher for low-resource languages but still practically useful"],
+      takeaways: ["Speech technology need not be limited to the world's major languages", "Creative data sourcing (religious texts, community recordings) can bootstrap low-resource language support", "Language coverage is a key dimension of AI equity"],
+      whyMatters: "Most of the world's 7,000+ languages have no speech technology support. MMS makes the first step toward universal speech processing, ensuring that AI benefits are not limited to speakers of English, Mandarin, and a handful of other major languages. This is AI equity in action."
+    },
+    {
+      title: "Speech Tokenization: WavTokenizer, SpeechTokenizer, Mimi",
+      authors: "2023\u20132025",
+      desc: "Discretizing audio into tokens for LLM-style processing. WavTokenizer: 40-75 tokens/sec for 24kHz audio.",
+      tags: [["High Impact","tag-high"],["Foundational","tag-paradigm"]],
+      link: "https://openreview.net/forum?id=yBlVlS2Fd9",
+      summary: "Speech tokenization converts continuous audio into discrete tokens that can be processed by LLM-style architectures. WavTokenizer (ICLR 2025) achieves 40-75 tokens/second for 24kHz audio using a single quantizer. SpeechTokenizer separates semantic and acoustic information. Mimi (Kyutai) is optimized for real-time streaming in the Moshi dialogue system.",
+      findings: ["WavTokenizer: single-quantizer approach achieving high compression (40-75 tokens/sec)", "Separating semantic vs. acoustic information across codebook layers improves downstream tasks", "Tokenization quality directly determines the ceiling of speech LLM performance", "Streaming-compatible codecs (Mimi, 80ms frame size) enable real-time dialogue systems"],
+      takeaways: ["Audio tokenization is the foundation layer for all speech LLMs \u2014 get this wrong and nothing else works", "Semantic and acoustic information should be factored into separate token streams", "Real-time applications need streaming-compatible tokenization, not just high-quality offline codecs"],
+      whyMatters: "Speech tokenization is to audio AI what tokenization (BPE, SentencePiece) is to text AI: the foundation that determines what models can learn. The convergence on codec-based tokenization enables applying the full toolkit of LLM techniques (scaling, attention, in-context learning) to speech and audio."
+    }
+  ],
+
+  "voice-tts": [
+    {
+      title: "VALL-E / VALL-E 2",
+      authors: "Microsoft \u00b7 Jan 2023 / Jun 2024",
+      desc: "TTS as language modeling over codec codes. 3-second voice cloning. VALL-E 2: first human parity in zero-shot TTS.",
+      tags: [["Very High Impact","tag-very-high"],["Paradigm Shift","tag-paradigm"]],
+      link: "https://arxiv.org/abs/2301.02111",
+      summary: "VALL-E reframed text-to-speech as a language modeling problem: given text and a 3-second audio sample, generate speech in the speaker's voice by predicting neural audio codec codes. VALL-E 2 (Jun 2024) achieved human parity on zero-shot TTS benchmarks, using Repetition Aware Sampling and Grouped Code Modeling.",
+      findings: ["3-second enrollment sufficient for zero-shot voice cloning \u2014 dramatically lower than prior 30-60 minute requirements", "Language modeling over codec codes produces more natural speech than spectrogram-based approaches", "VALL-E 2: first system to achieve human parity on LibriSpeech and VCTK zero-shot TTS benchmarks", "The paradigm shift from spectrogram generation to codec language modeling is now dominant"],
+      takeaways: ["TTS is now a language modeling problem, not a signal processing problem", "Voice cloning from seconds of audio is a solved problem technically (ethics/regulation lag behind)", "The codec LM paradigm is now the foundation for Dia, Sesame CSM, F5-TTS, and more"],
+      whyMatters: "VALL-E's paradigm shift \u2014 treating speech as a sequence of discrete codes to be predicted by a language model \u2014 unified speech synthesis with the broader LLM revolution. This architectural insight is why speech AI has advanced so rapidly since 2023: the same scaling techniques that work for text work for speech."
+    },
+    {
+      title: "F5-TTS: Flow Matching + Diffusion Transformer",
+      authors: "Late 2024",
+      desc: "Fully non-autoregressive. No duration models, text encoders, or phoneme alignment. Near real-time voice cloning from 10s.",
+      tags: [["High Impact","tag-high"],["Open Source","tag-open"]],
+      link: "https://arxiv.org/abs/2410.06885",
+      summary: "F5-TTS uses flow matching with a Diffusion Transformer (DiT) to generate speech in a fully non-autoregressive manner. It eliminates the need for duration models, text encoders, and phoneme alignment \u2014 dramatically simplifying the TTS pipeline. Voice cloning from 10 seconds of reference audio, with multilingual support and emotion control.",
+      findings: ["Fully non-autoregressive: generates all speech frames in parallel, enabling faster-than-real-time synthesis", "Eliminates three major pipeline components (duration model, text encoder, phoneme aligner)", "Voice cloning quality from 10 seconds approaches quality from minutes of reference audio", "Multilingual support with emotion control via conditioning"],
+      takeaways: ["Simpler is better: removing pipeline components reduces failure modes and maintenance burden", "Flow matching is becoming the preferred training method for TTS over diffusion", "The simplicity makes F5-TTS a strong choice for open-source deployment"],
+      whyMatters: "F5-TTS represents the \u201csimplicity revolution\u201d in TTS: instead of complex multi-stage pipelines, a single non-autoregressive model handles everything. This simplification dramatically lowers the barrier to deploying high-quality, customizable TTS and makes the technology more accessible to smaller teams."
+    },
+    {
+      title: "Dia",
+      authors: "Nari Labs \u00b7 Apr 2025",
+      desc: "Open-source (Apache 2.0), 1.6B params. Ultra-realistic multi-speaker dialogue. Zero-shot cloning, nonverbal sounds.",
+      tags: [["High Impact","tag-high"],["Open Source","tag-open"]],
+      link: "https://github.com/nari-labs/dia",
+      summary: "Dia is a 1.6B parameter open-source TTS model that generates ultra-realistic multi-speaker dialogue in a single forward pass. It supports zero-shot voice cloning, nonverbal sounds (laughter, coughing, sighing), and runs in real-time on a single GPU with ~10GB VRAM. Released under Apache 2.0 license.",
+      findings: ["Multi-speaker dialogue generation in a single pass \u2014 no separate speaker modeling needed", "Nonverbal sound generation (laughter, coughs, sighs) adds realism to conversational TTS", "10GB VRAM requirement makes it accessible on consumer GPUs", "Quality approaches commercial leaders (ElevenLabs) at zero cost"],
+      takeaways: ["Open-source TTS has reached commercial-competitive quality", "Multi-speaker and nonverbal sounds are now commoditized capabilities", "The Apache 2.0 license enables unrestricted commercial deployment"],
+      whyMatters: "Dia democratized high-quality conversational TTS. Before Dia, multi-speaker dialogue generation with nonverbal sounds required expensive commercial APIs. Now it runs on a gaming GPU. This enables podcast generation, game dialogue, accessibility tools, and more without API costs or vendor dependencies."
+    },
+    {
+      title: "ElevenLabs Flash v2.5 / v3",
+      authors: "ElevenLabs \u00b7 2023\u20132025",
+      desc: "Commercial leader. ~75ms inference, 5-second cloning in 30+ languages. v3: emotion audio tags. 11K+ voice library.",
+      tags: [["Very High Impact","tag-very-high"]],
+      link: "https://elevenlabs.io",
+      summary: "ElevenLabs is the commercial leader in TTS. Flash v2.5 achieves ~75ms model inference latency. Voice cloning from 5 seconds of audio in 30+ languages. Eleven v3 (Feb 2025) introduced audio tags for controlling emotion, laughter, and whispering. Library of 11,000+ community-created voices.",
+      findings: ["75ms inference latency enables real-time conversational applications", "5-second voice cloning in 30+ languages with high speaker similarity", "Audio tags provide granular control over emotional expression in generated speech", "11,000+ voice library creates a marketplace model for voice synthesis"],
+      takeaways: ["Commercial TTS has reached the quality and speed required for real-time voice agents", "Voice as a service is a viable business model ($100M+ revenue trajectory)", "Emotion control is the current frontier of commercial TTS quality"],
+      whyMatters: "ElevenLabs set the commercial standard for what TTS quality and latency should be. Its success validated voice AI as a business category and created competitive pressure that accelerated the entire field. The 75ms latency benchmark is now the target for every TTS system, open or commercial."
+    }
+  ],
+
+  "voice-convo": [
+    {
+      title: "GPT-4o Advanced Voice Mode / Realtime API",
+      authors: "OpenAI \u00b7 May 2024",
+      desc: "First natively multimodal voice AI. ~300ms latency. Natural interruptions. Realtime API enables voice agents.",
+      tags: [["Very High Impact","tag-very-high"],["Category Defining","tag-paradigm"]],
+      link: "https://platform.openai.com/docs/guides/realtime",
+      summary: "GPT-4o's Advanced Voice Mode was the first widely deployed natively multimodal voice AI: audio in, audio out, with ~300ms latency, natural interruptions, emotional expressiveness, and even singing. The Realtime API (late 2024) opened this to developers via WebRTC/WebSocket, enabling barge-in, real-time tool use, and natural turn-taking.",
+      findings: ["~300ms end-to-end latency: within human conversational norms (200ms average gap)", "Native multimodality preserves prosodic information that cascaded pipelines lose", "Natural interruption handling (barge-in) is critical for conversational quality", "Realtime API enables voice-first agents that can call functions during conversation"],
+      takeaways: ["Real-time voice AI is a product category, not just a feature", "Native multimodal processing is superior to cascaded ASR\u2192LLM\u2192TTS pipelines", "The Realtime API creates the infrastructure layer for voice-first agent applications"],
+      whyMatters: "GPT-4o voice defined a new product category: real-time voice AI assistants. By achieving conversational latency and natural interaction patterns, it proved that AI can participate in conversations as a peer rather than a tool. The Realtime API makes this capability available to every developer, enabling a wave of voice-first applications."
+    },
+    {
+      title: "Moshi: Full-Duplex Speech-to-Speech Dialogue",
+      authors: "Kyutai \u00b7 Jul 2024",
+      desc: "First open-source full-duplex dialogue model. Dual audio streams + inner monologue. 200ms latency.",
+      tags: [["Very High Impact","tag-very-high"],["Open Source","tag-open"]],
+      link: "https://arxiv.org/abs/2410.00037",
+      summary: "Moshi was the first open-source model to achieve full-duplex (simultaneous bidirectional) speech dialogue. It models two audio streams (system output + user input) simultaneously, plus an \u201cinner monologue\u201d text stream for reasoning. Practical latency of 200ms. Extended to MoshiVis for real-time vision + speech.",
+      findings: ["Full-duplex dialogue: system and user can speak simultaneously, enabling backchannels and interruptions", "Inner monologue (text stream) enables reasoning about what to say while generating speech", "200ms practical latency with the Mimi streaming codec", "Open-source: enables research and deployment without API dependencies"],
+      takeaways: ["Full-duplex is the natural mode of human conversation; AI should support it", "The dual-stream + inner monologue architecture is a powerful design pattern for conversational AI", "Open-source voice AI is viable and competitive with commercial offerings"],
+      whyMatters: "Moshi's full-duplex architecture is the first to truly model conversation rather than turn-taking. Human conversation involves constant overlapping speech, backchannels (\u201cuh-huh\u201d), and interruptions. By modeling both audio streams simultaneously, Moshi enables AI that converses like a human, not like a walkie-talkie."
+    },
+    {
+      title: "Sesame CSM (Conversational Speech Model)",
+      authors: "Sesame AI \u00b7 2025",
+      desc: "Llama backbone + Mimi codec. \u201cCrossing the uncanny valley of conversational voice.\u201d Open-sourced (csm-1b).",
+      tags: [["High Impact","tag-high"],["Open Source","tag-open"]],
+      link: "https://www.sesame.com/research/crossing_the_uncanny_valley_of_voice",
+      summary: "Sesame's CSM uses a Llama backbone with the Mimi codec to create an end-to-end multimodal text+speech model. Two autoregressive transformers handle the text and speech modalities. The model generates context-aware, multi-speaker speech that was described as \u201ccrossing the uncanny valley of conversational voice.\u201d Open-sourced as csm-1b.",
+      findings: ["Built on Llama architecture: leverages text LLM capabilities for speech generation", "Context-aware: speech output adapts to conversational context (topic, emotion, speaking style)", "Multi-speaker generation without separate speaker models or voice cloning steps", "Open-source (csm-1b) enables community experimentation and deployment"],
+      takeaways: ["Text LLM architectures (Llama) can be adapted for speech generation effectively", "Context awareness is key to crossing the \u201cuncanny valley\u201d \u2014 technically perfect but contextually wrong speech sounds unnatural", "The convergence of text and speech LLMs enables sharing of training insights and infrastructure"],
+      whyMatters: "Sesame CSM represents the convergence of text and speech LLMs: the same transformer architecture that powers text generation now powers conversational speech. This unification means that advances in text LLMs (reasoning, instruction following, context handling) automatically transfer to speech, accelerating the development of truly conversational AI."
+    },
+    {
+      title: "Claude Voice Mode / Claude Code Voice",
+      authors: "Anthropic \u00b7 May 2025\u2013Mar 2026",
+      desc: "iOS/Android with 5 voices. Text/voice switching. Claude Code /voice for spoken programming.",
+      tags: [["High Impact","tag-high"]],
+      link: "https://www.anthropic.com/news/claude-voice",
+      summary: "Anthropic launched Claude Voice Mode on iOS and Android with five selectable voices (Buttery, Airy, Mellow, Glassy, Rounded). Users can switch between text and voice mid-conversation with full transcripts. Claude Code voice mode (/voice) enables push-to-talk spoken programming commands, making voice an interface for agentic coding workflows.",
+      findings: ["Voice as an interaction modality for AI coding assistants is viable and useful", "Five distinct voice personas allow users to choose communication style preferences", "Seamless text/voice switching preserves conversation context and enables flexible interaction", "Push-to-talk in Claude Code enables hands-free programming while reviewing code on screen"],
+      takeaways: ["Voice is becoming a first-class interface for AI agents, not just chatbots", "The coding use case (speaking commands while reading code) is a natural fit for voice", "Voice persona selection adds a personalization dimension to AI assistants"],
+      whyMatters: "Claude Voice represents the extension of voice AI from conversation to action: speaking commands that result in code changes, file edits, and system operations. This is voice as an agentic interface, not just a Q&A channel. As AI agents become more capable, voice becomes a natural way to direct their work."
+    }
+  ],
+
+  "voice-music": [
+    {
+      title: "Suno",
+      authors: "2023\u20132026",
+      desc: "Commercial leader in AI music. 10M+ users. Revenue: $45M \u2192 $200M ARR. Full-song generation from text.",
+      tags: [["Very High Impact","tag-very-high"]],
+      link: "https://suno.com",
+      summary: "Suno is the commercial leader in AI music generation, with 10M+ users and revenue growing from $45M ARR (late 2024) to $200M (Nov 2025). Users describe a song in natural language and Suno generates complete songs with vocals, instrumentation, and structure. Currently facing RIAA lawsuits over training data provenance.",
+      findings: ["Full-song generation (lyrics + melody + instrumentation + vocals) from a text prompt", "10M+ users demonstrates massive consumer demand for AI music creation", "Revenue growth ($45M to $200M in one year) validates the commercial model", "RIAA lawsuits (2024) over training on copyrighted music remain unresolved"],
+      takeaways: ["AI music generation is a viable consumer product with strong demand", "The business model works: users pay for creation capability, not just consumption", "Legal uncertainty around training data is the primary risk factor for the industry"],
+      whyMatters: "Suno proved that AI music generation is a real business, not just a tech demo. The 10M user base and $200M ARR show that people want to create music, not just listen to it. The unresolved copyright lawsuits will set precedents that determine the future of all generative AI trained on copyrighted content."
+    },
+    {
+      title: "MusicGen",
+      authors: "Meta \u00b7 Jun 2023",
+      desc: "Open-source single-stage autoregressive transformer for music. Part of AudioCraft. Best open-source option.",
+      tags: [["High Impact","tag-high"],["Open Source","tag-open"]],
+      link: "https://github.com/facebookresearch/audiocraft",
+      summary: "MusicGen is a single-stage autoregressive transformer for music generation, trained on 20K hours of licensed music and released as part of Meta's AudioCraft framework (which also includes AudioGen for sound effects and EnCodec for audio compression). It's the best open-source option for text-to-music generation.",
+      findings: ["Single-stage generation (no cascading) simplifies the pipeline while maintaining quality", "Trained on licensed music \u2014 avoids the copyright issues facing Suno and Udio", "Multiple conditioning modes: text, melody, text + melody", "Part of AudioCraft, providing a complete open-source audio generation toolkit"],
+      takeaways: ["Open-source music generation is viable and legally cleaner than commercial alternatives", "Single-stage autoregressive generation works well for music, as it does for text", "The AudioCraft ecosystem (MusicGen + AudioGen + EnCodec) provides end-to-end audio tooling"],
+      whyMatters: "MusicGen demonstrates that high-quality music generation can be open-source and trained on licensed data. As legal challenges mount against Suno and Udio, MusicGen's clean training data lineage may prove to be a significant advantage. It's also the foundation for researchers building on top of music generation."
+    },
+    {
+      title: "NotebookLM Audio Overviews",
+      authors: "Google \u00b7 Late 2024",
+      desc: "Converts documents into two-person conversational podcasts. Viral product moment. Created a new category.",
+      tags: [["Very High Impact","tag-very-high"],["Category Creating","tag-paradigm"]],
+      link: "https://notebooklm.google",
+      summary: "NotebookLM's Audio Overviews feature converts uploaded documents into two-person conversational podcasts with remarkably natural dialogue, including backchannels, humor, and genuine-sounding enthusiasm. The feature went viral, introducing millions of people to AI-generated conversational speech for the first time.",
+      findings: ["Two-person dialogue format is dramatically more engaging than single-narrator TTS", "Backchannels, humor, and conversational dynamics create a \u201cpodcast-like\u201d experience", "Users find audio summaries more accessible than reading for complex documents", "The viral moment demonstrated massive latent demand for AI-generated audio content"],
+      takeaways: ["Dialogue is the natural mode for informational audio \u2014 monologue TTS is not enough", "The \u201cpodcast generation\u201d product category has significant consumer demand", "Document-to-audio is a compelling application of both TTS and LLM capabilities"],
+      whyMatters: "NotebookLM Audio Overviews created a new product category: automated podcast generation from documents. The viral reception showed that the demand for audio-format information is massive. This product category (document-to-podcast) is now being pursued by multiple companies and open-source projects (Dia, PodAgent, MoonCast)."
+    },
+    {
+      title: "Stable Audio 2.0 / 2.5",
+      authors: "Stability AI \u00b7 2024\u20132026",
+      desc: "Latent diffusion transformer. Structured compositions up to 3 min at 44.1kHz stereo.",
+      tags: [["High Impact","tag-high"]],
+      link: "https://stability.ai/stable-audio",
+      summary: "Stable Audio uses a latent diffusion model based on a transformer architecture for text-to-audio generation. Version 2.0 generates structured compositions up to 3 minutes at 44.1kHz stereo quality. Stable Audio Open 1.0 focuses on shorter-form content for production use. Version 2.5 targets enterprise-grade production workflows.",
+      findings: ["3-minute structured compositions at CD-quality (44.1kHz stereo)", "Latent diffusion transformers produce higher-fidelity audio than autoregressive approaches", "Open version enables community experimentation and fine-tuning", "Enterprise adoption growing for production music, sound effects, and ambient audio"],
+      takeaways: ["Professional-quality audio generation is becoming a commodity", "The enterprise use case (production music, sound effects) is more viable than consumer music creation", "Open models enable customization for specific production needs"],
+      whyMatters: "Stable Audio represents the professionalization of AI audio generation: not consumer music creation (Suno's domain) but production-quality audio for media, games, and advertising. The enterprise focus and professional quality standards point toward AI audio becoming standard infrastructure in media production."
+    }
+  ],
+
+  "voice-understanding": [
+    {
+      title: "Pyannote.audio 3.1 / 4.0",
+      authors: "2024\u20132025",
+      desc: "Community standard for speaker diarization. v4.0: 40% faster, improved noisy audio. 11-19% DER.",
+      tags: [["High Impact","tag-high"],["Open Source","tag-open"]],
+      link: "https://www.pyannote.ai",
+      summary: "Pyannote.audio is the open-source standard for speaker diarization (who spoke when). Version 4.0 introduced single-speaker optimization, 40% faster training, and improved performance in noisy conditions, achieving 11-19% Diarization Error Rate on standard benchmarks.",
+      findings: ["11-19% DER on standard benchmarks \u2014 approaching human-level diarization accuracy", "40% faster training in v4.0 enables rapid adaptation to new domains", "Improved noisy-audio performance critical for real-world deployment", "Widely integrated: WhisperX, meeting transcription systems, podcast processing"],
+      takeaways: ["Speaker diarization is mature enough for production deployment", "The combination of Whisper (what was said) + pyannote (who said it) = complete transcription", "Domain-specific fine-tuning (meetings, interviews, lectures) further improves accuracy"],
+      whyMatters: "Diarization completes the transcription puzzle: knowing what was said is useful, but knowing who said it is essential for meeting minutes, interview analysis, and legal transcription. Pyannote makes this capability freely available, enabling the entire meeting intelligence industry."
+    },
+    {
+      title: "WhisperX",
+      authors: "2023\u2013Present",
+      desc: "Whisper + pyannote diarization for word-level timestamps + speaker labels. Widely used in production.",
+      tags: [["High Impact","tag-high"],["Open Source","tag-open"]],
+      link: "https://github.com/m-bain/whisperX",
+      summary: "WhisperX combines Whisper ASR with pyannote diarization and forced alignment to produce word-level timestamps with speaker labels. It's the most widely used open-source solution for production meeting transcription, podcast processing, and media analysis.",
+      findings: ["Word-level timestamps with speaker attribution in a single pipeline", "Forced alignment significantly improves timestamp accuracy over Whisper alone", "Production-ready: widely deployed for meeting transcription and media processing", "Active community with regular improvements and domain-specific fine-tuning guides"],
+      takeaways: ["The combination of existing components (Whisper + pyannote + alignment) creates a sum greater than its parts", "This \u201cglue\u201d engineering is as valuable as the individual model components", "Open-source integration libraries are critical infrastructure for AI deployment"],
+      whyMatters: "WhisperX demonstrates that integration engineering \u2014 combining existing models into a production-ready pipeline \u2014 is as important as model research. It's the practical solution that most meeting transcription products use under the hood, turning research outputs into production infrastructure."
+    },
+    {
+      title: "SenseVoice",
+      authors: "Alibaba FunAudioLLM \u00b7 2024",
+      desc: "Multilingual ASR + emotion recognition + audio event detection in one model. Open-source.",
+      tags: [["High Impact","tag-high"],["Open Source","tag-open"]],
+      link: "https://huggingface.co/FunAudioLLM/SenseVoiceSmall",
+      summary: "SenseVoice combines multilingual automatic speech recognition with emotion recognition and audio event detection in a single model. Instead of separate models for each task, SenseVoice provides unified speech understanding that captures not just what was said but how it was said and what else was happening acoustically.",
+      findings: ["Single model handles ASR + emotion recognition + audio event detection", "Multilingual support without language-specific models", "Emotion detection adds a dimension to transcription that text-only approaches miss", "Open-source on HuggingFace, enabling community adoption and extension"],
+      takeaways: ["Unified speech understanding (what + how + context) is more valuable than ASR alone", "Emotion and audio context should be first-class outputs of speech processing, not afterthoughts", "Multi-task models can match or exceed single-task specialists while reducing deployment complexity"],
+      whyMatters: "SenseVoice represents the evolution from \u201cwhat did they say\u201d to \u201cwhat do they mean.\u201d By capturing emotion and acoustic context alongside words, it enables applications that understand the full communicative intent of speech. This is essential for customer service analysis, mental health monitoring, and any application where tone matters as much as content."
+    },
+    {
+      title: "Sortformer",
+      authors: "NVIDIA NeMo \u00b7 2025",
+      desc: "End-to-end diarization via 18-layer Transformer. Eliminates traditional pipeline stages.",
+      tags: [["High Impact","tag-high"]],
+      link: "https://docs.nvidia.com/nemo-framework/user-guide/latest/nemotoolkit/asr/speaker_diarization/intro.html",
+      summary: "Sortformer is NVIDIA's end-to-end approach to speaker diarization using an 18-layer Transformer that eliminates traditional pipeline stages (embedding extraction, clustering, overlap detection). By treating diarization as a unified sequence-to-sequence problem, it simplifies the system while maintaining competitive accuracy.",
+      findings: ["End-to-end architecture eliminates traditional pipeline stages (embedding, clustering, overlap detection)", "18-layer Transformer treats diarization as a unified sequence labeling problem", "Competitive with pipeline-based approaches while being simpler to train and deploy", "Part of NVIDIA NeMo: benefits from GPU optimization and production-grade infrastructure"],
+      takeaways: ["End-to-end approaches can match pipeline systems while being simpler to maintain", "The trend toward unified models (vs. cascaded pipelines) extends to speech understanding", "NVIDIA's investment signals that speaker diarization is becoming standard infrastructure"],
+      whyMatters: "Sortformer represents the architectural trend toward end-to-end models in speech processing: instead of stitching together separate components (each with its own failure modes), train a single model that handles the entire task. This simplification is critical for making speech understanding reliable enough for production deployment."
+    }
+  ]
+};
+
+// =========================================================================
+// RENDER
+// =========================================================================
+function renderCard(paper, sectionClass) {
+  const card = document.createElement('div');
+  card.className = 'paper-card';
+
+  const tagsHTML = paper.tags.map(t => `<span class="tag ${t[1]}">${t[0]}</span>`).join('');
+
+  const findingsHTML = paper.findings ? paper.findings.map(f => `<li>${f}</li>`).join('') : '';
+  const takeawaysHTML = paper.takeaways ? paper.takeaways.map(t => `<li>${t}</li>`).join('') : '';
+
+  card.innerHTML = `
+    <div class="card-preview">
+      <div class="expand-indicator">\u25BC</div>
+      <div class="title">${paper.title}</div>
+      <div class="authors">${paper.authors}</div>
+      <div class="desc">${paper.desc}</div>
+      <div class="tags">${tagsHTML}</div>
+    </div>
+    <div class="card-details">
+      <div class="card-details-inner">
+        ${paper.summary ? `<div class="detail-section"><div class="detail-label">Summary</div><div class="detail-text">${paper.summary}</div></div>` : ''}
+        ${paper.findings ? `<div class="detail-section"><div class="detail-label">Key Findings</div><div class="detail-text"><ul>${findingsHTML}</ul></div></div>` : ''}
+        ${paper.takeaways ? `<div class="detail-section"><div class="detail-label">Key Takeaways</div><div class="detail-text"><ul>${takeawaysHTML}</ul></div></div>` : ''}
+        ${paper.whyMatters ? `<div class="detail-section"><div class="detail-label">Why This Matters Long Term</div><div class="detail-text">${paper.whyMatters}</div></div>` : ''}
+        ${paper.link ? `<a href="${paper.link}" target="_blank" rel="noopener" class="paper-link" onclick="event.stopPropagation();">\u2192 Read Paper / Source</a>` : ''}
+      </div>
+    </div>
+  `;
+
+  card.addEventListener('click', () => {
+    const wasExpanded = card.classList.contains('expanded');
+    // Close all other cards in same grid
+    card.parentElement.querySelectorAll('.paper-card.expanded').forEach(c => {
+      if (c !== card) c.classList.remove('expanded');
+    });
+    card.classList.toggle('expanded', !wasExpanded);
+    if (!wasExpanded) {
+      setTimeout(() => {
+        card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 100);
+    }
+  });
+
+  return card;
+}
+
+// Render all sections
+Object.entries(papers).forEach(([id, items]) => {
+  const container = document.getElementById(id);
+  if (!container) return;
+  const section = container.closest('.section');
+  const sectionClass = section ? (section.classList.contains('s1') ? 's1' : section.classList.contains('s2') ? 's2' : 's3') : 's1';
+  items.forEach(paper => {
+    container.appendChild(renderCard(paper, sectionClass));
+  });
+});
+</script>
+
+</body>
+</html>

@@ -62,12 +62,127 @@
   .role h2 { font-style: normal; }
   .page[hidden] { display: none; }
 
+  /* periodic table grid */
+  .pt-legend {
+    display: flex;
+    gap: 18px;
+    margin: 24px 0 20px;
+    flex-wrap: wrap;
+  }
+  .pt-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #888;
+  }
+  .pt-legend-swatch {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+  }
+  .pt-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 10px;
+    margin-bottom: 36px;
+  }
+  .pt-card {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 14px 12px 10px;
+    cursor: pointer;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    position: relative;
+    background: #fdfdfc;
+  }
+  .pt-card:hover {
+    border-color: #aaa;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .pt-card.active {
+    border-color: #1a4480;
+    box-shadow: 0 2px 12px rgba(26,68,128,0.12);
+  }
+  .pt-number {
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: 10px;
+    color: #aaa;
+    position: absolute;
+    top: 6px;
+    right: 8px;
+  }
+  .pt-symbol {
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+  .pt-title {
+    font-size: 12px;
+    line-height: 1.3;
+    color: #444;
+  }
+  .pt-tag {
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 6px;
+    display: inline-block;
+    padding: 1px 5px;
+    border-radius: 2px;
+  }
+  /* category colors */
+  .cat-interactivity { border-left: 3px solid #3b82f6; }
+  .cat-interactivity .pt-symbol { color: #3b82f6; }
+  .cat-interactivity .pt-tag { background: #eff6ff; color: #3b82f6; }
+  .cat-societal { border-left: 3px solid #f59e0b; }
+  .cat-societal .pt-symbol { color: #f59e0b; }
+  .cat-societal .pt-tag { background: #fffbeb; color: #b45309; }
+  .cat-techreview { border-left: 3px solid #10b981; }
+  .cat-techreview .pt-symbol { color: #10b981; }
+  .cat-techreview .pt-tag { background: #ecfdf5; color: #059669; }
+
+  /* expanded post */
+  .pt-expanded {
+    display: none;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 28px 24px;
+    margin-bottom: 24px;
+    background: #fafaf8;
+  }
+  .pt-expanded.open { display: block; }
+  .pt-expanded h2 {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+  .pt-expanded .pt-close {
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: 12px;
+    color: #888;
+    cursor: pointer;
+    float: right;
+  }
+  .pt-expanded .pt-close:hover { color: #b53a1d; }
+
   @media (max-width: 600px) {
     main { padding: 48px 18px 100px; }
     body { font-size: 16px; }
     h1 { font-size: 20px; margin-bottom: 22px; }
     h2 { font-size: 16px; }
     .role { margin-bottom: 26px; }
+    .pt-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .pt-card { padding: 12px 10px 8px; }
+    .pt-symbol { font-size: 22px; }
+    .pt-title { font-size: 11px; }
+    .pt-expanded { padding: 20px 16px; }
+    .pt-legend { gap: 12px; }
   }
 </style>
 </head>
@@ -101,6 +216,10 @@
     </p>
 
     <ul class="links">
+      <li><a href="#journal">Thoughts on Intelligence</a></li>
+    </ul>
+
+    <ul class="links" style="margin-top:16px;">
       <li><a href="#career">Career Journey</a></li>
       <li><a href="https://scholar.google.com/citations?user=Dw1QA6sAAAAJ&amp;hl=en&amp;oi=ao">Google Scholar</a></li>
       <li>Email: divinekmaloney [at] gmail [dot] com</li>
@@ -220,19 +339,252 @@
 
   </section>
 
+  <!-- JOURNAL -->
+  <section id="journal" class="page" hidden>
+
+    <p class="back"><a href="#home">&larr; Home</a></p>
+    <h1>Thoughts on Intelligence</h1>
+
+    <p style="font-size:14px;color:#888;font-style:italic;margin-bottom:20px;">
+      The views and opinions expressed here are my own and do not represent the views, positions, or opinions of my employer.
+    </p>
+
+    <p>
+      Loose thoughts on AI, interaction, and the space between humans and computers. Nothing here is finished.
+    </p>
+
+    <div class="pt-legend">
+      <div class="pt-legend-item"><div class="pt-legend-swatch" style="background:#3b82f6;"></div> Interactivity</div>
+      <div class="pt-legend-item"><div class="pt-legend-swatch" style="background:#f59e0b;"></div> Societal Implications</div>
+    </div>
+
+    <div class="pt-grid">
+      <div class="pt-card cat-interactivity" onclick="togglePost('post-1')">
+        <span class="pt-number">01</span>
+        <div class="pt-symbol">Ii</div>
+        <div class="pt-title">My <em>Ideal</em> Intelligence</div>
+        <span class="pt-tag">interactivity</span>
+      </div>
+    </div>
+
+    <!-- expanded posts -->
+    <div class="pt-expanded" id="post-1">
+      <span class="pt-close" onclick="togglePost('post-1')">&times; close</span>
+      <h2>My <em>Ideal</em> Intelligence</h2>
+      <p>
+        You know how moms usually know what the baby needs before the baby does? Yeah, that.
+      </p>
+      <p>
+        I want to be able to communicate with a model at a level of depth where it actually <em>knows</em> me. Not my <code style="font-size:0.9em;background:#f0f0ec;padding:1px 5px;border-radius:3px;">preference.md</code>. Me.
+      </p>
+      <p>
+        When I wake up with less sleep, I want fewer words, directness. I want the most important topics that day, not the fun ones I might be interested in.
+      </p>
+      <p>
+        I want a future where models are implicitly intuitive &mdash; where the goal is to feed in more and more context, the way humans already do with each other. A true perception engine.
+      </p>
+      <p>
+        I think about this as layers &mdash; a pyramid. Right now we&rsquo;re at the top, the narrowest band:
+      </p>
+
+      <!-- perception pyramid — clean block style -->
+      <div style="margin:28px auto 12px;max-width:380px;">
+        <svg viewBox="0 0 380 260" style="width:100%;" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif">
+          <!-- tier blocks — stacked trapezoids -->
+          <!-- Text (top, narrowest) -->
+          <polygon points="190,8 140,60 240,60" fill="none" stroke="#ccc" stroke-width="1"/>
+          <text x="190" y="45" text-anchor="middle" font-size="12" font-weight="600" fill="#1a1a1a">Text (LLMs)</text>
+          <text x="310" y="42" font-size="10" fill="#aaa">GPT era ~2024</text>
+
+          <!-- Audio -->
+          <polygon points="140,62 110,122 270,122 240,62" fill="none" stroke="#ccc" stroke-width="1"/>
+          <text x="190" y="98" text-anchor="middle" font-size="12" font-weight="600" fill="#1a1a1a">Audio &amp; Voice</text>
+          <text x="310" y="95" font-size="10" fill="#aaa">2026 &mdash; exploding</text>
+
+          <!-- Gesture -->
+          <polygon points="110,124 80,184 300,184 270,124" fill="none" stroke="#ccc" stroke-width="1"/>
+          <text x="190" y="160" text-anchor="middle" font-size="12" font-weight="600" fill="#1a1a1a">Gesture &amp; Expression</text>
+          <text x="310" y="158" font-size="10" fill="#aaa">early, but coming</text>
+
+          <!-- Physiological (base, widest) -->
+          <polygon points="80,186 50,246 330,246 300,186" fill="none" stroke="#ccc" stroke-width="1"/>
+          <text x="190" y="222" text-anchor="middle" font-size="12" font-weight="600" fill="#1a1a1a">Physiological Sensors</text>
+          <text x="310" y="222" font-size="10" fill="#888" font-weight="600">the ideal</text>
+        </svg>
+      </div>
+
+      <p>
+        When a baby is born, it communicates with voice, gestures, and physiological signals &mdash; lots of crying and some movement. And we humans are trained to understand their communication.
+      </p>
+
+      <!-- baby pyramid — bottom three highlighted -->
+      <div style="margin:20px auto 28px;max-width:380px;">
+        <svg viewBox="0 0 380 260" style="width:100%;" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif">
+          <!-- Text (top, dim) -->
+          <polygon points="190,8 140,60 240,60" fill="none" stroke="#ddd" stroke-width="1"/>
+          <text x="190" y="45" text-anchor="middle" font-size="12" font-weight="600" fill="#ccc">Text (LLMs)</text>
+
+          <!-- Audio (highlighted) -->
+          <polygon points="140,62 110,122 270,122 240,62" fill="#eef4ff" stroke="#3b82f6" stroke-width="1.5"/>
+          <text x="190" y="98" text-anchor="middle" font-size="12" font-weight="600" fill="#1a4480">Audio &amp; Voice</text>
+
+          <!-- Gesture (highlighted) -->
+          <polygon points="110,124 80,184 300,184 270,124" fill="#eef4ff" stroke="#3b82f6" stroke-width="1.5"/>
+          <text x="190" y="160" text-anchor="middle" font-size="12" font-weight="600" fill="#1a4480">Gesture &amp; Expression</text>
+
+          <!-- Physiological (highlighted) -->
+          <polygon points="80,186 50,246 330,246 300,186" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+          <text x="190" y="222" text-anchor="middle" font-size="12" font-weight="700" fill="#1a4480">Physiological Sensors</text>
+
+          <!-- label -->
+          <text x="190" y="256" text-anchor="middle" font-size="10" fill="#888" font-style="italic">how a newborn communicates</text>
+        </svg>
+      </div>
+
+      <p>
+        We&rsquo;re building the perception layer top-down. Text first, then voice, then maybe someday the rest. But human understanding was built bottom-up &mdash; body first, language last.
+      </p>
+
+      <p>
+        Each layer has some interesting tenets.
+      </p>
+
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">Text</h3>
+      <p>
+        Don&rsquo;t get me wrong &mdash; we need this to communicate with models. Without text, they&rsquo;d understand us and we&rsquo;d have no way of understanding them. You know that feeling at the international airport when no one speaks English and your translation app isn&rsquo;t working? Yeah.
+      </p>
+      <p>
+        Text has sentiment, and we can communicate through it, but so much gets lost. Ever had a text read not in the tone, prosody, and intensity you intended for the receiver? Yea, that.
+      </p>
+
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">Audio &amp; Voice</h3>
+      <p>
+        Audio solves this. You can say this phrase in so many different ways:
+      </p>
+      <div style="margin:12px 0 16px;padding:12px 16px;background:#f8f8f6;border-left:2px solid #ddd;font-size:15px;line-height:1.8;">
+        &ldquo;I&rsquo;m <span style="color:#888;">(long pause)</span> doing good, thanks.&rdquo;<br>
+        &ldquo;I&rsquo;m doing good thanks&rdquo; <span style="color:#888;">(said quickly)</span><br>
+        &ldquo;I&rsquo;m doing <strong>GOOD</strong>, thanks!&rdquo; <span style="color:#888;">(emphasis)</span><br>
+        &ldquo;I&rsquo;m doing <span style="color:#888;">(long pause)</span> good, thanks.&rdquo;
+      </div>
+      <p>
+        All of these communicate something different. Hume.ai does sentiment detection off of voice + text &mdash; Google DeepMind <a href="https://www.tipranks.com/news/the-fly/google-deepmind-hires-hume-ai-ceo-alan-cowen-in-licensing-deal-wired-reports-thefly" style="color:#888;">hired their CEO Alan Cowen in a licensing deal</a>, which tells you where this is headed. This is the way.
+      </p>
+      <p>
+        Text sentiment is needed, but I see a world beyond this. Pure audio. Pure voice. Humans are so good at perceiving voice &mdash; our lives literally depend on it. Parents understand the urgency of a baby crying based on the type of cry and its prosody. Same thing vice versa.
+      </p>
+      <p>
+        We&rsquo;ll have prosody metrics folded into audio LLMs pretty quickly, in a way that highlights the full expression versus what it does now.
+      </p>
+
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">Gesture &amp; Expression</h3>
+      <p>
+        I predict we&rsquo;ll be able to communicate with models non-verbally through our own unique sign language &mdash; or better, body language. The way two people who know each other well don&rsquo;t need to speak but know exactly what the other is thinking. Yeah, like that.
+      </p>
+      <p>
+        The use case: you&rsquo;re in a meeting, can&rsquo;t talk, can&rsquo;t text, context is being fed into you and your intelligence device, and you need actions to take place. You&rsquo;ll simply tap your finger three times, or make a gesture that seems mundane &mdash; but your intelligence will know exactly what you mean, and others won&rsquo;t. When I played football, we&rsquo;d use hand and body signals to communicate the formation, the play, and the snap count, all from using our bodies. I believe this will happen here.
+      </p>
+
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">BCI &mdash; Brain Computer Interface</h3>
+      <p>
+        This will be fun. We can already read and understand, at some level, changes in the brain. What comes next is using those signals to influence the way your intelligence communicates to you. Say you&rsquo;re hungover, or in contrast had a perfect night of rest &mdash; we as humans, knowing this info, would likely present information very differently. I can imagine a superior intelligence pitching me on new ideas after the perfect night of rest, while the hungover me just gets the most important things to discuss.
+      </p>
+
+      <hr style="border:none;border-top:1px solid #ddd;margin:36px 0;">
+
+      <p>
+        One more thing &mdash; the pyramid visually looks like steps, but each layer is cumulative, encompassing everything below it. This isn&rsquo;t four separate channels. It&rsquo;s one perception engine, building upward. True multimodal.
+      </p>
+
+      <p style="margin-top:24px;">
+        Hmm, I wonder where we could glean inspiration from :)
+      </p>
+
+      <!-- cumulative pyramid -->
+      <div style="margin:20px auto 28px;max-width:380px;">
+        <svg viewBox="0 0 380 280" style="width:100%;" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif">
+          <!-- Physiological (base) -->
+          <polygon points="80,196 50,256 330,256 300,196" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+          <text x="190" y="232" text-anchor="middle" font-size="11" font-weight="600" fill="#1a4480">Physiological</text>
+
+          <!-- Gesture (encompasses physio) -->
+          <polygon points="110,134 80,194 300,194 270,134" fill="#e0edff" stroke="#3b82f6" stroke-width="1.5"/>
+          <text x="190" y="170" text-anchor="middle" font-size="11" font-weight="600" fill="#1a4480">Gesture &amp; Expression</text>
+
+          <!-- Audio (encompasses gesture + physio) -->
+          <polygon points="140,72 110,132 270,132 240,72" fill="#eef4ff" stroke="#3b82f6" stroke-width="1.5"/>
+          <text x="190" y="108" text-anchor="middle" font-size="11" font-weight="600" fill="#1a4480">Audio &amp; Voice</text>
+
+          <!-- Text (encompasses all) -->
+          <polygon points="190,18 140,70 240,70" fill="#f5f8ff" stroke="#3b82f6" stroke-width="1.5"/>
+          <text x="190" y="55" text-anchor="middle" font-size="11" font-weight="600" fill="#1a4480">Text</text>
+
+          <!-- label -->
+          <text x="190" y="274" text-anchor="middle" font-size="10" fill="#888" font-style="italic">each layer encompasses everything below it</text>
+        </svg>
+      </div>
+
+    </div>
+
+  </section>
+
 </main>
 
 <script>
-// Simple hash routing — no editing, no storage
+// Hash routing — supports #journal and #journal-post-1
 function showPage() {
-  const id = location.hash.slice(1) || 'home';
+  const hash = location.hash.slice(1) || 'home';
+
+  // close all posts
+  document.querySelectorAll('.pt-expanded').forEach(e => e.classList.remove('open'));
+  document.querySelectorAll('.pt-card').forEach(c => c.classList.remove('active'));
+
+  // check if hash targets a specific post (e.g. journal-post-1)
+  let pageId = hash;
+  let postId = null;
+  const postMatch = hash.match(/^journal-(post-\d+)$/);
+  if (postMatch) {
+    pageId = 'journal';
+    postId = postMatch[1];
+  }
+
   document.querySelectorAll('.page').forEach(p => {
-    p.hidden = (p.id !== id);
+    p.hidden = (p.id !== pageId);
   });
-  window.scrollTo(0, 0);
+
+  if (postId) {
+    const el = document.getElementById(postId);
+    if (el) {
+      el.classList.add('open');
+      const card = document.querySelector('[onclick*="' + postId + '"]');
+      if (card) card.classList.add('active');
+      setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+    }
+  } else {
+    window.scrollTo(0, 0);
+  }
 }
 window.addEventListener('hashchange', showPage);
 showPage();
+
+// Toggle post expand/collapse — updates URL for sharing
+function togglePost(id) {
+  const el = document.getElementById(id);
+  const isOpen = el.classList.contains('open');
+  // close all first
+  document.querySelectorAll('.pt-expanded').forEach(e => e.classList.remove('open'));
+  document.querySelectorAll('.pt-card').forEach(c => c.classList.remove('active'));
+  if (!isOpen) {
+    el.classList.add('open');
+    const card = document.querySelector('[onclick*="' + id + '"]');
+    if (card) card.classList.add('active');
+    // update URL without triggering hashchange
+    history.replaceState(null, '', '#journal-' + id);
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  } else {
+    history.replaceState(null, '', '#journal');
+  }
+}
 </script>
 
 </body>

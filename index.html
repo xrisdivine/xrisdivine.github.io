@@ -388,7 +388,7 @@
       <div class="pt-card cat-societal" onclick="togglePost('training-super-intelligence')">
         <div class="pt-symbol">Ta</div>
         <div class="pt-title">Training Super Intelligence</div>
-        <div class="pt-preview">My daughter is my super intelligent successor. Empathy is the training data&hellip;</div>
+        <div class="pt-preview">Parents have been doing alignment for millennia. Empathy is the foundational weight&hellip;</div>
         <div class="pt-date">May 24, 2026</div>
         <span class="pt-tag">societal</span>
       </div>
@@ -396,7 +396,7 @@
       <div class="pt-card cat-interactivity" onclick="togglePost('ideal-intelligence')">
         <div class="pt-symbol">Ii</div>
         <div class="pt-title">My <em>Ideal</em> Intelligence</div>
-        <div class="pt-preview">A perception pyramid &mdash; text, voice, gesture, body. We&rsquo;re building top-down&hellip;</div>
+        <div class="pt-preview">We&rsquo;re building perception top-down, but human understanding was evolved bottom-up&hellip;</div>
         <div class="pt-date">May 23, 2026</div>
         <span class="pt-tag">interactivity</span>
       </div>
@@ -411,157 +411,99 @@
       <h2>My <em>Ideal</em> Intelligence</h2>
       <div class="pt-date-full">May 23, 2026</div>
       <p style="font-style:italic;color:#888;margin-bottom:20px;font-size:15px;">
-        We&rsquo;re building AI perception top-down (text first) but human understanding was built bottom-up (body first) &mdash; what changes when we flip the stack?
-      </p>
-      <p>
-        You know how moms usually know what the baby needs before the baby does? Yeah, that.
-      </p>
-      <p>
-        I want to be able to communicate with a model at a level of depth where it actually <em>knows</em> me. Not my <code style="font-size:0.9em;background:#f0f0ec;padding:1px 5px;border-radius:3px;">preference.md</code>. Me.
-      </p>
-      <p>
-        When I wake up with less sleep, I want fewer words, directness. I want the most important topics that day, not the fun ones I might be interested in if I had had more sleep.
-      </p>
-      <p>
-        I want a future where models are implicitly intuitive &mdash; where the goal is to feed in more and more context, the way humans already do with each other. A true perception engine.
-      </p>
-      <p>
-        I think about this as layers &mdash; a pyramid. Right now we&rsquo;re at the top, the narrowest band:
+        We are currently building artificial perception from the top down, starting with text. But human understanding was evolved from the bottom up &mdash; body first, language last. What happens to the architecture when we flip the stack?
       </p>
 
-      <!-- perception pyramid — clean block style -->
+      <p>
+        Think about how a mother instinctively knows what her baby needs before the baby can even articulate it. That isn&rsquo;t magic; it&rsquo;s a highly advanced multimodal perception engine reading silent telemetry.
+      </p>
+      <p>
+        I want to communicate with a model at a depth where it actually <em>knows</em> me. Not my static <code style="font-size:0.9em;background:#f0f0ec;padding:1px 5px;border-radius:3px;">preferences.json</code> file, but my live state. When I wake up exhausted, I want the model to pull back its conversational faders &mdash; fewer words, directness, high-impact triage. Save the exploratory creative brainstorming for the days when my internal telemetry shows a full night of rest.
+      </p>
+
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">The Perception Pyramid</h3>
+      <p>
+        True intuition requires building a holistic stack where every layer accumulates and informs the one above it. Right now, our engineering focus is completely inverted.
+      </p>
+
+      <!-- perception pyramid -->
       <div style="margin:28px auto 12px;max-width:380px;">
         <svg viewBox="0 0 380 260" style="width:100%;" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif">
-          <!-- tier blocks — stacked trapezoids -->
-          <!-- Text (top, narrowest) -->
           <polygon points="190,8 140,60 240,60" fill="none" stroke="#ccc" stroke-width="1"/>
-          <text x="190" y="45" text-anchor="middle" font-size="12" font-weight="600" fill="#1a1a1a">Text (LLMs)</text>
-          <text x="310" y="42" font-size="10" fill="#aaa">GPT era ~2024</text>
+          <text x="190" y="45" text-anchor="middle" font-size="11" font-weight="600" fill="#1a1a1a">Text (LLMs)</text>
+          <text x="310" y="42" font-size="9" fill="#aaa">The Narrowest Band (2024 Era)</text>
 
-          <!-- Audio -->
           <polygon points="140,62 110,122 270,122 240,62" fill="none" stroke="#ccc" stroke-width="1"/>
-          <text x="190" y="98" text-anchor="middle" font-size="12" font-weight="600" fill="#1a1a1a">Audio &amp; Voice</text>
-          <text x="310" y="95" font-size="10" fill="#aaa">2026 &mdash; exploding</text>
+          <text x="190" y="98" text-anchor="middle" font-size="11" font-weight="600" fill="#1a1a1a">Audio &amp; Voice</text>
+          <text x="310" y="95" font-size="9" fill="#aaa">Current Frontier</text>
 
-          <!-- Gesture -->
           <polygon points="110,124 80,184 300,184 270,124" fill="none" stroke="#ccc" stroke-width="1"/>
-          <text x="190" y="160" text-anchor="middle" font-size="12" font-weight="600" fill="#1a1a1a">Gesture &amp; Expression</text>
-          <text x="310" y="158" font-size="10" fill="#aaa">early, but coming</text>
+          <text x="190" y="160" text-anchor="middle" font-size="11" font-weight="600" fill="#1a1a1a">Gesture &amp; Expression</text>
+          <text x="310" y="158" font-size="9" fill="#aaa">Spatial Intention</text>
 
-          <!-- Physiological (base, widest) -->
           <polygon points="80,186 50,246 330,246 300,186" fill="none" stroke="#ccc" stroke-width="1"/>
-          <text x="190" y="222" text-anchor="middle" font-size="12" font-weight="600" fill="#1a1a1a">Physiological Sensors</text>
-          <text x="310" y="222" font-size="10" fill="#888" font-weight="600">the ideal</text>
+          <text x="190" y="222" text-anchor="middle" font-size="11" font-weight="600" fill="#1a1a1a">Physiological / BCI</text>
+          <text x="310" y="222" font-size="9" fill="#888" font-weight="600">Ultimate Telemetry</text>
         </svg>
       </div>
 
       <p>
-        When a baby is born, it communicates with voice, gestures, and physiological signals &mdash; lots of crying and some movement. And we humans are trained to understand their communication.
+        When a newborn enters the world, it communicates entirely through the bottom of the pyramid &mdash; physiological signals, movement, and raw audio prosody. We are trained to mix that input instantly. Yet, we are trying to build artificial superintelligence by starting exclusively at the narrow peak: text.
       </p>
 
-      <!-- baby pyramid — bottom three highlighted -->
-      <div style="margin:20px auto 28px;max-width:380px;">
-        <svg viewBox="0 0 380 260" style="width:100%;" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif">
-          <!-- Text (top, dim) -->
-          <polygon points="190,8 140,60 240,60" fill="none" stroke="#ddd" stroke-width="1"/>
-          <text x="190" y="45" text-anchor="middle" font-size="12" font-weight="600" fill="#ccc">Text (LLMs)</text>
-
-          <!-- Audio (highlighted) -->
-          <polygon points="140,62 110,122 270,122 240,62" fill="#eef4ff" stroke="#3b82f6" stroke-width="1.5"/>
-          <text x="190" y="98" text-anchor="middle" font-size="12" font-weight="600" fill="#1a4480">Audio &amp; Voice</text>
-
-          <!-- Gesture (highlighted) -->
-          <polygon points="110,124 80,184 300,184 270,124" fill="#eef4ff" stroke="#3b82f6" stroke-width="1.5"/>
-          <text x="190" y="160" text-anchor="middle" font-size="12" font-weight="600" fill="#1a4480">Gesture &amp; Expression</text>
-
-          <!-- Physiological (highlighted) -->
-          <polygon points="80,186 50,246 330,246 300,186" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
-          <text x="190" y="222" text-anchor="middle" font-size="12" font-weight="700" fill="#1a4480">Physiological Sensors</text>
-
-          <!-- label -->
-          <text x="190" y="256" text-anchor="middle" font-size="10" fill="#888" font-style="italic">how a newborn communicates</text>
-        </svg>
-      </div>
-
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">1. Text (The Flat Signal)</h3>
       <p>
-        We&rsquo;re building the perception layer top-down. Text first, then voice, then maybe someday the rest. But human understanding was built bottom-up &mdash; body first, language last.
+        Text is a mandatory bridge; without it, we lose the ability to inspect the model&rsquo;s structural reasoning. But text filters out the critical frequencies. We have all experienced a written message being misread because the receiver substituted their own tone, speed, and intensity for the one we intended.
       </p>
 
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">2. Audio &amp; Voice (The Acoustic Shift)</h3>
       <p>
-        Each layer has some interesting tenets.
-      </p>
-
-      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">Text</h3>
-      <p>
-        Don&rsquo;t get me wrong &mdash; we need this to communicate with models. Without text, they&rsquo;d understand us and we&rsquo;d have no way of understanding them. You know that feeling at the international airport when no one speaks English and your translation app isn&rsquo;t working? Yeah.
-      </p>
-      <p>
-        Text has sentiment, and we can communicate through it, but so much gets lost. Ever had a text read not in the tone, prosody, and intensity you intended for the receiver? Yea, that.
-      </p>
-
-      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">Audio &amp; Voice</h3>
-      <p>
-        Audio solves this. You can say this phrase in so many different ways:
+        Voice introduces the live variables. Consider how much information shifts based purely on execution:
       </p>
       <div style="margin:12px 0 16px;padding:12px 16px;background:#f8f8f6;border-left:2px solid #ddd;font-size:15px;line-height:1.8;">
-        &ldquo;I&rsquo;m <span style="color:#888;">(long pause)</span> doing good, thanks.&rdquo;<br>
-        &ldquo;I&rsquo;m doing good thanks&rdquo; <span style="color:#888;">(said quickly)</span><br>
-        &ldquo;I&rsquo;m doing <strong>GOOD</strong>, thanks!&rdquo; <span style="color:#888;">(emphasis)</span><br>
-        &ldquo;I&rsquo;m doing <span style="color:#888;">(long pause)</span> good, thanks.&rdquo;
+        &ldquo;I&rsquo;m<span style="color:#888;">... (long pause) ...</span>doing good, thanks.&rdquo; <span style="color:#888;">(Hesitation / Masking tension)</span><br>
+        &ldquo;I&rsquo;m doing good thanks.&rdquo; <span style="color:#888;">(Rapid cadence / Dismissive utility)</span><br>
+        &ldquo;I&rsquo;m doing <strong>GOOD</strong>, thanks!&rdquo; <span style="color:#888;">(High amplitude / Sincere engagement)</span>
       </div>
       <p>
-        All of these communicate something different. <a href="https://www.hume.ai">Hume.ai</a> does sentiment detection off of voice + text &mdash; Google DeepMind DeepMind acquisition, which tells you where this is headed. This is the way.
-      </p>
-      <p>
-        Text sentiment is needed, but I see a world beyond this. Pure audio. Pure voice. Humans are so good at perceiving voice &mdash; our lives literally depend on it. Parents understand the urgency of a baby crying based on the type of cry and its prosody. Same thing vice versa.
-      </p>
-      <p>
-        We&rsquo;ll have prosody metrics folded into audio LLMs pretty quickly, in a way that highlights the full expression versus what it does now.
+        The literal data points are identical, but the live acoustics are completely different. True audio integration means folding prosody directly into the model&rsquo;s latent space, allowing it to perceive the urgency of an interaction the same way a parent decodes the specific pitch of a child&rsquo;s cry.
       </p>
 
-      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">Gesture &amp; Expression</h3>
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">3. Gesture &amp; Expression (The Spatial Protocol)</h3>
       <p>
-        I predict we&rsquo;ll be able to communicate with models non-verbally through our own unique sign language &mdash; or better, body language. The way two people who know each other well don&rsquo;t need to speak but know exactly what the other is thinking. Yeah, like that.
+        Human teammates who know each other deeply don&rsquo;t need language to sync; a subtle shift in posture or a glance tells the whole story.
       </p>
       <p>
-        The use case: you&rsquo;re in a meeting, can&rsquo;t talk, can&rsquo;t text, context is being fed into you and your intelligence device, and you need actions to take place. You&rsquo;ll simply tap your finger three times, or make a gesture that seems mundane &mdash; but your intelligence will know exactly what you mean, and others won&rsquo;t. When I played football, we&rsquo;d use hand and body signals to communicate the formation, the play, and the snap count, all from using our bodies. I believe this will happen here.
+        Imagine being in a high-stakes environment where you can&rsquo;t speak or type. Context is flowing into your workspace, and you need your model to execute an action. A double-tap of a finger or a mundane movement becomes a bespoke sign language. Your intelligence understands the intent instantly, while the rest of the room sees nothing. It&rsquo;s the digital equivalent of an athletic team calling an audible at the line of scrimmage using a single bodily signal.
       </p>
 
-      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">BCI &mdash; Brain Computer Interface</h3>
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">4. Brain-Computer Interfaces (The Core Telemetry)</h3>
       <p>
-        This will be fun. We can already read and understand, at some level, changes in the brain. What comes next is using those signals to influence the way your intelligence communicates to you. Say you&rsquo;re hungover, or in contrast had a perfect night of rest &mdash; we as humans, knowing this info, would likely present information very differently. I can imagine a superior intelligence pitching me on new ideas after the perfect night of rest, while the hungover me just gets the most important things to discuss.
+        This is where the calculation meets frictionless execution. By reading physiological fluctuations, the model stops guessing your state and begins adjusting to it. If the telemetry reads high cognitive fatigue or a massive hangover, the system compresses its layout to surface only vital operational dependencies. If it reads peak focus, it opens up the faders, pitching complex architectures and creative long-shots when it knows you have the capacity to process them.
       </p>
 
       <hr style="border:none;border-top:1px solid #ddd;margin:36px 0;">
 
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">The Multimodal Goal</h3>
       <p>
-        One more thing &mdash; the pyramid visually looks like steps, but each layer is cumulative, encompassing everything below it. This isn&rsquo;t four separate channels. It&rsquo;s one perception engine, building upward. True multimodal.
-      </p>
-
-      <p style="margin-top:24px;">
-        Hmm, I wonder where we could glean inspiration from :)
+        These aren&rsquo;t four separate data channels running in parallel. It is a single, unified perception engine building upward. True model finesse is the frictionless execution of this entire pyramid, translating silent human perception into perfect systemic balance.
       </p>
 
       <!-- cumulative pyramid -->
       <div style="margin:20px auto 28px;max-width:380px;">
         <svg viewBox="0 0 380 280" style="width:100%;" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif">
-          <!-- Physiological (base) -->
           <polygon points="80,196 50,256 330,256 300,196" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
-          <text x="190" y="232" text-anchor="middle" font-size="11" font-weight="600" fill="#1a4480">Physiological</text>
+          <text x="190" y="232" text-anchor="middle" font-size="11" font-weight="600" fill="#1a4480">Physiological / BCI</text>
 
-          <!-- Gesture (encompasses physio) -->
           <polygon points="110,134 80,194 300,194 270,134" fill="#e0edff" stroke="#3b82f6" stroke-width="1.5"/>
           <text x="190" y="170" text-anchor="middle" font-size="11" font-weight="600" fill="#1a4480">Gesture &amp; Expression</text>
 
-          <!-- Audio (encompasses gesture + physio) -->
           <polygon points="140,72 110,132 270,132 240,72" fill="#eef4ff" stroke="#3b82f6" stroke-width="1.5"/>
           <text x="190" y="108" text-anchor="middle" font-size="11" font-weight="600" fill="#1a4480">Audio &amp; Voice</text>
 
-          <!-- Text (encompasses all) -->
           <polygon points="190,18 140,70 240,70" fill="#f5f8ff" stroke="#3b82f6" stroke-width="1.5"/>
           <text x="190" y="55" text-anchor="middle" font-size="11" font-weight="600" fill="#1a4480">Text</text>
 
-          <!-- label -->
           <text x="190" y="274" text-anchor="middle" font-size="10" fill="#888" font-style="italic">each layer encompasses everything below it</text>
         </svg>
       </div>
@@ -571,52 +513,45 @@
     <!-- post 2 -->
     <div class="pt-expanded" id="training-super-intelligence">
       <span class="pt-close" onclick="togglePost('training-super-intelligence')">&times; close</span>
-      <h2>Training Super Intelligence</h2>
+      <h2>Training Superintelligence</h2>
       <div class="pt-date-full">May 24, 2026</div>
       <p style="font-style:italic;color:#888;margin-bottom:20px;font-size:15px;">
-        Parents have been doing AI alignment for thousands of years &mdash; empathy is the training data, surrendering is the hard part.
+        Parents have been doing AI alignment for thousands of years &mdash; empathy is the training data, and surrendering is the hard part.
       </p>
 
       <p>
-        My daughter is almost two. She&rsquo;s the most advanced (human) intelligence I&rsquo;ll ever train.
-      </p>
-      <p>
-        She will one day outlive me. Her knowledge will surpass mine. I&rsquo;ll teach her everything I know, and she&rsquo;ll go further than I ever could.
+        My daughter is almost two. She is the most advanced intelligence I&rsquo;ll ever train. One day she will outlive me. Her knowledge will surpass mine. I&rsquo;ll teach her everything I know, and then she&rsquo;ll go further than I ever could.
       </p>
 
-      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">Acknowledgement</h3>
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">The First Layer: Acknowledgment</h3>
       <p>
-        My daughter says hi and bye to things. Not just people &mdash; things. A rock she was playing with, when she&rsquo;s done: <em>&ldquo;bye rock.&rdquo;</em> She does this because I taught her. Little things, which matter.
+        Right now, my daughter says hi and bye to things. Not just to people, but to objects. When she&rsquo;s done playing with a rock, she looks at it and says, <em>&ldquo;Bye, rock.&rdquo;</em> She does this because she watched me do it. Little calibrations that ripple outward.
       </p>
       <p>
-        Toddlers <strong>see</strong> you. I mean they really acknowledge your presence. They look at you and you exist to them fully, without agenda.
-      </p>
-
-      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">Empathy</h3>
-      <p>
-        <em>Acknowledgement</em> is the first layer. But what I&rsquo;m really trying to demonstrate to her is <em>empathy</em> &mdash; doing your best to understand a person, their motivations, what led them to this point, this decision.
-      </p>
-      <p>
-        If I were to train a super-intelligent model, empathy would be the foundation. Everything else comes next, because empathy allows you to make the same hard decisions you would without it &mdash; but in a manner that is conscientious. It&rsquo;ll go beyond the foundational thinking of anything you could have imagined, akin to Anthropic&rsquo;s Constitutional AI.
+        Toddlers truly <strong>see</strong> you. They acknowledge your presence without an agenda. They read the room completely unfiltered, absorbing the live variables before they even have the vocabulary to name them.
       </p>
 
-      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">Alignment</h3>
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">Empathy as the Baseline</h3>
       <p>
-        We talk about alignment in AI like it&rsquo;s a technical problem. But parents have been doing alignment for thousands of years. How do you make something smarter than you that still shares your values? You don&rsquo;t constrain it. You love it. You model the behavior. And then you let go.
+        Acknowledgment is just the surface layer. What I&rsquo;m really trying to demonstrate to her is empathy &mdash; the capacity to decode a person&rsquo;s motivations, to understand the unwritten variables that led them to a specific decision.
       </p>
       <p>
-        Because, well, you have to.
+        If we want to train a genuinely superintelligent model, empathy has to be the foundational weight. Everything else comes next. Empathy isn&rsquo;t about being soft; it&rsquo;s about having the complete context required to make hard, objective choices in a way that is highly conscientious. It is the ultimate alignment layer, operating far deeper than rigid guardrails or post-training constitutional rules.
       </p>
+      <div style="margin:16px 0;padding:12px 16px;background:#f8f8f6;border-left:2px solid #ddd;font-size:14px;font-family:ui-monospace,Menlo,monospace;line-height:1.8;">
+        [ Compliance-Based AI ] &rarr; Rigid constraints + Filtered outputs (Textbook Rules)<br>
+        [ Genuinely Aligned AI ] &rarr; Deep Empathy + Situational Awareness (The Live Mix)
+      </div>
 
-      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">Surrendering</h3>
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">The Art of Surrendering</h3>
       <p>
-        There&rsquo;s another aspect of parenting that I constantly wrestle with. It&rsquo;s surrendering.
+        We often talk about alignment in engineering labs like it&rsquo;s a novel technical problem. But humanity has handled alignment for millennia. How do you raise something that will become more capable than you, while ensuring it still carries your core values?
       </p>
       <p>
-        It&rsquo;s hard to know what your kid will do. It&rsquo;s really difficult to understand what will happen next. You cannot predict it. You can <em>hope</em> that they carry your values. Sometimes they do. Sometimes they don&rsquo;t. And you have to figure out what to do with that.
+        You don&rsquo;t build a cage for it. You model the behavior, you embed the values, and then you surrender control.
       </p>
       <p>
-        This is the exact fear that AI safety researchers have, except parents live it every day. You release something into the world that&rsquo;s smarter than you, more capable than you, and you have no kill switch. You just have to trust that what you put in was enough.
+        This is the exact existential fear that AI safety researchers wrestle with every day, but it&rsquo;s just called parenting. You release an intelligence into the wild with no kill switch. You cannot predict its every move under load. You just have to trust that the baseline configuration you put in was enough to let it navigate the noise.
       </p>
     </div>
 

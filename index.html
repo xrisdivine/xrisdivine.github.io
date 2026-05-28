@@ -377,8 +377,7 @@
     </div>
 
     <div class="pt-grid">
-      <div class="pt-card cat-interactivity" onclick="togglePost('post-5')">
-        <span class="pt-number">03</span>
+      <div class="pt-card cat-interactivity" onclick="togglePost('contextual-nuance')">
         <div class="pt-symbol">Cn</div>
         <div class="pt-title">Tuning for the Silent Signals</div>
         <div class="pt-preview">Why frontier AI stumbles at nuance &mdash; the live mix between context, perception, and intent&hellip;</div>
@@ -386,8 +385,7 @@
         <span class="pt-tag">interactivity</span>
       </div>
 
-      <div class="pt-card cat-societal" onclick="togglePost('post-2')">
-        <span class="pt-number">02</span>
+      <div class="pt-card cat-societal" onclick="togglePost('training-super-intelligence')">
         <div class="pt-symbol">Ta</div>
         <div class="pt-title">Training Super Intelligence</div>
         <div class="pt-preview">My daughter is my super intelligent successor. Empathy is the training data&hellip;</div>
@@ -395,8 +393,7 @@
         <span class="pt-tag">societal</span>
       </div>
 
-      <div class="pt-card cat-interactivity" onclick="togglePost('post-1')">
-        <span class="pt-number">01</span>
+      <div class="pt-card cat-interactivity" onclick="togglePost('ideal-intelligence')">
         <div class="pt-symbol">Ii</div>
         <div class="pt-title">My <em>Ideal</em> Intelligence</div>
         <div class="pt-preview">A perception pyramid &mdash; text, voice, gesture, body. We&rsquo;re building top-down&hellip;</div>
@@ -404,13 +401,13 @@
         <span class="pt-tag">interactivity</span>
       </div>
 
-      <!-- post-3 and post-4 cards hidden until ready -->
+      <!-- latency and designing-for-youth cards hidden until ready -->
 
     </div>
 
     <!-- expanded posts -->
-    <div class="pt-expanded" id="post-1">
-      <span class="pt-close" onclick="togglePost('post-1')">&times; close</span>
+    <div class="pt-expanded" id="ideal-intelligence">
+      <span class="pt-close" onclick="togglePost('ideal-intelligence')">&times; close</span>
       <h2>My <em>Ideal</em> Intelligence</h2>
       <div class="pt-date-full">May 23, 2026</div>
       <p style="font-style:italic;color:#888;margin-bottom:20px;font-size:15px;">
@@ -572,8 +569,8 @@
     </div>
 
     <!-- post 2 -->
-    <div class="pt-expanded" id="post-2">
-      <span class="pt-close" onclick="togglePost('post-2')">&times; close</span>
+    <div class="pt-expanded" id="training-super-intelligence">
+      <span class="pt-close" onclick="togglePost('training-super-intelligence')">&times; close</span>
       <h2>Training Super Intelligence</h2>
       <div class="pt-date-full">May 24, 2026</div>
       <p style="font-style:italic;color:#888;margin-bottom:20px;font-size:15px;">
@@ -624,8 +621,8 @@
     </div>
 
     <!-- post 3 -->
-    <div class="pt-expanded" id="post-3">
-      <span class="pt-close" onclick="togglePost('post-3')">&times; close</span>
+    <div class="pt-expanded" id="latency">
+      <span class="pt-close" onclick="togglePost('latency')">&times; close</span>
       <h2>Meet Latency, My Best Friend</h2>
       <div class="pt-date-full">May 24, 2026 &middot; Draft</div>
       <p style="font-style:italic;color:#888;margin-bottom:20px;font-size:15px;">
@@ -667,8 +664,8 @@
     </div>
 
     <!-- post 4 -->
-    <div class="pt-expanded" id="post-4">
-      <span class="pt-close" onclick="togglePost('post-4')">&times; close</span>
+    <div class="pt-expanded" id="designing-for-youth">
+      <span class="pt-close" onclick="togglePost('designing-for-youth')">&times; close</span>
       <h2>Designing AI for Youth</h2>
       <div class="pt-date-full">Draft</div>
       <p style="font-style:italic;color:#888;margin-bottom:20px;font-size:15px;">
@@ -689,8 +686,8 @@
     </div>
 
     <!-- post 5 -->
-    <div class="pt-expanded" id="post-5">
-      <span class="pt-close" onclick="togglePost('post-5')">&times; close</span>
+    <div class="pt-expanded" id="contextual-nuance">
+      <span class="pt-close" onclick="togglePost('contextual-nuance')">&times; close</span>
       <h2>Tuning for the Silent Signals: Why Frontier AI Stumbles at Nuance</h2>
       <div class="pt-date-full">May 26, 2026</div>
       <p style="font-style:italic;color:#888;margin-bottom:20px;font-size:15px;">
@@ -815,7 +812,7 @@
 </main>
 
 <script>
-// Hash routing — supports #journal and #journal-post-1
+// Hash routing — supports #journal and #journal-ideal-intelligence
 function showPage() {
   const hash = location.hash.slice(1) || 'home';
 
@@ -823,10 +820,10 @@ function showPage() {
   document.querySelectorAll('.pt-expanded').forEach(e => e.classList.remove('open'));
   document.querySelectorAll('.pt-card').forEach(c => c.classList.remove('active'));
 
-  // check if hash targets a specific post (e.g. journal-post-1)
+  // check if hash targets a specific post (e.g. journal-ideal-intelligence)
   let pageId = hash;
   let postId = null;
-  const postMatch = hash.match(/^journal-(post-\d+)$/);
+  const postMatch = hash.match(/^journal-(.+)$/);
   if (postMatch) {
     pageId = 'journal';
     postId = postMatch[1];

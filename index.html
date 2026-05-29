@@ -14,6 +14,7 @@
 <meta name="twitter:title" content="Divine Keetle-Maloney">
 <meta name="twitter:description" content="Human-centered computing scientist. Engineer at Apple Vision Products Group.">
 <link rel="canonical" href="https://aisdivine.github.io">
+<meta name="color-scheme" content="light dark">
 <style>
   html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   body {
@@ -256,6 +257,88 @@
     h1 { font-size: 18px; }
     .pt-expanded { padding: 14px 12px; }
     .pt-expanded h2 { font-size: 16px; }
+  }
+
+  /* ── dark mode ── */
+  @media (prefers-color-scheme: dark) {
+    body { background: #161618; color: #d4d4d4; }
+    a { color: #6ea8e6; }
+    a:visited { color: #6ea8e6; }
+    a:hover { color: #e8845a; }
+
+    /* headings */
+    h1, h2, h3 { color: #e8e8e8; }
+
+    /* back link */
+    .back a { color: #888; }
+    .back a:hover { color: #e8845a; }
+
+    /* links list */
+    ul.links li { color: #999; }
+
+    /* cards */
+    .pt-card { background: #1e1e20; border-color: #333; }
+    .pt-card:hover { border-color: #555; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+    .pt-card.active { border-color: #6ea8e6; box-shadow: 0 2px 12px rgba(110,168,230,0.15); }
+    .pt-title { color: #ccc; }
+    .pt-preview { color: #888; }
+    .pt-date { color: #666; }
+    .pt-number { color: #555; }
+
+    /* category colors — slightly muted for dark */
+    .cat-interactivity { border-left-color: #5b9cf6; }
+    .cat-interactivity .pt-symbol { color: #5b9cf6; }
+    .cat-interactivity .pt-tag { background: #1a2a40; color: #6ea8e6; }
+    .cat-societal { border-left-color: #d4940b; }
+    .cat-societal .pt-symbol { color: #d4940b; }
+    .cat-societal .pt-tag { background: #2a2210; color: #d4940b; }
+
+    /* expanded posts */
+    .pt-expanded { background: #1c1c1e; border-color: #333; }
+    .pt-expanded .pt-close { color: #666; }
+    .pt-expanded .pt-close:hover { color: #e8845a; }
+    .pt-expanded .pt-date-full { color: #666; }
+
+    /* legend */
+    .pt-legend-item { color: #777; }
+
+    /* callout blocks — inline styles need overrides */
+    div[style*="background:#f8f8f6"] { background: #222224 !important; border-left-color: #444 !important; }
+    div[style*="background:#f8f8f8"] { background: #222224 !important; }
+    p[style*="background:#f8f8f6"] { background: #222224 !important; border-left-color: #444 !important; }
+
+    /* code inline */
+    code { background: #2a2a2c !important; color: #ccc; }
+
+    /* tables */
+    th { color: #ccc; border-color: #444 !important; }
+    td { color: #bbb; border-color: #333 !important; }
+    tr { border-color: #333 !important; }
+
+    /* SVG text and strokes */
+    svg text[fill="#1a1a1a"] { fill: #d4d4d4; }
+    svg text[fill="#333"] { fill: #ccc; }
+    svg text[fill="#444"] { fill: #bbb; }
+    svg text[fill="#888"] { fill: #777; }
+    svg text[fill="#aaa"] { fill: #666; }
+    svg polygon[stroke="#ccc"] { stroke: #444; }
+    svg polygon[stroke="#ddd"] { stroke: #383838; }
+    svg polygon[fill="#eef4ff"] { fill: #1a2a40; }
+    svg polygon[fill="#e0edff"] { fill: #1a2840; }
+    svg polygon[fill="#dbeafe"] { fill: #1a2638; }
+    svg polygon[fill="#f5f8ff"] { fill: #1c2230; }
+    svg text[fill="#1a4480"] { fill: #6ea8e6; }
+
+    /* hr */
+    hr { border-top-color: #333 !important; }
+
+    /* italic summary text */
+    p[style*="color:#888"] { color: #777 !important; }
+    p[style*="color:#555"] { color: #999 !important; }
+
+    /* further reading */
+    ul[style*="color:#666"] { color: #888 !important; }
+    h3[style*="color:#888"] { color: #666 !important; }
   }
 </style>
 </head>

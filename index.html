@@ -515,6 +515,16 @@
     </div>
 
     <div class="pt-grid">
+      <!-- cards ordered newest first (chronological rule: always maintain this order) -->
+
+      <div class="pt-card cat-interactivity" onclick="togglePost('ai-should-run-meetings')">
+        <div class="pt-symbol">Rm</div>
+        <div class="pt-title">AI Should Run Your Meetings</div>
+        <div class="pt-preview">Interaction models are a platform shift. The half of work AI never touched just opened up&hellip;</div>
+        <div class="pt-date">June 1, 2026</div>
+        <span class="pt-tag">interactivity</span>
+      </div>
+
       <div class="pt-card cat-interactivity" onclick="togglePost('contextual-nuance')">
         <div class="pt-symbol">Cn</div>
         <div class="pt-title">Tuning for the Silent Signals</div>
@@ -652,9 +662,9 @@
       <hr style="border:none;border-top:1px solid #ddd;margin:28px 0;">
       <h3 style="font-size:14px;color:#888;margin-bottom:12px;">Further Reading</h3>
       <ul style="font-size:14px;color:#666;line-height:1.6;">
-        <li>Picard, R. (1997). <em>Affective Computing.</em> &mdash; The foundational text for everything in layers 2&ndash;4. Picard laid out this vision 30 years ago.</li>
-        <li>Amershi, S. et al. (2019). &ldquo;Guidelines for Human-AI Interaction.&rdquo; CHI 2019. &mdash; How to design interaction patterns for each layer of the pyramid.</li>
-        <li>Choudhury, T. et al. (2008). &ldquo;The Mobile Sensing Platform.&rdquo; &mdash; Early work on using sensors to infer social context and cognitive state. The lineage of the BCI ideas starts here.</li>
+        <li>Picard, R. (1997). <a href="https://mitpress.mit.edu/9780262661157/affective-computing/"><em>Affective Computing.</em></a> &mdash; The foundational text for everything in layers 2&ndash;4. Picard laid out this vision 30 years ago.</li>
+        <li>Amershi, S. et al. (2019). <a href="https://dl.acm.org/doi/10.1145/3290605.3300233">&ldquo;Guidelines for Human-AI Interaction.&rdquo;</a> CHI 2019. &mdash; How to design interaction patterns for each layer of the pyramid.</li>
+        <li>Choudhury, T. et al. (2008). <a href="https://dl.acm.org/doi/10.1145/1462159.1462164">&ldquo;The Mobile Sensing Platform.&rdquo;</a> &mdash; Early work on using sensors to infer social context and cognitive state. The lineage of the BCI ideas starts here.</li>
       </ul>
 
     </div>
@@ -712,9 +722,9 @@
       <hr style="border:none;border-top:1px solid #ddd;margin:28px 0;">
       <h3 style="font-size:14px;color:#888;margin-bottom:12px;">Further Reading</h3>
       <ul style="font-size:14px;color:#666;line-height:1.6;">
-        <li>Gopnik, A. (2009). <em>The Philosophical Baby.</em> &mdash; On how children are actually doing Bayesian inference, not just absorbing unfiltered input.</li>
-        <li>Bai, Y. et al. (2022). &ldquo;Constitutional AI: Harmlessness from AI Feedback.&rdquo; Anthropic. &mdash; The actual paper behind constitutional methods.</li>
-        <li>Vallor, S. (2016). <em>Technology and the Virtues.</em> &mdash; How technology can cultivate rather than just encode virtue.</li>
+        <li>Gopnik, A. (2009). <a href="https://us.macmillan.com/books/9780312429843/thephilosophicalbaby"><em>The Philosophical Baby.</em></a> &mdash; On how children are actually doing Bayesian inference, not just absorbing unfiltered input.</li>
+        <li>Bai, Y. et al. (2022). <a href="https://arxiv.org/abs/2212.08073">&ldquo;Constitutional AI: Harmlessness from AI Feedback.&rdquo;</a> Anthropic. &mdash; The actual paper behind constitutional methods.</li>
+        <li>Vallor, S. (2016). <a href="https://global.oup.com/academic/product/technology-and-the-virtues-9780190498511"><em>Technology and the Virtues.</em></a> &mdash; How technology can cultivate rather than just encode virtue.</li>
       </ul>
     </div>
 
@@ -921,10 +931,97 @@
       <hr style="border:none;border-top:1px solid #ddd;margin:28px 0;">
       <h3 style="font-size:14px;color:#888;margin-bottom:12px;">Further Reading</h3>
       <ul style="font-size:14px;color:#666;line-height:1.6;">
-        <li>Suchman, L. (1987). <em>Plans and Situated Actions.</em> &mdash; The foundational work on why context-free rules always break down in practice. This framework is essentially a modern restatement of situated action theory applied to AI.</li>
-        <li>Amershi, S. et al. (2019). &ldquo;Guidelines for Human-AI Interaction.&rdquo; CHI 2019. &mdash; 18 design guidelines for AI interaction. Several diagnostics here map directly to guidelines around when AI should act vs. defer.</li>
-        <li>Morris, M.R. et al. (2024). &ldquo;The Ethics of Advanced AI Assistants.&rdquo; arXiv. &mdash; Directly relevant to claims about what models should perceive and how they should calibrate behavior.</li>
-        <li>Yang, Q. et al. (2020). &ldquo;Re-examining Whether, Why, and How Human-AI Interaction Is Uniquely Difficult to Design.&rdquo; CHI 2020. &mdash; Challenges the assumption that AI interaction is fundamentally different from other interaction design.</li>
+        <li>Suchman, L. (1987). <a href="https://dl.acm.org/doi/10.5555/38407"><em>Plans and Situated Actions.</em></a> &mdash; The foundational work on why context-free rules always break down in practice. This framework is essentially a modern restatement of situated action theory applied to AI.</li>
+        <li>Amershi, S. et al. (2019). <a href="https://dl.acm.org/doi/10.1145/3290605.3300233">&ldquo;Guidelines for Human-AI Interaction.&rdquo;</a> CHI 2019. &mdash; 18 design guidelines for AI interaction. Several diagnostics here map directly to guidelines around when AI should act vs. defer.</li>
+        <li>Morris, M.R. et al. (2024). <a href="https://arxiv.org/abs/2404.16244">&ldquo;The Ethics of Advanced AI Assistants.&rdquo;</a> arXiv. &mdash; Directly relevant to claims about what models should perceive and how they should calibrate behavior.</li>
+        <li>Yang, Q. et al. (2020). <a href="https://dl.acm.org/doi/10.1145/3313831.3376301">&ldquo;Re-examining Whether, Why, and How Human-AI Interaction Is Uniquely Difficult to Design.&rdquo;</a> CHI 2020. &mdash; Challenges the assumption that AI interaction is fundamentally different from other interaction design.</li>
+      </ul>
+
+    </div>
+
+    <!-- post: ai should run meetings -->
+    <div class="pt-expanded" id="ai-should-run-meetings">
+      <span class="pt-close" onclick="togglePost('ai-should-run-meetings')">&times; close</span>
+      <h2>AI Should Run Your Meetings</h2>
+      <div class="pt-date-full">June 1, 2026</div>
+      <p style="font-style:italic;color:#888;margin-bottom:20px;font-size:15px;">
+        Interaction models are a platform shift. The half of work that AI has never touched just opened up.
+      </p>
+
+      <p>
+        When I first saw Thinking Machines Lab&rsquo;s <a href="https://thinkingmachines.ai/blog/interaction-models/">interaction model demo</a>, my immediate thought was: this is a ChatGPT 3.5 moment. That same feeling of <em>oh, everything downstream of this is different now.</em>
+      </p>
+      <p>
+        I literally texted a buddy who works there: <em>&ldquo;I&rsquo;m sure you all are already here, but to me this is an obvious major shift in how we work.&rdquo;</em>
+      </p>
+
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">The Half of Work AI Never Touched</h3>
+      <p>
+        Knowledge workers spend 30&ndash;50% of their time in meetings, calls, Slack &mdash; in-person rooms, hybrid setups, fully remote. Basically the half of work that current AI can&rsquo;t reach, because today&rsquo;s models need solo, async, text.
+      </p>
+      <p>
+        Interaction models break that wide open. Continuous audio + video + text in, no harness, no waiting for turn boundaries. The same intelligence impact that Claude and ChatGPT brought to solo work, but now sitting in every meeting, sync, standup &mdash; whether the room is full of people, half on a screen, or fully remote. A teammate already in the room.
+      </p>
+
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">The Real Idea: AI as Facilitator</h3>
+      <p>
+        But the demo got me thinking about something bigger. We shouldn&rsquo;t just have AI <em>in</em> meetings. AI should <em>run</em> them.
+      </p>
+      <p>
+        Think about it. We&rsquo;re always in meetings, and so much context lives there &mdash; conversations, decks sent beforehand (or not sent), decisions buried in threads from two weeks ago. Wouldn&rsquo;t it be better to have an AI facilitator? An unbiased party that operates at the ground-truth layer. No politics. No posturing.
+      </p>
+      <p>
+        &ldquo;Send me your deck.&rdquo; Or: &ldquo;So-and-so didn&rsquo;t send a deck, so there is no deck.&rdquo; Basically another employee &mdash; one you can chat with to get caught up if you&rsquo;re late, ask to pull up a PDF, or get the decision from last standup you can&rsquo;t remember.
+      </p>
+      <p>
+        A true facilitator. Why don&rsquo;t we have this?
+      </p>
+
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">Beyond Meeting Notes</h3>
+      <p>
+        We&rsquo;ve already seen the translate-summarize-meeting-notes bots. They&rsquo;re fine. Sometimes they really miss context. But that&rsquo;s like comparing dial-up to broadband &mdash; same category, completely different capability.
+      </p>
+      <p>
+        A fully-fledged interaction model in a meeting isn&rsquo;t taking notes. It&rsquo;s facilitating. A meeting could go from a blank room where we all try to coordinate, to a guided experience &mdash; a facilitator taking you on a tour, ready for you to revisit any moment. You can ask questions, call out topics, surface dependencies. Clear signal on project health. Accountability and efficiency baked in, not bolted on.
+      </p>
+
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">A Use Case: Building a Rocket</h3>
+      <p>
+        Let me map this out concretely.
+      </p>
+      <p>
+        Project A has many stakeholders &mdash; most of them aren&rsquo;t in the room. A small group of their reports is responsible for moving it forward. Maybe there&rsquo;s a clear DRI, maybe that DRI is underwater.
+      </p>
+      <p>
+        The team is building a rocket. Right now, they&rsquo;re focused on sourcing parts. Each person owns a different component, and each component has a different expected arrival date.
+      </p>
+      <p>
+        <strong>Without the facilitator:</strong> The meeting is a round-robin. &ldquo;Any updates?&rdquo; Half the room doesn&rsquo;t have context on the other half&rsquo;s dependencies. The DRI is manually tracking arrival dates in a spreadsheet that&rsquo;s already stale. Someone forgot to mention their part is delayed by two weeks. Nobody catches it until the integration window closes.
+      </p>
+      <p>
+        <strong>With the facilitator:</strong> The AI opens by surfacing the current state &mdash; here are the six parts, here are their last-known arrival dates, here&rsquo;s what changed since last standup. It flags the two-week slip before anyone has to confess it. It shows the downstream impact: &ldquo;If the turbopump slips to June 20th, integration testing can&rsquo;t start until July, which puts the launch window at risk.&rdquo; It asks the room: &ldquo;Who owns the mitigation?&rdquo; And it logs the answer.
+      </p>
+      <p>
+        The stakeholders who aren&rsquo;t in the room? They get a real-time feed &mdash; not meeting notes, but a live state of the project, with the facilitator&rsquo;s assessment of what&rsquo;s on track and what isn&rsquo;t. They can ask questions asynchronously and the facilitator answers from the context it absorbed in the room.
+      </p>
+
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">The Hard Problems</h3>
+      <p>
+        The challenges here aren&rsquo;t the model capability &mdash; that&rsquo;s arriving. The hard ones are interaction design. When does it speak? In whose interest does it nudge? How should it embody itself across voice, screen, and physical space? Or do we just let our agents handle all this :P
+      </p>
+      <p>
+        And the social problem: norms have to evolve faster than the capability ships. Always-on multimodal capture brings privacy and surveillance friction that no product has really solved. People need to trust the facilitator the way they trust a good meeting chair &mdash; and that trust is earned through behavior, not permissions dialogs.
+      </p>
+      <p>
+        This is a major shift in work. Not &ldquo;AI helps you write emails faster.&rdquo; This is AI participating in the messiest, most human part of collaboration &mdash; the room where decisions actually get made.
+      </p>
+
+      <hr style="border:none;border-top:1px solid #ddd;margin:28px 0;">
+      <h3 style="font-size:14px;color:#888;margin-bottom:12px;">Further Reading</h3>
+      <ul style="font-size:14px;color:#666;line-height:1.6;">
+        <li>Morris, M.R., Teevan, J., &amp; Bush, S. (2008). <a href="https://dl.acm.org/doi/10.1145/1449715.1449722">&ldquo;SearchTogether: An Interface for Collaborative Web Search.&rdquo;</a> UIST 2008. &mdash; Foundational work on how multiple people coordinate through a shared intelligent system.</li>
+        <li>Amershi, S. et al. (2019). <a href="https://dl.acm.org/doi/10.1145/3290605.3300233">&ldquo;Guidelines for Human-AI Interaction.&rdquo;</a> CHI 2019. &mdash; When should AI speak, when should it defer? 18 guidelines that apply directly to meeting facilitation.</li>
+        <li>Roschelle, J. &amp; Teasley, S. (1995). <a href="https://link.springer.com/chapter/10.1007/978-3-642-85098-1_5">&ldquo;The Construction of Shared Knowledge in Collaborative Problem Solving.&rdquo;</a> &mdash; On how groups build shared understanding. The theoretical backbone for why a facilitator that maintains ground truth matters.</li>
       </ul>
 
     </div>

@@ -517,6 +517,14 @@
     <div class="pt-grid">
       <!-- cards ordered newest first (chronological rule: always maintain this order) -->
 
+      <div class="pt-card cat-interactivity" onclick="togglePost('before-ai-mouse')">
+        <div class="pt-symbol">Mo</div>
+        <div class="pt-title">Before AI, It Was the Mouse</div>
+        <div class="pt-preview">&ldquo;Human-centered AI&rdquo; isn&rsquo;t a new discipline. It&rsquo;s the oldest one in computing, re-encountering a new tool&hellip;</div>
+        <div class="pt-date">July 4, 2026</div>
+        <span class="pt-tag">interactivity</span>
+      </div>
+
       <div class="pt-card cat-societal" onclick="togglePost('sort-my-stuff')">
         <div class="pt-symbol">Ss</div>
         <div class="pt-title">I Can&rsquo;t Wait for AI to Sort My Stuff</div>
@@ -578,6 +586,79 @@
     </div>
 
     <!-- expanded posts -->
+    <div class="pt-expanded" id="before-ai-mouse">
+      <span class="pt-close" onclick="togglePost('before-ai-mouse')">&times; close</span>
+      <h2>Before AI, It Was the Mouse</h2>
+      <div class="pt-date-full">July 4, 2026</div>
+      <p style="font-style:italic;color:#888;margin-bottom:20px;font-size:15px;">
+        &ldquo;Human-centered AI&rdquo; isn&rsquo;t a new discipline. It&rsquo;s the same old discipline &mdash; human-centered tooling &mdash; pointed at a tool we don&rsquo;t fully understand yet. We&rsquo;ve been here before. Last time it was a block of wood with a wheel in it.
+      </p>
+
+      <p>
+        Everyone is scrambling to define &ldquo;human-centered AI&rdquo; like the field was born in 2023. New frameworks, new institutes, new job titles. I get the urgency. But the framing is backwards. Human-centered AI isn&rsquo;t a new discipline. It&rsquo;s the oldest discipline in computing, re-encountering a new tool.
+      </p>
+      <p>
+        Strip the words down. &ldquo;Human-centered AI&rdquo; is really &ldquo;human-centered <em>tooling</em>,&rdquo; where the tool currently on the bench happens to be AI. Before that the tool was multi-touch. Before that, the GUI. Before that, a block of wood with a wheel in it that Doug Engelbart called a mouse.
+      </p>
+
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">The Demo Is Never the Point</h3>
+      <p>
+        In 1968, Engelbart gave what we now call the Mother of All Demos. People remember it as the debut of the mouse. But Engelbart wasn&rsquo;t demoing a pointing device &mdash; he was demoing <em>augmentation</em>. The mouse was incidental, one answer to a much better question: when a person means to act on something, how do they say so? His 1962 framing was &ldquo;augmenting human intellect.&rdquo; The hardware was whatever got him there.
+      </p>
+      <p>
+        It took sixteen more years for the mouse to reach the Macintosh. Not because the technology wasn&rsquo;t ready &mdash; because we didn&rsquo;t yet know what it was <em>for</em>. That gap, between a capability existing and a capability being understood in human terms, is where human-centered work lives. Every novel technology arrives as a demo of itself. Then someone has to do the slower work of figuring out what human intention it actually serves.
+      </p>
+      <p>
+        Multi-touch ran the same play. The research prototypes existed for decades before 2007. The iPhone didn&rsquo;t invent the capability; it resolved the question of what the capability was for &mdash; direct manipulation, in your pocket, with your fingers as the pointer. Same pattern, new tool.
+      </p>
+      <p>
+        We are in the demo years of AI right now. The capability arrived before the understanding. That should feel familiar, not unprecedented.
+      </p>
+
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">The Questions That Survive Every Tool</h3>
+      <p>
+        If the discipline transfers, then the way to begin thinking about human-centered AI is to start with the questions that survived every previous transition &mdash; not with the model card.
+      </p>
+      <ul style="margin:0 0 16px 1.5em;line-height:1.7;">
+        <li><strong>What did the person mean?</strong> Intent, not input. The mouse succeeded because pointing is how humans already disambiguate. The prompt box is our current best guess at intent capture, and it&rsquo;s roughly the command line again &mdash; we should be honest that it&rsquo;s early.</li>
+        <li><strong>What does it cost them when it&rsquo;s wrong?</strong> Every tool has an error model. An errant click costs a keystroke to undo. An errant agent action might cost something you can&rsquo;t undo. Error cost, not capability, is what sets the ceiling on trust.</li>
+        <li><strong>Who is in control, and when does it hand off?</strong> The mouse never had initiative. For decades this question was trivial. Now the tool can carry some of the load, so the handoff has to be designed.</li>
+      </ul>
+
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">The Tool Just Got Better</h3>
+      <p>
+        Every tool in this lineage was an attempt to close the same gap: the distance between what a person means and what the machine does. The mouse closed some of it &mdash; you point at the thing you mean instead of typing its address. The GUI closed more &mdash; you see what&rsquo;s possible instead of memorizing it. Multi-touch removed the proxy entirely &mdash; your hand on the thing itself.
+      </p>
+      <p>
+        AI is the next step in the same direction, and it&rsquo;s the biggest one yet. For the first time, the tool participates in understanding your intent instead of waiting for you to encode it. You say what you mean, in your own words, and it holds a running estimate of what you&rsquo;re trying to do &mdash; filling in the parts you didn&rsquo;t spell out. That&rsquo;s not a new discipline arriving. That&rsquo;s the old discipline&rsquo;s goal &mdash; close the gap between intent and action &mdash; finally being served by a tool built for it.
+      </p>
+      <p>
+        It does create new work. The tool&rsquo;s model of you has to be calibrated, correctable, and legible, and Engelbart never had to design for that. But it&rsquo;s the same work at its core: mapping capability onto human intention. The questions didn&rsquo;t change. The tool got better at answering them.
+      </p>
+
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">Start With the Invariants</h3>
+      <p>
+        So how do you begin thinking about human-centered AI? The same way the field began thinking about every tool it didn&rsquo;t understand yet: hold the human constant and treat the tool as the variable.
+      </p>
+      <p>
+        Human attention hasn&rsquo;t changed since 1968. Neither has the cost of broken trust, the need to recover from errors, or the fact that people communicate intent through channels far richer than text. The tool will keep changing &mdash; it always has, and whatever follows AI will feel just as unprecedented. The discipline doesn&rsquo;t change. It just keeps asking the same question of each new block of wood on the bench: <em>what does a person mean to do, and how do we get out of the way of them doing it?</em>
+      </p>
+
+      <hr style="border:none;border-top:1px solid #ddd;margin:36px 0;">
+      <h3 style="font-size:14px;color:#888;margin-bottom:12px;">Further Reading</h3>
+      <ul style="font-size:14px;color:#666;line-height:1.6;">
+        <li>Engelbart, D. (1962). <a href="https://www.dougengelbart.org/pubs/augment-3906.html">&ldquo;Augmenting Human Intellect: A Conceptual Framework.&rdquo;</a> &mdash; The source. The mouse was a footnote; the framework was the point.</li>
+        <li>Licklider, J.C.R. (1960). <a href="https://groups.csail.mit.edu/medg/people/psz/Licklider.html">&ldquo;Man-Computer Symbiosis.&rdquo;</a> &mdash; Wrote the human-centered AI agenda 65 years early, before either half of the symbiosis existed.</li>
+        <li>Norman, D. (2013). <a href="https://mitpress.mit.edu/9780262525671/the-design-of-everyday-things/"><em>The Design of Everyday Things</em> (revised ed.)</a> &mdash; Gulfs of execution and evaluation: the error-cost and intent questions, formalized.</li>
+        <li>Shneiderman, B. (2022). <a href="https://global.oup.com/academic/product/human-centered-ai-9780192845290"><em>Human-Centered AI.</em></a> &mdash; The strongest current attempt to do what this post gestures at: port the discipline, not reinvent it.</li>
+      </ul>
+
+      <p style="text-align:center;color:#b45309;font-size:14px;margin-top:36px;font-style:italic;">
+        Happy 250<sup>th</sup>, America. &#127482;&#127480;
+      </p>
+
+    </div>
+
     <div class="pt-expanded" id="ideal-intelligence">
       <span class="pt-close" onclick="togglePost('ideal-intelligence')">&times; close</span>
       <h2>My <em>Ideal</em> Intelligence</h2>

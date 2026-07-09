@@ -22,6 +22,20 @@ sense in context. To prevent that class of bug:
 - A post may exist as an expanded `<div>` with **no card** only if its date line
   is marked `Draft` (intentionally hidden). Otherwise every card ↔ post pair.
 
+## Toolbox (password-protected pages)
+
+`/toolbox/` is an unlisted, password-protected area (never link it from the site).
+Each file under `toolbox/` is AES-256-GCM ciphertext produced by
+`scripts/encrypt_page.mjs`; the gate page derives the key from the password via
+PBKDF2 in the browser, so the public repo/site never contains plaintext.
+
+- **Plaintext sources live in the PRIVATE `~/eng/research` repo** (decks +
+  `toolbox/index-src.html`). Never commit plaintext or the password to this repo.
+- Rebuild after a deck changes:
+  `node scripts/encrypt_page.mjs <password> <src.html> <toolbox/.../index.html> "<Title>" "/toolbox/"`
+  (omit the backlink arg for the toolbox landing page). Ask Divine for the password.
+- Unlocking once per browser session covers all toolbox pages (sessionStorage).
+
 ## Coherence check (the test)
 
 Run before every push:

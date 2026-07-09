@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Writer — journal drafts</title>
+<style>
+  :root { --bg:#fdfdfc; --panel:#fff; --line:#e6e6e3; --muted:#8a8a86; --accent:#2563eb; --claude:#7c3aed; }
+  * { box-sizing:border-box; }
+  html,body { height:100%; margin:0; }
+  body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif; color:#1a1a1a; background:var(--bg); display:flex; flex-direction:column; }
+  header { display:flex; align-items:center; gap:12px; padding:8px 14px; border-bottom:1px solid var(--line); background:var(--panel); flex:0 0 auto; }
+  header .brand { font-weight:700; font-size:14px; }
+  header select { font:inherit; font-size:13px; padding:3px 6px; border:1px solid var(--line); border-radius:6px; background:#fff; }
+  header .spacer { flex:1; }
+  #status { font-size:12px; color:var(--muted); min-width:64px; text-align:right; }
+  button { font:inherit; font-size:13px; border:1px solid var(--line); background:#fff; border-radius:6px; padding:4px 10px; cursor:pointer; }
+  button:hover { background:#f3f3f1; }
+  button.primary { background:var(--accent); color:#fff; border-color:var(--accent); }
+  button.primary:hover { filter:brightness(.95); }
+  main { flex:1; display:grid; grid-template-columns:1fr 1fr 320px; min-height:0; }
+  .pane { min-height:0; overflow:auto; border-right:1px solid var(--line); }
+  .pane-h { position:sticky; top:0; background:var(--panel); border-bottom:1px solid var(--line); padding:6px 12px; font-size:11px; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); z-index:2; }
+  #editor { width:100%; height:calc(100% - 30px); border:0; outline:0; resize:none; padding:16px 18px; font-family:ui-monospace,Menlo,Monaco,monospace; font-size:13.5px; line-height:1.65; background:transparent; color:#1a1a1a; white-space:pre-wrap; }
+  #preview { padding:16px 22px 60px; line-height:1.7; font-size:15.5px; }
+  #preview h1 { font-size:24px; margin:.2em 0 .3em; }
+  #preview h2 { font-size:19px; margin:1.2em 0 .2em; }
+  #preview h3 { font-size:15px; margin:1.4em 0 .3em; }
+  #preview em.dek { color:var(--muted); }
+  #preview hr { border:0; border-top:1px solid var(--line); margin:1.6em 0; }
+  #preview a { color:var(--accent); }
+  #preview blockquote { margin:.6em 0; padding:.2em 0 .2em 12px; border-left:3px solid var(--line); color:#555; }
+  #preview code { background:#f2f2ef; padding:1px 4px; border-radius:4px; font-size:.9em; }
+  /* comments */
+  #comments { background:var(--panel); }
+  .compose { padding:10px 12px; border-bottom:1px solid var(--line); background:#fbfbfa; }
+  .compose .anchor { font-size:12px; color:#555; background:#fff; border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:4px; padding:5px 8px; margin-bottom:6px; max-height:66px; overflow:auto; white-space:pre-wrap; }
+  .compose textarea { width:100%; min-height:52px; font:inherit; font-size:13px; border:1px solid var(--line); border-radius:6px; padding:6px 8px; resize:vertical; }
+  .compose .row { display:flex; gap:6px; margin-top:6px; }
+  .clist { padding:6px 0 40px; }
+  .cmt { padding:10px 12px; border-bottom:1px solid var(--line); font-size:13px; }
+  .cmt.resolved { opacity:.5; }
+  .cmt .q { color:#555; border-left:3px solid #cbd5e1; padding:2px 8px; margin-bottom:5px; font-size:12px; white-space:pre-wrap; }
+  .cmt .body { white-space:pre-wrap; }
+  .cmt .meta { color:var(--muted); font-size:11px; margin-top:4px; display:flex; gap:8px; align-items:center; }
+  .cmt .meta button { padding:1px 6px; font-size:11px; }
+  .cmt .reply { margin-top:7px; border-left:3px solid var(--claude); background:#f7f4fd; padding:5px 8px; border-radius:4px; font-size:12.5px; white-space:pre-wrap; }
+  .cmt .reply b { color:var(--claude); }
+  .empty { color:var(--muted); font-size:13px; padding:14px 12px; }
+  #banner { display:none; background:#fef3c7; border-bottom:1px solid #f59e0b; color:#92400e; font-size:13px; padding:7px 14px; gap:10px; align-items:center; }
+  #banner button { border-color:#f59e0b; }
+  .count { background:#eef; color:#334; border-radius:10px; padding:0 7px; font-size:11px; }
+  @media (prefers-color-scheme: dark){
+    :root { --bg:#161618; --panel:#1c1c1f; --line:#2c2c30; --muted:#9a9a96; }
+    body { color:#e6e6e3; } #editor{ color:#e6e6e3; } #preview code{ background:#26262a; }
+    button{ background:#232327; color:#e6e6e3; } button:hover{ background:#2b2b30; }
+    .compose{ background:#1e1e21; } .compose .anchor,.compose textarea{ background:#161618; color:#e6e6e3; }
+    .cmt .reply{ background:#241b33; } #preview blockquote{ color:#bbb; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <span class="brand">✍︎ Writer</span>
+  <select id="draftSel" title="Draft"></select>
+  <button id="commentBtn" title="Comment on the selected text in the editor">＋ Comment</button>
+  <button id="checkBtn" title="Ask Claude to read your comments + edits right now">▶ Check (ask Claude)</button>
+  <span class="spacer"></span>
+  <span id="status">—</span>
+  <button id="saveBtn" class="primary">Save</button>
+</header>
+<div id="banner">
+  <span id="bannerText"></span>
+  <button id="takeClaude">Reload Claude's version</button>
+  <button id="keepMine">Keep mine (overwrite)</button>
+</div>
+<main>
+  <section class="pane">
+    <div class="pane-h">Markdown source</div>
+    <textarea id="editor" spellcheck="true" placeholder="Loading…"></textarea>
+  </section>
+  <section class="pane">
+    <div class="pane-h">Preview</div>
+    <div id="preview"></div>
+  </section>
+  <section class="pane" id="comments">
+    <div class="pane-h">Comments to Claude <span id="cCount" class="count">0</span></div>
+    <div id="composeWrap"></div>
+    <div class="clist" id="clist"></div>
+  </section>
+</main>
+
+<script>
+const $ = s => document.querySelector(s);
+const editor = $('#editor'), preview = $('#preview');
+let slug = new URLSearchParams(location.search).get('slug') || '';
+let base = null;            // disk hash we last loaded
+let dirty = false;         // unsaved local edits
+let comments = [];
+let reviewPending = false;
+let saveTimer = null, pollTimer = null, composeAnchor = null, autoReviewTimer = null;
+
+function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function inline(s){
+  s = esc(s);
+  s = s.replace(/`([^`]+)`/g, '<code>$1</code>');
+  s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+  s = s.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+  s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+  return s;
+}
+function renderMd(md){
+  const lines = md.replace(/\r/g,'').split('\n');
+  let out = [], para = [], list = [], quote = [];
+  const flushP = () => { if(para.length){ out.push('<p>'+inline(para.join(' '))+'</p>'); para=[]; } };
+  const flushL = () => { if(list.length){ out.push('<ul>'+list.map(x=>'<li>'+inline(x)+'</li>').join('')+'</ul>'); list=[]; } };
+  const flushQ = () => { if(quote.length){ out.push('<blockquote>'+inline(quote.join(' '))+'</blockquote>'); quote=[]; } };
+  const flushAll = () => { flushP(); flushL(); flushQ(); };
+  for(const raw of lines){
+    const line = raw.replace(/\s+$/,'');
+    if(/^\s*$/.test(line)){ flushAll(); continue; }
+    let m;
+    if(/^(---|\*\*\*)\s*$/.test(line)){ flushAll(); out.push('<hr>'); continue; }
+    if((m=line.match(/^###\s+(.*)/))){ flushAll(); out.push('<h3>'+inline(m[1])+'</h3>'); continue; }
+    if((m=line.match(/^##\s+(.*)/))){ flushAll(); out.push('<h2>'+inline(m[1])+'</h2>'); continue; }
+    if((m=line.match(/^#\s+(.*)/))){ flushAll(); out.push('<h1>'+inline(m[1])+'</h1>'); continue; }
+    if((m=line.match(/^\*\*Dek:\*\*\s*(.*)/))){ flushAll(); out.push('<p><em class="dek">'+inline(m[1])+'</em></p>'); continue; }
+    if((m=line.match(/^[-*]\s+(.*)/))){ flushP(); flushQ(); list.push(m[1]); continue; }
+    if((m=line.match(/^>\s?(.*)/))){ flushP(); flushL(); quote.push(m[1]); continue; }
+    flushL(); flushQ(); para.push(line);
+  }
+  flushAll();
+  return out.join('\n');
+}
+function renderPreview(){ preview.innerHTML = renderMd(editor.value); }
+function setStatus(t){ $('#status').textContent = t; }
+
+async function loadList(){
+  const r = await fetch('/api/list'); const d = await r.json();
+  const sel = $('#draftSel'); sel.innerHTML='';
+  d.drafts.forEach(s => { const o=document.createElement('option'); o.value=s; o.textContent=s; sel.appendChild(o); });
+  if(!slug && d.drafts.length) slug = d.drafts[0];
+  sel.value = slug;
+}
+async function loadDraft(force){
+  if(!slug) return;
+  const r = await fetch('/api/draft?slug='+encodeURIComponent(slug));
+  if(!r.ok){ setStatus('not found'); return; }
+  const d = await r.json();
+  comments = d.comments || []; renderComments();
+  const wasPending = reviewPending;
+  reviewPending = !!d.reviewPending;
+  if(wasPending && !reviewPending) setStatus('Claude updated ✓');
+  reflectReview();
+  if(force || !dirty){
+    if(editor.value !== d.markdown){ editor.value = d.markdown; renderPreview(); }
+    base = d.hash; dirty = false; hideBanner(); if(!(wasPending && !reviewPending)) setStatus('saved');
+  } else if(d.hash !== base){
+    showBanner("Claude edited this draft on disk while you were writing.");
+  }
+}
+function reflectReview(){
+  const b = $('#checkBtn');
+  b.textContent = reviewPending ? '⏳ Claude working…' : '▶ Check (ask Claude)';
+  b.disabled = reviewPending;
+}
+async function requestReview(){
+  if(dirty) await save(false);
+  await fetch('/api/request-review', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({slug})});
+  reviewPending = true; reflectReview(); setStatus('sent to Claude');
+}
+function scheduleAutoReview(){ clearTimeout(autoReviewTimer); autoReviewTimer = setTimeout(requestReview, 2500); }
+function scheduleSave(){ dirty = true; setStatus('editing…'); clearTimeout(saveTimer); saveTimer = setTimeout(save, 500); }
+async function save(force){
+  if(!slug) return;
+  clearTimeout(saveTimer);
+  const r = await fetch('/api/save', {method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({slug, markdown: editor.value, baseHash: base, force: !!force})});
+  if(r.status === 409){ const d = await r.json(); showBanner("Claude edited this draft on disk. Saving would overwrite it."); return; }
+  const d = await r.json(); base = d.hash; dirty = false; setStatus('saved'); hideBanner();
+}
+function showBanner(t){ $('#bannerText').textContent = t; $('#banner').style.display='flex'; }
+function hideBanner(){ $('#banner').style.display='none'; }
+
+/* comments */
+function renderComments(){
+  const open = comments.filter(c=>!c.resolved).length;
+  $('#cCount').textContent = open;
+  const list = $('#clist');
+  if(!comments.length){ list.innerHTML = '<div class="empty">No comments yet. Select text in the editor and hit <b>＋ Comment</b> to leave a note for Claude.</div>'; return; }
+  list.innerHTML = comments.slice().reverse().map(c => `
+    <div class="cmt ${c.resolved?'resolved':''}">
+      ${c.anchor ? `<div class="q">${esc(c.anchor)}</div>`:''}
+      <div class="body">${esc(c.text)}</div>
+      ${c.reply ? `<div class="reply"><b>Claude:</b> ${esc(c.reply)}</div>`:''}
+      <div class="meta">
+        <span>#${c.id}${c.created?(' · '+esc(c.created)):''}</span>
+        <span class="spacer" style="flex:1"></span>
+        <button data-act="resolve" data-id="${c.id}">${c.resolved?'reopen':'resolve'}</button>
+        <button data-act="delete" data-id="${c.id}">delete</button>
+      </div>
+    </div>`).join('');
+  list.querySelectorAll('button[data-act]').forEach(btn=>{
+    btn.onclick = () => cmtAction(btn.dataset.act, parseInt(btn.dataset.id,10));
+  });
+}
+async function cmtAction(act, id){
+  const path = act==='resolve' ? '/api/comment/resolve' : '/api/comment/delete';
+  const r = await fetch(path, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({slug, id})});
+  const d = await r.json(); comments = d.comments || []; renderComments();
+}
+function openCompose(){
+  const s = editor.selectionStart, e = editor.selectionEnd;
+  composeAnchor = (s!==e) ? editor.value.substring(s,e).trim() : null;
+  $('#composeWrap').innerHTML = `
+    <div class="compose">
+      ${composeAnchor ? `<div class="anchor">${esc(composeAnchor)}</div>`:'<div class="anchor" style="border-left-color:#cbd5e1;color:#999">general comment (no text selected)</div>'}
+      <textarea id="composeText" placeholder="Note for Claude…"></textarea>
+      <div class="row"><button class="primary" id="composeSave">Comment</button><button id="composeCancel">Cancel</button></div>
+    </div>`;
+  const ta = $('#composeText'); ta.focus();
+  $('#composeSave').onclick = submitComment;
+  $('#composeCancel').onclick = () => { $('#composeWrap').innerHTML=''; };
+  ta.addEventListener('keydown', ev => { if(ev.key==='Enter' && (ev.metaKey||ev.ctrlKey)) submitComment(); });
+}
+async function submitComment(){
+  const text = $('#composeText').value.trim();
+  if(!text){ $('#composeText').focus(); return; }
+  const created = new Date().toLocaleString();
+  const r = await fetch('/api/comment', {method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({slug, anchor: composeAnchor, text, created})});
+  const d = await r.json(); comments = d.comments || []; $('#composeWrap').innerHTML=''; renderComments();
+  scheduleAutoReview();   // adding a comment auto-pings Claude (batched)
+}
+
+/* wiring */
+editor.addEventListener('input', () => { renderPreview(); scheduleSave(); });
+editor.addEventListener('blur', () => { if(dirty) save(false); });
+document.addEventListener('visibilitychange', () => { if(document.hidden && dirty) save(false); });
+setInterval(() => { if(dirty) save(false); }, 3000);   // continuous autosave safety net
+$('#saveBtn').onclick = () => save(false);
+$('#commentBtn').onclick = openCompose;
+$('#checkBtn').onclick = requestReview;
+// right-click on a selection → comment (no button needed)
+editor.addEventListener('contextmenu', e => {
+  if(editor.selectionStart === editor.selectionEnd) return;   // nothing selected → native menu
+  e.preventDefault(); showCtxMenu(e.clientX, e.clientY);
+});
+function showCtxMenu(x, y){
+  hideCtxMenu();
+  const m = document.createElement('div'); m.id='ctxmenu';
+  m.style.cssText = 'position:fixed;z-index:60;background:var(--panel);color:inherit;border:1px solid var(--line);border-radius:8px;box-shadow:0 8px 28px rgba(0,0,0,.18);padding:4px;';
+  m.style.left = Math.min(x, window.innerWidth-200) + 'px';
+  m.style.top  = Math.min(y, window.innerHeight-60) + 'px';
+  const item = document.createElement('div');
+  item.textContent = '💬 Comment to Claude';
+  item.style.cssText = 'padding:7px 14px;cursor:pointer;border-radius:6px;white-space:nowrap;font-size:13px;';
+  item.onmouseenter = () => item.style.background = 'rgba(120,120,120,.15)';
+  item.onmouseleave = () => item.style.background = '';
+  item.onclick = () => { hideCtxMenu(); openCompose(); };
+  m.appendChild(item); document.body.appendChild(m);
+}
+function hideCtxMenu(){ const e = document.getElementById('ctxmenu'); if(e) e.remove(); }
+document.addEventListener('click', hideCtxMenu);
+window.addEventListener('blur', hideCtxMenu);
+$('#draftSel').onchange = e => { slug = e.target.value; dirty=false; const u=new URL(location); u.searchParams.set('slug',slug); history.replaceState(null,'',u); loadDraft(true); };
+$('#takeClaude').onclick = () => loadDraft(true);
+$('#keepMine').onclick = () => save(true);
+document.addEventListener('keydown', e => { if((e.metaKey||e.ctrlKey) && e.key==='s'){ e.preventDefault(); save(false); } });
+window.addEventListener('beforeunload', e => { if(dirty){ e.preventDefault(); e.returnValue=''; } });
+
+(async () => {
+  await loadList();
+  await loadDraft(true);
+  pollTimer = setInterval(() => loadDraft(false), 4000);   // pick up Claude's edits + replies
+})();
+</script>
+</body>
+</html>

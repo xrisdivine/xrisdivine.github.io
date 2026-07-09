@@ -3,3 +3,7 @@ _site
 .jekyll-cache
 .jekyll-metadata
 vendor
+
+# writer tool scratch (per-draft comments + review markers)
+drafts/*.comments.json
+drafts/*.review-request

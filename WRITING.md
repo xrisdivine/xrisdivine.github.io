@@ -3,6 +3,18 @@
 The blog ("Thoughts on Intelligence") lives in `index.html`. Posts are written
 as markdown drafts first, then folded into `index.html` when ready.
 
+## The writer (main editing surface, Overleaf-style)
+
+A local browser editor with live preview and margin comments you can address to
+Claude:
+
+```bash
+python3 scripts/writer_server.py            # serves on 127.0.0.1:8777
+```
+Then open **http://127.0.0.1:8777/?slug=&lt;slug&gt;**. Comments persist to
+`drafts/&lt;slug&gt;.comments.json`; "Request review" drops a marker so Claude
+picks up your notes, edits the draft, and replies live. This is "the writer."
+
 ## The flow (the "Overleaf-like" setup)
 
 1. **Start a draft** — scaffolds the markdown, links it into Obsidian for live
@@ -10,6 +22,7 @@ as markdown drafts first, then folded into `index.html` when ready.
    ```bash
    node scripts/draft.mjs new "Your Title" [interactivity|societal]
    ```
+   (Then edit it in the writer above at `?slug=<slug>`.)
 2. **Write it.** The `.md` in `drafts/` is the source of truth for the post's
    dek and body. Edit live in **Obsidian → `xrisdivine-drafts/<slug>.md`**
    (a symlink to `drafts/`, so it's the same file — no copies, no drift), or in

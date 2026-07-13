@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EducationLab · Say It, See It</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FFF3E4; --paper-2:#FFE7CC; --ink:#26313F; --mut:#6C7A8A;
+  --teal:#16B3A2; --teal-deep:#0E8C7F; --teal-shadow:#0A6E63;
+  --screen:#EAF8F3; --screen-2:#D8F0E8; --screen-line:#C4E7DD;
+  --sun:#FFC93C; --berry:#FF5C8A; --grape:#8367F0; --sky:#59B7F0;
+  --leaf:#5CC96B; --leaf-deep:#37A64C; --cloud:#FFFFFF;
+  --shadow:0 2px 0 rgba(38,49,63,.14), 0 14px 30px rgba(38,49,63,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Nunito',system-ui,sans-serif;color:var(--ink);
+  background:var(--paper);
+  background-image:radial-gradient(circle at 12% 18%, rgba(255,201,60,.16), transparent 42%),
+                   radial-gradient(circle at 88% 8%, rgba(131,103,240,.14), transparent 40%),
+                   radial-gradient(circle at 78% 92%, rgba(89,183,240,.16), transparent 46%);
+  min-height:100vh;line-height:1.5;
+}
+.wrap{max-width:940px;margin:0 auto;padding:0 20px}
+
+/* ---------- header ---------- */
+header{padding:26px 0 6px;text-align:center}
+.kick{display:inline-flex;align-items:center;gap:7px;font-family:'Fredoka';font-weight:500;font-size:12.5px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--teal-deep);
+  background:var(--cloud);border:2px solid var(--ink);border-radius:99px;padding:5px 13px;box-shadow:0 2px 0 var(--ink)}
+h1{font-family:'Fredoka';font-weight:700;font-size:clamp(38px,7vw,60px);letter-spacing:-.01em;margin-top:14px;line-height:1}
+h1 .pop{color:var(--berry);display:inline-block;transform:rotate(-3deg)}
+.tagline{color:var(--mut);font-weight:700;margin-top:8px;font-size:15px}
+
+/* ---------- tabs ---------- */
+nav{display:flex;justify-content:center;margin:22px 0 8px}
+.tabs{display:inline-flex;gap:6px;background:var(--cloud);border:2.5px solid var(--ink);border-radius:16px;padding:6px;box-shadow:var(--shadow)}
+.tab{appearance:none;border:none;cursor:pointer;font-family:'Fredoka';font-weight:600;font-size:15px;
+  padding:9px 16px;border-radius:11px;background:transparent;color:var(--mut);display:flex;align-items:center;gap:7px;transition:.16s}
+.tab:hover{color:var(--ink);background:var(--paper-2)}
+.tab[aria-selected="true"]{background:var(--teal);color:#fff;box-shadow:0 2px 0 var(--teal-shadow)}
+.tab .soon{font-size:10px;background:var(--sun);color:var(--ink);border-radius:99px;padding:1px 6px;font-weight:700}
+.tab:focus-visible{outline:3px solid var(--grape);outline-offset:2px}
+main{padding:14px 0 70px}
+section[hidden]{display:none}
+
+/* ---------- console (playground) ---------- */
+.console{
+  background:linear-gradient(180deg,var(--teal),var(--teal-deep));
+  border:3px solid var(--ink);border-radius:30px;padding:22px;margin-top:12px;
+  box-shadow:0 4px 0 var(--teal-shadow), var(--shadow);position:relative;
+}
+.console::before{content:"";position:absolute;top:13px;left:24px;width:11px;height:11px;border-radius:50%;
+  background:var(--berry);box-shadow:22px 0 0 var(--sun), 44px 0 0 var(--leaf)}
+.console-name{position:absolute;top:11px;right:22px;font-family:'Fredoka';font-weight:600;color:rgba(255,255,255,.85);font-size:13px;letter-spacing:.08em}
+.screen{
+  background:radial-gradient(circle at 50% 34%, var(--screen), var(--screen-2));
+  border:3px solid var(--ink);border-radius:20px;margin-top:16px;position:relative;overflow:hidden;
+  min-height:326px;display:flex;align-items:center;justify-content:center;
+  background-image:radial-gradient(circle at 50% 34%, var(--screen), var(--screen-2)),
+                   repeating-linear-gradient(0deg, transparent 0 27px, var(--screen-line) 27px 28px);
+}
+.stage{position:relative;width:100%;height:326px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:34px}
+.ground{position:absolute;bottom:26px;left:8%;right:8%;height:12px;border-radius:50%;
+  background:rgba(38,49,63,.10);filter:blur(1px)}
+#sprout{width:170px;height:190px;transform-origin:50% 92%;will-change:transform;position:relative;z-index:2}
+.spark{position:absolute;font-size:26px;pointer-events:none;z-index:3;will-change:transform,opacity}
+
+/* speech bubble */
+.bubble{position:absolute;top:14px;left:50%;transform:translateX(-50%);
+  background:var(--cloud);border:2.5px solid var(--ink);border-radius:16px;padding:10px 15px;
+  font-family:'Fredoka';font-weight:500;font-size:15.5px;max-width:80%;text-align:center;
+  box-shadow:0 3px 0 var(--ink);z-index:4;transition:transform .2s cubic-bezier(.34,1.56,.64,1)}
+.bubble::after{content:"";position:absolute;bottom:-11px;left:50%;transform:translateX(-50%);
+  border:8px solid transparent;border-top-color:var(--ink);width:0;height:0}
+.bubble.pop{animation:bpop .34s cubic-bezier(.34,1.56,.64,1)}
+@keyframes bpop{0%{transform:translateX(-50%) scale(.6);opacity:0}100%{transform:translateX(-50%) scale(1);opacity:1}}
+
+/* ---------- controls ---------- */
+.controls{margin-top:16px}
+.inputrow{display:flex;gap:10px}
+#say{flex:1;font-family:'Nunito';font-weight:700;font-size:18px;color:var(--ink);
+  background:var(--cloud);border:3px solid var(--ink);border-radius:16px;padding:14px 16px;box-shadow:inset 0 2px 0 rgba(38,49,63,.06)}
+#say::placeholder{color:#A9B4C0;font-weight:600}
+#say:focus{outline:none;border-color:var(--grape);box-shadow:0 0 0 4px rgba(131,103,240,.2)}
+#go{font-family:'Fredoka';font-weight:700;font-size:19px;color:#fff;background:var(--berry);
+  border:3px solid var(--ink);border-radius:16px;padding:0 26px;cursor:pointer;
+  box-shadow:0 4px 0 #C8386A;transition:transform .08s, box-shadow .08s}
+#go:hover{transform:translateY(-1px);box-shadow:0 5px 0 #C8386A}
+#go:active{transform:translateY(3px);box-shadow:0 1px 0 #C8386A}
+#go:focus-visible{outline:3px solid var(--grape);outline-offset:2px}
+
+/* detail meter */
+.meter{margin-top:16px;background:var(--cloud);border:2.5px solid var(--ink);border-radius:18px;padding:14px 16px;box-shadow:var(--shadow)}
+.meter-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:11px}
+.meter-title{font-family:'Fredoka';font-weight:600;font-size:14.5px}
+.meter-title b{color:var(--teal-deep)}
+.bar{height:14px;background:var(--paper-2);border:2px solid var(--ink);border-radius:99px;overflow:hidden;flex:1;max-width:190px}
+.bar-fill{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--sun),var(--berry));
+  transition:width .5s cubic-bezier(.34,1.4,.64,1)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.dchip{display:inline-flex;align-items:center;gap:6px;font-family:'Fredoka';font-weight:500;font-size:13px;
+  border:2px solid var(--ink);border-radius:99px;padding:5px 11px;background:var(--cloud);color:var(--mut);
+  opacity:.5;transition:.2s}
+.dchip .dot{font-size:14px;filter:grayscale(1)}
+.dchip.on{opacity:1;color:var(--ink);background:var(--sun);box-shadow:0 2px 0 var(--ink)}
+.dchip.on .dot{filter:none}
+.dchip.just{animation:jpop .4s cubic-bezier(.34,1.7,.5,1)}
+@keyframes jpop{0%{transform:scale(1)}45%{transform:scale(1.22) rotate(-4deg)}100%{transform:scale(1)}}
+
+/* idea drawer */
+.ideas{margin-top:14px;background:var(--cloud);border:2.5px dashed var(--ink);border-radius:18px;padding:6px 16px 16px}
+.ideas summary{cursor:pointer;list-style:none;font-family:'Fredoka';font-weight:600;font-size:14.5px;padding:10px 0;display:flex;align-items:center;gap:8px}
+.ideas summary::-webkit-details-marker{display:none}
+.ideas summary .chev{margin-left:auto;transition:transform .2s}
+.ideas[open] summary .chev{transform:rotate(90deg)}
+.ideagroup{margin-top:6px}
+.ideagroup h4{font-family:'Fredoka';font-weight:500;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--mut);margin:10px 0 6px}
+.wchips{display:flex;flex-wrap:wrap;gap:7px}
+.wchip{font-family:'Nunito';font-weight:800;font-size:14px;border:2px solid var(--ink);border-radius:11px;
+  padding:6px 12px;cursor:pointer;background:var(--paper);transition:.12s}
+.wchip:hover{transform:translateY(-2px);box-shadow:0 3px 0 var(--ink)}
+.wchip:active{transform:translateY(0);box-shadow:none}
+.wchip.act{background:var(--leaf);color:#fff}
+.wchip.big{background:var(--sky);color:#fff}
+.wchip.fast{background:var(--grape);color:#fff}
+.wchip.many{background:var(--sun)}
+.wchip.feel{background:var(--berry);color:#fff}
+.wchip.col{background:var(--cloud)}
+.wchip:focus-visible{outline:3px solid var(--grape);outline-offset:2px}
+
+/* ---------- grown-ups tab ---------- */
+.gcard{background:var(--cloud);border:2.5px solid var(--ink);border-radius:20px;padding:22px 24px;margin-top:16px;box-shadow:var(--shadow)}
+.gcard h2{font-family:'Fredoka';font-weight:700;font-size:26px;margin-bottom:6px}
+.gcard h3{font-family:'Fredoka';font-weight:600;font-size:18px;margin:18px 0 6px;color:var(--teal-deep)}
+.gcard p{margin:6px 0;font-size:15.5px}
+.gcard p.small{color:var(--mut);font-size:14px}
+.gcard ul{margin:8px 0 8px 20px;font-size:15px}
+.gcard li{margin:5px 0}
+.gcard .tagrow{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.gtag{font-family:'Fredoka';font-weight:500;font-size:12.5px;border:2px solid var(--ink);border-radius:99px;padding:4px 12px;background:var(--paper)}
+.gtag.hi{background:var(--sun)}
+.mapgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:12px}
+.mapcard{border:2px solid var(--ink);border-radius:14px;padding:14px;background:var(--paper)}
+.mapcard .d{font-family:'Fredoka';font-weight:700;color:var(--berry);font-size:15px}
+.mapcard p{font-size:13.5px;color:var(--ink);margin-top:4px}
+
+/* ---------- soon tab ---------- */
+.soonbox{text-align:center;padding:52px 20px;background:var(--cloud);border:2.5px dashed var(--ink);border-radius:22px;margin-top:16px}
+.soonbox .emoji{font-size:54px}
+.soonbox h2{font-family:'Fredoka';font-weight:700;font-size:28px;margin:10px 0 6px}
+.soonbox p{color:var(--mut);max-width:460px;margin:0 auto;font-size:15.5px}
+.loopdemo{display:inline-flex;gap:8px;margin-top:20px;flex-wrap:wrap;justify-content:center}
+.loopstep{font-family:'Fredoka';font-weight:600;font-size:14px;border:2px solid var(--ink);border-radius:12px;padding:8px 13px;background:var(--paper)}
+.loopstep.rep{background:var(--grape);color:#fff}
+
+footer{text-align:center;padding:8px 0 44px;color:var(--mut);font-size:13.5px;font-weight:700}
+footer a{color:var(--teal-deep)}
+
+.rise{opacity:0;transform:translateY(12px);animation:rise .55s cubic-bezier(.2,.7,.3,1) forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+button,input,.wchip,.tab,summary{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+@media (max-width:560px){
+  .wrap{padding:0 13px}
+  header{padding:20px 0 4px}
+  nav{margin:16px 0 6px}
+  .tabs{display:flex;flex-wrap:wrap;justify-content:center;max-width:100%}
+  .tab{font-size:13.5px;padding:8px 12px}
+  .console{padding:15px;border-radius:24px}
+  .console::before{left:18px}
+  .screen{min-height:270px}
+  .stage{height:270px;padding-bottom:26px}
+  #sprout{width:138px;height:154px}
+  .bubble{font-size:14px;padding:8px 12px}
+  .inputrow{flex-direction:column}
+  #go{padding:14px;box-shadow:0 4px 0 #C8386A}
+  .meter-top{flex-wrap:wrap;gap:6px}
+  .bar{max-width:none;width:100%}
+  .gcard{padding:18px 16px}
+  .gcard h2{font-size:22px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto}
+  .rise{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <div class="kick rise">🧪 EducationLab · an experiment · unlisted</div>
+  <h1 class="rise" style="animation-delay:.05s">Say It, <span class="pop">See It</span></h1>
+  <p class="tagline rise" style="animation-delay:.1s">Tell Sprout what to do. The more you describe, the more Sprout can show you.</p>
+</header>
+
+<nav class="rise" style="animation-delay:.15s">
+  <div class="tabs" role="tablist" aria-label="EducationLab activities">
+    <button class="tab" role="tab" aria-selected="true"  data-panel="play">🎮 Say It, See It</button>
+    <button class="tab" role="tab" aria-selected="false" data-panel="loops">🔁 Loops <span class="soon">soon</span></button>
+    <button class="tab" role="tab" aria-selected="false" data-panel="grown">👀 For Grown-ups</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- ============ PLAY ============ -->
+<section id="play" role="tabpanel">
+  <div class="console rise" style="animation-delay:.2s">
+    <span class="console-name">SPROUT&nbsp;·&nbsp;1000</span>
+    <div class="screen">
+      <div class="stage">
+        <div class="bubble" id="bubble" aria-live="polite">Hi! I'm Sprout. Tell me to do something! 🌱</div>
+        <div class="ground"></div>
+        <svg id="sprout" viewBox="0 0 170 190" role="img" aria-label="Sprout the creature">
+          <!-- feet -->
+          <ellipse class="foot" cx="62" cy="176" rx="17" ry="9"  fill="#37A64C"/>
+          <ellipse class="foot" cx="108" cy="176" rx="17" ry="9" fill="#37A64C"/>
+          <!-- body -->
+          <path id="body" d="M85 34 C126 34 148 64 148 104 C148 150 122 174 85 174 C48 174 22 150 22 104 C22 64 44 34 85 34 Z" fill="#5CC96B" stroke="#26313F" stroke-width="4"/>
+          <!-- belly -->
+          <ellipse cx="85" cy="118" rx="40" ry="44" fill="#EAF8F3" opacity=".55"/>
+          <!-- sprout stem + leaves -->
+          <path d="M85 34 C85 20 85 14 85 8" stroke="#37A64C" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path id="leafL" d="M85 18 C70 8 56 12 58 24 C68 30 80 28 85 18 Z" fill="#7BD98A" stroke="#26313F" stroke-width="3"/>
+          <path id="leafR" d="M85 22 C100 14 113 19 110 30 C100 35 89 32 85 22 Z" fill="#7BD98A" stroke="#26313F" stroke-width="3"/>
+          <!-- cheeks -->
+          <circle class="cheek" cx="52" cy="120" r="10" fill="#FF9CBB" opacity=".8"/>
+          <circle class="cheek" cx="118" cy="120" r="10" fill="#FF9CBB" opacity=".8"/>
+          <!-- eyes -->
+          <g id="eyes">
+            <circle cx="66" cy="100" r="13" fill="#fff" stroke="#26313F" stroke-width="3"/>
+            <circle cx="104" cy="100" r="13" fill="#fff" stroke="#26313F" stroke-width="3"/>
+            <circle id="pupL" cx="66" cy="102" r="6" fill="#26313F"/>
+            <circle id="pupR" cx="104" cy="102" r="6" fill="#26313F"/>
+          </g>
+          <!-- mouth -->
+          <path id="mouth" d="M72 130 Q85 142 98 130" stroke="#26313F" stroke-width="4" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="controls rise" style="animation-delay:.26s">
+    <div class="inputrow">
+      <input id="say" type="text" autocomplete="off" spellcheck="false"
+             placeholder="try: jump   ·   or: spin super fast three times" aria-label="Tell Sprout what to do">
+      <button id="go">Go! ✨</button>
+    </div>
+
+    <div class="meter">
+      <div class="meter-top">
+        <span class="meter-title">Your describing power: <b id="score">0 of 6</b></span>
+        <span class="bar"><span class="bar-fill" id="barFill"></span></span>
+      </div>
+      <div class="chips" id="dchips">
+        <span class="dchip" data-k="action"><span class="dot">🎬</span> doing word</span>
+        <span class="dchip" data-k="size"><span class="dot">📏</span> how big</span>
+        <span class="dchip" data-k="speed"><span class="dot">⚡</span> how fast</span>
+        <span class="dchip" data-k="count"><span class="dot">🔢</span> how many</span>
+        <span class="dchip" data-k="feeling"><span class="dot">😊</span> feeling</span>
+        <span class="dchip" data-k="color"><span class="dot">🎨</span> color</span>
+      </div>
+    </div>
+
+    <details class="ideas">
+      <summary>🧩 Need some words? <span class="chev">›</span></summary>
+      <div class="ideagroup" id="ideabank"></div>
+    </details>
+  </div>
+</section>
+
+<!-- ============ LOOPS (soon) ============ -->
+<section id="loops" role="tabpanel" hidden>
+  <div class="soonbox rise">
+    <div class="emoji">🔁</div>
+    <h2>Loops are coming next</h2>
+    <p>Right now you tell Sprout one thing at a time. But what if you want Sprout to hop <b>ten</b> times? You shouldn't have to say "hop" ten times! Next, kids learn to teach Sprout a <b>loop</b> — do these steps, then <i>repeat</i>.</p>
+    <div class="loopdemo">
+      <span class="loopstep">hop</span>
+      <span class="loopstep">spin</span>
+      <span class="loopstep rep">↻ repeat 5×</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOR GROWN-UPS ============ -->
+<section id="grown" role="tabpanel" hidden>
+  <div class="gcard rise">
+    <h2>Why this exists 👀</h2>
+    <p>This is a small playground with a big claim: <b>the first prompting skill isn't typing — it's describing.</b> A kid learns that vague words get a vague result, and careful, specific words get exactly what they pictured. No lecture, no tutorial. They just notice that better words make Sprout do cooler things, and they chase that.</p>
+
+    <div class="tagrow">
+      <span class="gtag hi">capability, not engagement</span>
+      <span class="gtag">no tutorial — implicit learning</span>
+      <span class="gtag">quality made visible</span>
+      <span class="gtag">scaffold that fades</span>
+    </div>
+
+    <h3>The one design idea</h3>
+    <p>Prompting quality is invisible, so beginners can't tell a good prompt from a lazy one. The <b>Describing Power meter</b> makes it visible: each kind of detail a child adds — a doing word, a size, a speed, a count, a feeling, a color — lights up and Sprout's response gets richer in the exact dimension they described. The feedback loop <i>is</i> the lesson.</p>
+
+    <h3>Maps to the 4D AI-fluency frame</h3>
+    <div class="mapgrid">
+      <div class="mapcard"><span class="d">Description</span><p>The whole point: specifying intent precisely enough to get what you want. This is that muscle, at age six.</p></div>
+      <div class="mapcard"><span class="d">Discernment</span><p>The kid judges Sprout's result against what they pictured — and revises. Noticing the gap is the skill.</p></div>
+      <div class="mapcard"><span class="d">Delegation</span><p>You hand a task to a capable helper. Loops (next tab) extend this to "do it many times for me."</p></div>
+      <div class="mapcard"><span class="d">Diligence</span><p>Try, look closely, adjust, try again. The meter rewards care over speed.</p></div>
+    </div>
+
+    <h3>Choices I'd defend</h3>
+    <ul>
+      <li><b>Deterministic engine, no LLM.</b> Instant, offline, free, and safe for kids — and it let me author the exact word→behavior mapping the lesson depends on. An API call can't guarantee the pedagogy.</li>
+      <li><b>The idea drawer is optional scaffolding.</b> Word chips lower the floor for pre-readers, then get out of the way once a child types their own.</li>
+      <li><b>Reward describing, never punish.</b> A one-word prompt still works — Sprout just asks a friendly question about the one detail that would help most. Productive nudge, not an error state.</li>
+      <li><b>Accessibility from the start:</b> full keyboard use, labeled controls, an <code>aria-live</code> voice for Sprout, and a real <code>prefers-reduced-motion</code> path.</li>
+    </ul>
+
+    <h3>How you'd measure it</h3>
+    <p class="small">Describing Power per prompt over a session (does it climb?), unique detail-dimensions used, revision rate after a low-detail try, and a withdrawal test — hide the meter and the idea drawer, and see if richer prompts persist. Capability that survives the scaffold coming off is the only score that counts.</p>
+
+    <p class="small" style="margin-top:16px">Part of a series of interaction experiments on teaching kids to work <i>with</i> AI — companion to the essay <a href="/#journal">The First Friend</a>.</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="wrap">Built by Divine · <a href="/">aisdivine</a> · unlisted experiment</footer>
+
+<script>
+/* ---------------- tabs ---------------- */
+const tabs=document.querySelectorAll('.tab');
+tabs.forEach(t=>t.addEventListener('click',()=>{
+  tabs.forEach(x=>x.setAttribute('aria-selected', x===t));
+  document.querySelectorAll('main > section').forEach(s=>s.hidden = s.id!==t.dataset.panel);
+}));
+
+/* ---------------- vocabulary ---------------- */
+const ACTIONS={
+  jump:'jump',hop:'hop',bounce:'bounce',leap:'jump',
+  spin:'spin',twirl:'spin',turn:'spin',
+  flip:'flip',
+  dance:'dance',boogie:'dance',
+  wiggle:'wiggle',shimmy:'wiggle',
+  shake:'shake',
+  run:'run',dash:'run',
+  roll:'roll',
+  grow:'grow',
+  shrink:'shrink',
+  sleep:'sleep',nap:'sleep',
+  eat:'eat',munch:'eat',
+  wave:'wave',
+  cry:'cry',
+  laugh:'laugh',giggle:'laugh',
+  fly:'fly',float:'fly'
+};
+const SIZES={tiny:.5,teeny:.5,little:.72,small:.72,big:1.4,large:1.4,huge:1.8,giant:2.1,enormous:2.1,massive:2.0};
+const HEIGHTS={high:1.7,low:.55,super:1.5,really:1.35,very:1.3,mega:1.8};   /* magnitude boosters */
+const SPEEDS={slow:1.9,slowly:1.9,gentle:1.6,fast:.55,quick:.55,quickly:.55,speedy:.5,zoom:.42,zippy:.5};
+const NUMWORDS={once:1,twice:2,two:2,three:3,four:4,five:5,six:6,ten:6};
+const FEELINGS={
+  happy:{face:'happy'},excited:{face:'excited'},silly:{face:'silly'},goofy:{face:'silly'},
+  sad:{face:'sad'},scared:{face:'scared'},sleepy:{face:'sleepy'},tired:{face:'sleepy'},
+  grumpy:{face:'grumpy'},angry:{face:'grumpy'},proud:{face:'proud'},brave:{face:'proud'}
+};
+const COLORS={red:'#FF6B6B',orange:'#FF9F45',yellow:'#FFD23F',green:'#5CC96B',blue:'#59B7F0',
+  purple:'#8367F0',pink:'#FF7EB6',teal:'#16B3A2'};
+
+/* ---------------- parse ---------------- */
+function parse(text){
+  const t=' '+text.toLowerCase().replace(/[^a-z0-9\s]/g,' ').replace(/\s+/g,' ')+' ';
+  const has=w=>t.includes(' '+w+' ');
+  let action=null;
+  for(const w in ACTIONS){ if(has(w)){ action=ACTIONS[w]; break; } }
+
+  let size=1, sizeSet=false;
+  for(const w in SIZES){ if(has(w)){ size=SIZES[w]; sizeSet=true; } }
+  let mag=1, magSet=false;
+  for(const w in HEIGHTS){ if(has(w)){ mag*=HEIGHTS[w]; magSet=true; } }
+
+  let speed=1, speedSet=false;
+  for(const w in SPEEDS){ if(has(w)){ speed=SPEEDS[w]; speedSet=true; } }
+
+  let count=1, countSet=false;
+  const m=t.match(/\s(\d+)\s*(times|x)?\s/); if(m){ count=Math.min(6,Math.max(1,+m[1])); countSet=true; }
+  for(const w in NUMWORDS){ if(has(w) || has(w+' times')){ count=NUMWORDS[w]; countSet=true; } }
+  if(has('a lot')||has('lots')||has('many')||has('again and again')){ count=6; countSet=true; }
+
+  let feeling=null;
+  for(const w in FEELINGS){ if(has(w)){ feeling=FEELINGS[w].face; } }
+
+  let color=null;
+  for(const w in COLORS){ if(has(w)){ color=COLORS[w]; } }
+
+  const simile=(t.match(/\slike a (\w+)/)||[])[1]||null;
+
+  return {action, size, sizeSet:(sizeSet||magSet), mag, speed, speedSet,
+          count, countSet, feeling, color, simile,
+          dims:{action:!!action, size:(sizeSet||magSet), speed:speedSet, count:countSet, feeling:!!feeling, color:!!color}};
+}
+
+/* ---------------- faces ---------------- */
+const mouth=document.getElementById('mouth'), pupL=document.getElementById('pupL'), pupR=document.getElementById('pupR');
+const eyes=document.getElementById('eyes');
+function setFace(f){
+  const M={
+    happy:'M72 130 Q85 142 98 130', excited:'M70 128 Q85 150 100 128 Q85 140 70 128',
+    silly:'M72 130 Q85 141 98 131 M88 134 q6 8 10 0', sad:'M72 138 Q85 128 98 138',
+    scared:'M80 132 a6 7 0 1 0 12 0 a6 7 0 1 0 -12 0', sleepy:'M74 134 Q85 138 96 134',
+    grumpy:'M72 137 Q85 130 98 137', proud:'M72 130 Q85 143 98 130'
+  };
+  mouth.setAttribute('d', M[f]||M.happy);
+  const wink=(f==='silly');
+  pupL.style.opacity=1; pupR.style.opacity=1;
+  if(f==='sleepy'){ pupL.style.opacity=.15; pupR.style.opacity=.15; }
+  pupR.setAttribute('r', wink?2:6);
+  eyes.querySelectorAll('circle')[0].setAttribute('r', f==='scared'?15:13);
+  eyes.querySelectorAll('circle')[1].setAttribute('r', f==='scared'?15:13);
+}
+
+/* ---------------- animation ---------------- */
+const sprout=document.getElementById('sprout'), body=document.getElementById('body'), stage=document.querySelector('.stage');
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+let busy=false;
+
+function unit(action, mag){
+  const h=v=>-v*mag; /* upward px */
+  switch(action){
+    case 'jump': return [{transform:'translateY(0) scaleY(1)'},{transform:'translateY(4px) scaleY(.86)',offset:.12},
+      {transform:`translateY(${h(96)}px) scaleY(1.12)`,offset:.42},{transform:'translateY(0) scaleY(.9)',offset:.72},{transform:'translateY(0) scaleY(1)'}];
+    case 'hop': return [{transform:'translateY(0)'},{transform:`translateY(${h(46)}px)`,offset:.4},{transform:'translateY(0)'}];
+    case 'bounce': return [{transform:'translateY(0) scaleY(1)'},{transform:`translateY(${h(70)}px) scaleY(1.08)`,offset:.35},
+      {transform:'translateY(0) scaleY(.85)',offset:.7},{transform:'translateY(0) scaleY(1)'}];
+    case 'spin': return [{transform:'rotate(0) translateY(0)'},{transform:`rotate(180deg) translateY(${h(30)}px)`,offset:.5},{transform:'rotate(360deg) translateY(0)'}];
+    case 'flip': return [{transform:'translateY(0) rotate(0)'},{transform:`translateY(${h(80)}px) rotate(180deg)`,offset:.5},{transform:'translateY(0) rotate(360deg)'}];
+    case 'dance': return [{transform:'rotate(0) translateX(0)'},{transform:`rotate(-13deg) translateX(${-14*mag}px)`,offset:.25},
+      {transform:'rotate(0) translateY(-8px)',offset:.5},{transform:`rotate(13deg) translateX(${14*mag}px)`,offset:.75},{transform:'rotate(0) translateX(0)'}];
+    case 'wiggle': return [{transform:'rotate(0)'},{transform:'rotate(-11deg)',offset:.25},{transform:'rotate(11deg)',offset:.75},{transform:'rotate(0)'}];
+    case 'shake': return [{transform:'translateX(0)'},{transform:`translateX(${-9*mag}px)`,offset:.2},{transform:`translateX(${9*mag}px)`,offset:.4},
+      {transform:`translateX(${-6*mag}px)`,offset:.6},{transform:`translateX(${6*mag}px)`,offset:.8},{transform:'translateX(0)'}];
+    case 'run': return [{transform:'translateX(0) rotate(0)'},{transform:`translateX(${-70*mag}px) rotate(-8deg)`,offset:.28},
+      {transform:`translateX(${70*mag}px) rotate(8deg)`,offset:.72},{transform:'translateX(0) rotate(0)'}];
+    case 'roll': return [{transform:'translateX(0) rotate(0)'},{transform:`translateX(${-60*mag}px) rotate(-360deg)`,offset:.5},{transform:'translateX(0) rotate(0)'}];
+    case 'grow': return [{transform:'scale(1)'},{transform:`scale(${1.6*mag})`,offset:.5},{transform:`scale(${1.6*mag})`,offset:.72},{transform:'scale(1)'}];
+    case 'shrink': return [{transform:'scale(1)'},{transform:'scale(.45)',offset:.5},{transform:'scale(.45)',offset:.72},{transform:'scale(1)'}];
+    case 'sleep': return [{transform:'rotate(0) scaleY(1)'},{transform:'rotate(8deg) scaleY(.97)',offset:.5},{transform:'rotate(8deg) scaleY(1.02)',offset:.75},{transform:'rotate(0) scaleY(1)'}];
+    case 'eat': return [{transform:'translateY(0) scaleY(1)'},{transform:'translateY(6px) scaleY(.9)',offset:.3},{transform:'translateY(0) scaleY(1.05)',offset:.6},{transform:'translateY(0) scaleY(1)'}];
+    case 'wave': return [{transform:'rotate(0)'},{transform:'rotate(-14deg)',offset:.3},{transform:'rotate(-6deg)',offset:.6},{transform:'rotate(0)'}];
+    case 'cry': return [{transform:'translateX(0)'},{transform:'translateX(-6px)',offset:.25},{transform:'translateX(6px)',offset:.5},{transform:'translateX(-4px)',offset:.75},{transform:'translateX(0)'}];
+    case 'laugh': return [{transform:'translateY(0) rotate(0)'},{transform:'translateY(-14px) rotate(-5deg)',offset:.3},{transform:'translateY(0) rotate(5deg)',offset:.6},{transform:'translateY(0) rotate(0)'}];
+    case 'fly': return [{transform:'translateY(0)'},{transform:`translateY(${h(70)}px) translateX(-12px)`,offset:.3},
+      {transform:`translateY(${h(84)}px) translateX(12px)`,offset:.6},{transform:'translateY(0)'}];
+    default: return [{transform:'translateY(0)'},{transform:'translateY(-30px)',offset:.5},{transform:'translateY(0)'}];
+  }
+}
+const EMO={eat:'🍎',sleep:'💤',cry:'😢',laugh:'😆',fly:'✨',wave:'👋',dance:'🎵',spin:'💫',grow:'⬆️',shrink:'⬇️'};
+
+function spark(txt,x,y,dx,dy){
+  const s=document.createElement('div');s.className='spark';s.textContent=txt;
+  s.style.left=x+'px';s.style.top=y+'px';stage.appendChild(s);
+  s.animate([{transform:'translate(0,0) scale(.4)',opacity:0},{transform:'translate(0,0) scale(1.1)',opacity:1,offset:.2},
+    {transform:`translate(${dx}px,${dy}px) scale(1)`,opacity:0}],{duration:1100,easing:'cubic-bezier(.2,.7,.3,1)'}).onfinish=()=>s.remove();
+}
+function confetti(){
+  const set=['🌟','✨','🎉','💫','⭐','🌈'];const cx=stage.clientWidth/2, cy=120;
+  for(let i=0;i<16;i++){const a=(Math.PI*2*i)/16, r=90+Math.random()*70;
+    spark(set[i%set.length], cx-13, cy, Math.cos(a)*r, Math.sin(a)*r - 40);}
+}
+
+function perform(p){
+  const dur=Math.max(280, 720*p.speed);
+  const mag=p.size*p.mag;
+  if(p.color) body.setAttribute('fill', p.color);
+  if(p.feeling) setFace(p.feeling);
+  const kf=unit(p.action, p.action==='grow'||p.action==='shrink'?1:mag);
+  if(reduce){ /* skip motion, still show emoji + face */ if(EMO[p.action]) spark(EMO[p.action], stage.clientWidth/2+30,120,20,-30); return dur; }
+  const anim=sprout.animate(kf,{duration:dur, iterations:p.count, easing:'cubic-bezier(.34,1.3,.5,1)'});
+  if(EMO[p.action]){ for(let i=0;i<p.count && i<4;i++) setTimeout(()=>spark(EMO[p.action], stage.clientWidth/2+34,110, 20+Math.random()*20, -30-Math.random()*30), i*dur); }
+  return dur*p.count;
+}
+
+/* ---------------- feedback ---------------- */
+const bubble=document.getElementById('bubble');
+function say(txt){ bubble.textContent=txt; bubble.classList.remove('pop'); void bubble.offsetWidth; bubble.classList.add('pop'); }
+
+const NUDak={
+  size:a=>`I ${past(a)}! 📏 But how BIG should I be? Try “${a} tiny” or “${a} giant”.`,
+  speed:a=>`Nice! ⚡ How FAST? Try “${a} super fast” or “${a} slowly”.`,
+  count:a=>`Fun! 🔢 How MANY times? Try “${a} three times”.`,
+  feeling:a=>`Okay! 😊 How should I FEEL? Try “happy ${a}” or “silly ${a}”.`,
+  color:a=>`Ooh! 🎨 What COLOR should I turn? Try “turn purple and ${a}”.`
+};
+function past(a){return ({run:'ran',fly:'flew',eat:'ate',shrink:'shrank',swim:'swam',spin:'spun',
+  shake:'shook',sleep:'slept',grow:'grew',hop:'hopped',roll:'rolled'})[a]||a+(a.endsWith('e')?'d':'ed');}
+const CELEB=['WOW! You told me EXACTLY what to do! 🌟','Amazing describing! I knew just what you meant! 🎉','So many details — that was easy to picture! 💫'];
+
+function feedback(p){
+  const missing=['size','speed','count','feeling','color'].filter(k=>!p.dims[k]);
+  const n=Object.values(p.dims).filter(Boolean).length;
+  if(n>=4){ say(CELEB[Math.floor(p.count+ (p.color?1:0))%CELEB.length]); confetti(); return; }
+  if(missing.length){ const k=missing[0]; say(NUDak[k](p.action)); }
+  else say(`I ${past(p.action)}! 🌱`);
+}
+
+/* ---------------- meter ---------------- */
+const dchips=[...document.querySelectorAll('.dchip')], barFill=document.getElementById('barFill'), scoreEl=document.getElementById('score');
+function meter(dims){
+  let n=0;
+  dchips.forEach(c=>{
+    const on=dims[c.dataset.k]; const was=c.classList.contains('on');
+    c.classList.toggle('on', on);
+    if(on){ n++; if(!was){ c.classList.add('just'); setTimeout(()=>c.classList.remove('just'),400); } }
+  });
+  barFill.style.width=(n/6*100)+'%';
+  scoreEl.textContent=n+' of 6';
+}
+
+/* ---------------- run ---------------- */
+const say_in=document.getElementById('say');
+function run(){
+  if(busy) return;
+  const text=say_in.value.trim();
+  if(!text){ say('Type something for me to do! 🌱'); return; }
+  const p=parse(text);
+  meter(p.dims);
+  if(!p.action){ say('Hmm, I don’t know that move yet! Try a doing-word — like jump, spin, or dance. 🐣'); return; }
+  busy=true;
+  if(idleAnim) idleAnim.pause();
+  const total=perform(p);
+  feedback(p);
+  setTimeout(()=>{ busy=false; if(idleAnim) idleAnim.play(); }, Math.min(4200,total)+120);
+}
+document.getElementById('go').onclick=run;
+say_in.addEventListener('keydown',e=>{ if(e.key==='Enter') run(); });
+
+/* ---------------- idea bank ---------------- */
+const BANK=[
+  ['Doing words','act',['jump','spin','dance','hop','roll','wiggle','run','fly','sleep','eat']],
+  ['How big','big',['tiny','little','big','giant','super high']],
+  ['How fast','fast',['slowly','fast','super fast']],
+  ['How many','many',['twice','three times','a lot']],
+  ['Feelings','feel',['happy','silly','sleepy','proud','scared']],
+  ['Colors','col',['red','blue','purple','rainbow','green']]
+];
+const ib=document.getElementById('ideabank');
+BANK.forEach(([label,cls,words])=>{
+  const g=document.createElement('div');g.className='ideagroup';
+  const h=document.createElement('h4');h.textContent=label;g.appendChild(h);
+  const row=document.createElement('div');row.className='wchips';
+  words.forEach(w=>{
+    const b=document.createElement('button');b.className='wchip '+cls;b.textContent=w;
+    b.onclick=()=>{ say_in.value=(say_in.value.trim()+' '+w).trim(); say_in.focus(); };
+    row.appendChild(b);
+  });
+  g.appendChild(row);ib.appendChild(g);
+});
+
+/* ---------------- idle life ---------------- */
+setFace('happy');
+setInterval(()=>{ if(busy||reduce) return;
+  eyes.style.transition='transform .12s'; eyes.style.transform='scaleY(.1)';
+  setTimeout(()=>eyes.style.transform='scaleY(1)',120);
+}, 3800);
+let idleAnim=null;
+if(!reduce){ idleAnim=sprout.animate([{transform:'translateY(0)'},{transform:'translateY(-5px)'},{transform:'translateY(0)'}],
+  {duration:2600,iterations:Infinity,easing:'ease-in-out'}); }
+</script>
+</body>
+</html>

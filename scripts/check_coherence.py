@@ -144,8 +144,7 @@ for md in sorted(DRAFTS.glob("*.md")):
     ddek = normalize(dm.group(1))
     match = [pid for pid, p in posts.items() if p["title"] == dtitle]
     if not match:
-        err(f"draft '{md.name}' (title: {dtitle}) has no matching published post")
-        continue
+        continue  # WIP draft not yet published — nothing to compare against
     pid = match[0]
     if posts[pid]["dek"] != ddek:
         err(

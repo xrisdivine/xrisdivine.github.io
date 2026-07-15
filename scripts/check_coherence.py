@@ -17,11 +17,23 @@ Checks:
      "**Dek:**" line, the matching published post's dek must match the
      draft's dek exactly (after normalizing quotes/entities/whitespace).
      This is the check that would have caught the stale-sentence bug.
+  8. CITATIONS SYNC: the private citations page (/toolbox/citations/, source
+     in ~/eng/research/toolbox/citations-src.html) must be updated whenever a
+     post's external links change.
+       a) Fingerprint: sha256 over each post's external links, compared to the
+          committed .citations-fingerprint. After updating the citations page
+          and re-encrypting it, restamp with:
+              python3 scripts/check_coherence.py --stamp-citations
+       b) Coverage (runs only where the private repo exists, i.e. locally):
+          every non-draft post that cites external links must have a section
+          in citations-src.html (identified by a "#journal-<post-id>" link).
 
 Run:  python3 scripts/check_coherence.py
 Exit: 0 = coherent, 1 = problems found.
 """
+import hashlib
 import html
+import json
 import re
 import sys
 from datetime import datetime
@@ -152,6 +164,43 @@ for md in sorted(DRAFTS.glob("*.md")):
             f"    draft ({md.name}): {ddek}\n"
             f"    published:         {posts[pid]['dek']}"
         )
+
+# --- Check 8: citations page stays in sync with posts --------------------
+FINGERPRINT_FILE = ROOT / ".citations-fingerprint"
+CITATIONS_SRC = Path.home() / "eng/research/toolbox/citations-src.html"
+
+post_links = {}
+for chunk in chunks[1:]:
+    idm = re.search(r'id="([^"]+)"', chunk)
+    if idm:
+        post_links[idm.group(1)] = sorted(set(re.findall(r'href="(https?://[^"]+)"', chunk)))
+fingerprint = hashlib.sha256(
+    json.dumps(post_links, sort_keys=True).encode()
+).hexdigest()
+
+if "--stamp-citations" in sys.argv:
+    FINGERPRINT_FILE.write_text(fingerprint + "\n")
+    print(f"citations fingerprint stamped: {fingerprint[:12]}…")
+    sys.exit(0)
+
+if not FINGERPRINT_FILE.exists():
+    err("no .citations-fingerprint — run: python3 scripts/check_coherence.py --stamp-citations")
+elif FINGERPRINT_FILE.read_text().strip() != fingerprint:
+    err(
+        "post links changed since the citations page was last updated.\n"
+        "    Update ~/eng/research/toolbox/citations-src.html, re-encrypt it into\n"
+        "    toolbox/citations/index.html (scripts/encrypt_page.mjs), then restamp:\n"
+        "    python3 scripts/check_coherence.py --stamp-citations"
+    )
+
+if CITATIONS_SRC.exists():
+    cit_src = CITATIONS_SRC.read_text(encoding="utf-8")
+    for pid, links in post_links.items():
+        if links and not posts.get(pid, {}).get("is_draft") and f"#journal-{pid}" not in cit_src:
+            err(
+                f"post '{pid}' cites {len(links)} external link(s) but has no section "
+                f"in the citations page (expected a '#journal-{pid}' link in citations-src.html)"
+            )
 
 # --- Report --------------------------------------------------------------
 if errors:

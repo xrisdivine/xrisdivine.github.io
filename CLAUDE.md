@@ -19,6 +19,16 @@ sense in context. To prevent that class of bug:
   HTML entities/quotes). The coherence check enforces this.
 - **Cards are newest-first** (top = most recent). See `feedback_journal_chronological`.
 - **Verify external links before pushing** (see `feedback_verify_links`).
+- **Update the citations page with every post change.** Whenever a post is
+  added or its body/links change, update the reference desk at
+  `/toolbox/citations/` to match: edit
+  `~/eng/research/toolbox/citations-src.html` (one `#p-…` section per post,
+  h2 links back via `#journal-<post-id>`), re-encrypt it into
+  `toolbox/citations/index.html` with `scripts/encrypt_page.mjs` (ask Divine
+  for the password), then restamp:
+  `python3 scripts/check_coherence.py --stamp-citations`. The coherence check
+  fails if post links changed without a restamp, or (locally) if a post with
+  citations has no section.
 - A post may exist as an expanded `<div>` with **no card** only if its date line
   is marked `Draft` (intentionally hidden). Otherwise every card ↔ post pair.
 

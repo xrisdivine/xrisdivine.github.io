@@ -61,6 +61,26 @@
   .back a:hover { color: #b53a1d; text-decoration: underline; }
   .role { margin-bottom: 32px; }
   .role h2 { font-style: normal; }
+  /* sub-roles under one company heading — clearly subordinate to the h2 */
+  .role h3 {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #555;
+    margin: 20px 0 3px;
+  }
+  /* role progression timeline under a company heading */
+  .rolepath { list-style: none; padding: 0; margin: 12px 0 10px; }
+  .rolepath li { font-size: 15px; font-weight: 600; margin-bottom: 3px; }
+  .rolepath .when {
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: 11px;
+    font-weight: 400;
+    color: #999;
+    display: inline-block;
+    width: 78px;
+  }
   .page[hidden] { display: none; }
 
   /* periodic table grid */
@@ -403,91 +423,126 @@
     <hr style="border:none;border-top:1px solid #ddd;margin:36px 0;">
 
     <article class="role">
-      <h2>Apple Vision Products Group &mdash; Senior Engineer</h2>
+      <h2>Apple</h2>
+
+      <ul class="rolepath">
+        <li><span class="when">Jan 2026 &ndash;&nbsp;</span> Staff Engineer, Vision Products Group</li>
+        <li><span class="when">Sep 2022</span> Senior Engineer, Research Engineering</li>
+        <li><span class="when">Jan 2022</span> Senior Research Scientist</li>
+      </ul>
       <p>
-        Leading product strategy, research, development, and evaluation for AI-mediated spatial and audio experiences. Defined a new discipline and emerging role in the org &mdash; Research Engineering &mdash; and currently driving model evaluation across experiences.
+        The job has been the same across all three roles: go to the future first &mdash; experience it, come back and build it, harden the code, and hand engineers something they can build kick-ass product on. Then guide them and hold the bar for &ldquo;what the ideal experience is.&rdquo; I did that for the Vision Pro launch and the application experiences that followed; did it for Research Engineering when we needed to figure out how to measure nondeterministic AI; did it for Siri&rsquo;s AI-generated expressive voices; and I&rsquo;m continuing it for unannounced Siri and Vision Product experiences.
       </p>
     </article>
 
     <article class="role">
-      <h2>Apple &mdash; Senior Research Scientist</h2>
-      <p>
-        Led Vision Pro launch research end-to-end and transitioned a research project into a shipped product feature. Submitted three patents and presented findings to executive leadership. Created an R&amp;D prototype, then was asked by leadership to move to engineering to lead the development and direction.
-      </p>
-    </article>
+      <h2>Meta Reality Labs</h2>
 
-    <article class="role">
-      <h2>Microsoft &mdash; Research Intern</h2>
-      <p>
-        Worked on Intelligent AI &mdash; before LLMs and transformers, we were more collaborative with AI, and wanted to learn how to increase this collaboration.
-      </p>
-    </article>
-
-    <article class="role">
-      <h2>Meta Reality Labs &mdash; Ethicist</h2>
+      <ul class="rolepath">
+        <li><span class="when">2021</span> Ethicist</li>
+      </ul>
       <p>
         Consulted on privacy, safety, and ethics for an undisclosed project involving always-on AI-powered wearables.
       </p>
-    </article>
 
-    <article class="role">
-      <h2>Meta Reality Labs &mdash; Research Scientist Intern</h2>
+      <ul class="rolepath">
+        <li><span class="when">2021</span> Research Scientist Intern</li>
+      </ul>
       <p>
         Worked on an undisclosed project, leveraging expertise in AR/VR and ethical design to shape the future roadmap. Pittsburgh was a blast with Elaine Fath and Yaser Sheikh.
       </p>
     </article>
 
     <article class="role">
-      <h2>br8krm &mdash; Co-Founder</h2>
+      <h2>br8krm</h2>
+
+      <ul class="rolepath">
+        <li><span class="when">2020</span> Co-Founder</li>
+      </ul>
       <p>
         Built an MVP to help co-workers connect during COVID. Awarded an Epic Games MegaGrant and invited to interview at Y Combinator.
       </p>
     </article>
 
     <article class="role">
-      <h2>Microsoft Research AI &mdash; Research Intern</h2>
+      <h2>Microsoft</h2>
+
+      <ul class="rolepath">
+        <li><span class="when">2020</span> Research Intern</li>
+      </ul>
+      <p>
+        Worked on Intelligent AI &mdash; before LLMs and transformers, we were more collaborative with AI, and wanted to learn how to increase this collaboration.
+      </p>
+
+      <ul class="rolepath">
+        <li><span class="when">2019</span> Research Intern, Microsoft Research AI</li>
+      </ul>
       <p>
         Researched initiatives to increase empathy in the world &mdash; Sid Suri pushed me to be the best version of myself.
       </p>
     </article>
 
     <article class="role">
-      <h2>Columbia University &mdash; VR Researcher/Developer</h2>
+      <h2>Columbia University</h2>
+
+      <ul class="rolepath">
+        <li><span class="when">2018</span> VR Researcher/Developer</li>
+      </ul>
       <p>
         Created VR experiences for social media education for youth, working with Dr. Desmond Patton and Dr. Courtney Cogburn in Columbia&rsquo;s SAFElab.
       </p>
     </article>
 
     <article class="role">
-      <h2>Clemson University &mdash; PhD, Human-Centered Computing</h2>
+      <h2>Clemson University</h2>
+
+      <ul class="rolepath">
+        <li><span class="when">2017&ndash;21</span> PhD, Human-Centered Computing</li>
+      </ul>
       <p>
         Top 1% of CS PhD students. 20+ peer-reviewed publications. Over $320K in fellowship funding, including the Microsoft Ada Lovelace Fellowship. Graduated with internships at Meta Reality Labs, Microsoft, and Microsoft Research. Advised by Andrew Robb and Guo Freeman.
       </p>
     </article>
 
     <article class="role">
-      <h2>MIT Media Lab / Harvard Berkman Klein Center &mdash; Research Assistant</h2>
+      <h2>MIT Media Lab / Harvard Berkman Klein Center</h2>
+
+      <ul class="rolepath">
+        <li><span class="when">2018</span> Research Assistant</li>
+      </ul>
       <p>
         Research in augmented reality and social computing. Worked with Amber Case &mdash; she showed me the world beyond traditional research and practical application.
       </p>
     </article>
 
     <article class="role">
-      <h2>UCF Synthetic Reality Lab &mdash; AR Research Assistant</h2>
+      <h2>UCF Synthetic Reality Lab</h2>
+
+      <ul class="rolepath">
+        <li><span class="when">2016&ndash;17</span> AR Research Assistant</li>
+      </ul>
       <p>
         Designed experiments for social presence in AR, built environments in Unity for Oculus Rift and Microsoft HoloLens. Published at ICAT-EGVE 2016 and CASA 2017. Mentored by Kangsoo Kim and Greg Welch &mdash; legends in the VR world, also fun guys.
       </p>
     </article>
 
     <article class="role">
-      <h2>Vanderbilt LIVE Lab &mdash; VR Research Assistant</h2>
+      <h2>Vanderbilt LIVE Lab</h2>
+
+      <ul class="rolepath">
+        <li><span class="when">2015&ndash;16</span> VR Research Assistant</li>
+      </ul>
       <p>
         Created VR worlds with Oculus DK2, designed experiments on vection, and presented a poster at IEEE VR 2016. This is where it all started &mdash; the perceptual seam between humans and computers. Everything since has been a different angle on the same question. Forever grateful to Bobby Bodenheimer for taking a chance on a young, scrappy kid and planting a seed whose shade he may never sit under.
       </p>
     </article>
 
     <article class="role">
-      <h2>Sewanee &mdash; BS, Computer Science &amp; Spanish</h2>
+      <h2>Sewanee: The University of the South</h2>
+
+      <ul class="rolepath">
+        <li><span class="when">2013&ndash;17</span> BS, Computer Science &amp; Spanish</li>
+      </ul>
       <p>
         NCAA Football Captain. Order of the Gownsmen. Student Government Director of Communications. Built a 2D web game for the annual fund, did IT support, tutored Java. Just had fun, had no idea I&rsquo;d end up in research.
       </p>

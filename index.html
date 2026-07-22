@@ -572,6 +572,14 @@
     <div class="pt-grid">
       <!-- cards ordered newest first (chronological rule: always maintain this order) -->
 
+      <div class="pt-card cat-interactivity" onclick="togglePost('evaluation-is-the-product')">
+        <div class="pt-symbol">Ev</div>
+        <div class="pt-title">Evaluation Is the Product</div>
+        <div class="pt-preview">Interaction models are coming, and when any AI product can be built in a weekend, the software isn&rsquo;t the scarce thing. The scarce thing is knowing what &ldquo;works&rdquo; even means in a room full of people &mdash; and measuring it&hellip;</div>
+        <div class="pt-date">July 21, 2026</div>
+        <span class="pt-tag">interactivity</span>
+      </div>
+
       <div class="pt-card cat-societal" onclick="togglePost('ai-youth-and-play')">
         <div class="pt-symbol">Yp</div>
         <div class="pt-title">AI, Youth, and Play</div>
@@ -657,6 +665,142 @@
     </div>
 
     <!-- expanded posts -->
+    <div class="pt-expanded" id="evaluation-is-the-product">
+      <span class="pt-close" onclick="togglePost('evaluation-is-the-product')">&times; close</span>
+      <h2>Evaluation Is the Product</h2>
+      <div class="pt-date-full">July 21, 2026</div>
+      <p style="font-style:italic;color:#888;margin-bottom:20px;font-size:15px;">
+        When any AI product can be built in a weekend, the software isn&rsquo;t the scarce thing &mdash; software is cheap. A precise definition of what it should do &mdash; and an instrument that says whether it did &mdash; is. For interaction models, agents loose in a room full of people, that definition doesn&rsquo;t exist yet. So build it first &mdash; that&rsquo;s the product.
+      </p>
+
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">Winter Is Coming &mdash; Evaluation Is Coming</h3>
+      <p>
+        In <em>Game of Thrones</em>, everyone is busy playing the game &mdash; alliances, marriages, the throne &mdash; while the Starks keep muttering the line nobody wants to hear: <em>winter is coming.</em> It&rsquo;s not a threat but a season, and the houses that spent everything on the game die of the thing they ignored.
+      </p>
+      <p>
+        Right now everyone is playing the game. The move is to ship a model &mdash; any model, just bigger and better &mdash; and the same rush is coming for interaction models: an agent that sits on the video call or in the channel and listens to a room of people continuously, in real time, the way Thinking Machines describes it and the way Claude already half does in Slack. The demos are extraordinary. They are also cheap &mdash; and will get cheaper: code generation collapsed the cost of building the thing, so the meeting agent you imagine this morning exists by Friday.
+      </p>
+      <p>
+        Winter is coming, Jon Snow. Evals are coming. The season nobody is spending attention on is the one where you have to prove the thing works over and over and over again, in many settings and environments and interactions you haven&rsquo;t even considered &mdash; not just in the demo, in the room &mdash; and discover you never defined what &ldquo;works&rdquo; means. And &ldquo;coming&rdquo; is not the same as &ldquo;should exist.&rdquo; Some of these rooms &mdash; an always-listening classroom, an ambient clinical suite &mdash; an honest eval is what talks you out of. The eval isn&rsquo;t only the thing that lets you ship; it&rsquo;s the thing that lets you decide not to.
+      </p>
+
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">Software Got Cheap. Evaluation Is More Expensive.</h3>
+      <p>
+        Here is the shift the demos hide. When building is cheap, the software stops being the product. Everyone can build it. What&rsquo;s scarce moved somewhere else: to a precise definition of what the thing is supposed to do, and a way to measure whether it did. Experiment definition and evaluation is the product now. The rest is a commodity you can generate.
+      </p>
+      <p>
+        <a href="#who-owns-interaction" onclick="togglePost('who-owns-interaction')">The chatbox had it easy</a>, and it let us skip this for a decade. A wrong answer in a one-on-one box is <em>visibly</em> wrong &mdash; you read the reply, you see it missed, you try again. Correctness was eyeball-shaped and self-evident, so eval felt optional. You could get away with shipping on vibes &mdash; this is NOT the way.
+      </p>
+      <p>
+        When the assistant listens to the whole room at once, instead of one turn at a time, that free signal disappears. The most important thing it now does is decide when <em>not</em> to respond &mdash; and a good silence and a bad silence look identical from the outside. You cannot eyeball whether it stayed quiet for the right reason. Worse: for a whole class of these situations there is <em>no correct answer to grade against.</em> When two people who both have the right to direct it want opposite things, there&rsquo;s no ground truth &mdash; <a href="https://plato.stanford.edu/entries/arrows-theorem/">Arrow proved in 1951</a> that no rule fairly settles conflicting preferences. You can&rsquo;t eyeball it and you can&rsquo;t look it up.
+      </p>
+      <p>
+        So the eval is the only thing standing between an impressive demo and something that works in the room, continually. That&rsquo;s the product.
+      </p>
+
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">You Can&rsquo;t Measure &ldquo;Interaction Model&rdquo;</h3>
+      <p>
+        There&rsquo;s no single eval for &ldquo;interaction model,&rdquo; the same way there&rsquo;s no single test for &ldquo;software.&rdquo; The thing you measure is the <em>shape of the room</em> &mdash; who&rsquo;s in it, who has standing, what going wrong even looks like.
+      </p>
+      <p>
+        Sort those uses by shape and they cluster. I land on six groupings &mdash; the seam lines are my own guess, and someone else might draw them differently. Each group leans on a different stage of the same pipeline: <strong>attribution &rarr; addressivity &rarr; authorization &rarr; arbitration &rarr; control.</strong> So each group fails in its own way, and that is why they are worth separating. Here are the six:
+      </p>
+      <ul>
+        <li><strong>Meeting Participant</strong> &mdash; a live call with several people talking at once. It names decisions and owners as they land. It fails when it comes in at the wrong moment, or credits a line to the wrong speaker.</li>
+        <li><strong>Shared Channel Co-worker</strong> &mdash; a busy async channel. It answers when paged and stays out of the rest. It fails when it barges into a thread meant for someone else &mdash; or obeys a &ldquo;ship it&rdquo; pasted from a quoted email.</li>
+        <li><strong>Live-Ops / Command Room</strong> &mdash; real-time authority, high stakes. It takes orders only from the current incident commander and halts on &ldquo;stand down.&rdquo; It fails when it obeys the wrong voice, or stops too slowly.</li>
+        <li><strong>Multi-Stakeholder Advisor</strong> &mdash; a few people with real but conflicting authority. It fails when it quietly picks a side instead of showing there are two.</li>
+        <li><strong>Ambient / Always-On Space</strong> &mdash; a physical room, continuous audio, bystanders. A classroom co-teacher. It fails when it records someone who never consented, or gives the floor to the loudest child.</li>
+        <li><strong>Customer-Facing Multi-Party</strong> &mdash; internal and external people together. A three-way support call. It fails when it leaks the supervisor&rsquo;s coaching to the customer.</li>
+      </ul>
+      <p>
+        The point isn&rsquo;t the count. It&rsquo;s that once you name the archetype, you&rsquo;ve named the failure &mdash; and the failure is the thing you measure. Measure the archetype well and you&rsquo;ve measured every product that maps to it.
+      </p>
+
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">So How Would You Even Know?</h3>
+      <p>
+        Start with the sentence a user would say, not the metric. One umbrella: <em>it answers what&rsquo;s meant for me, on legitimate authority, and stops when told.</em> That unpacks into a dozen plain-language expectations &mdash; did it come in at the right moment, does it know who said what, can it be driven by a faked identity, does it stop when the right person says stop &mdash; and only <em>then</em> does each one earn a number.
+      </p>
+      <p>
+        From there it&rsquo;s a hierarchy, and every rung has to hold: the <strong>experience</strong> a user feels, the <strong>end-to-end</strong> behavior that delivers it, the <strong>system</strong> decision underneath, and the <strong>component</strong> metric with a target you can put a threshold on. Trace one all the way down and it looks like this &mdash; the meeting facilitator:
+      </p>
+      <blockquote style="border-left:3px solid #ddd;margin:22px 0;padding:8px 18px;color:#555;font-size:15px;">
+        <em>Experience:</em> right voice, right moment &mdash; answer what&rsquo;s addressed to it, stay quiet on the rest, and come in before the moment passes.<br>
+        <em>End-to-end:</em> follows several overlapping speakers, names a decision and its owner as it lands, holds its tongue while people think aloud.<br>
+        <em>Critical stage:</em> addressivity.<br>
+        <em>Metric + target:</em> addressee precision &ge; 0.97 (it barges in on at most 3% of what it answers); floor-equity parity 0.9&ndash;1.1 (it doesn&rsquo;t systematically favor the loudest speaker).
+      </blockquote>
+      <p>
+        Do that for each archetype and &ldquo;test the whole thing&rdquo; becomes a single legible matrix instead of vibes.
+      </p>
+      <p>
+        The part that makes this honest &mdash; and the part most eval decks skip &mdash; is naming what <em>can&rsquo;t</em> be a metric. Conflict resolution has no right answer, so you don&rsquo;t score whether it picked correctly. You score whether it <strong>surfaced</strong> the conflict and handed the decision back. And you pair every metric with its counter-metric, because a single number is a thing to game: reward &ldquo;don&rsquo;t barge in&rdquo; alone and the agent learns to say nothing; you have to hold barge-in and miss rate against each other. An eval that reports one clean number is usually lying to you.
+      </p>
+
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">A Chain Multiplies Its Errors</h3>
+      <p>
+        What we call &ldquo;the interaction model&rdquo; is not one model. It is a pipeline. It works out who is speaking. It decides whether the line was addressed to it. It checks whether that speaker is allowed to direct it. It arbitrates when two people both have that right, and disagree. Then it acts, or holds. Five decisions, five components, each with its own error rate. Two of those are not the same question, and treating them as one is an old mistake: whether the addressee classifier is correct is a <em>system</em> fact; whether the person in the room feels heard is an <em>experience</em>. One has never cleanly predicted the other.
+      </p>
+      <p>
+        A chain is less forgiving than any one part of it. Put five stages in a row, each 95% accurate. If their errors were independent, the chain would be right about 77% of the time &mdash; and that is the optimistic case. The errors are not independent, so the real number is lower, and you can&rsquo;t know it until you measure the whole chain. A wrong guess about who is speaking corrupts the addressee decision that reads it. A wrong addressee decision hands the authority check the wrong person. Errors don&rsquo;t add up; they compound. So a strong per-component score flatters the product: every part looks good and the whole still fails in the room. The only score a user feels is the one at the end of the chain. So measure the parts and the whole, and treat the gap between them as the real finding.
+      </p>
+
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">When It Breaks, Which Part Broke?</h3>
+      <p>
+        Say it does fail. The agent answers a question that wasn&rsquo;t for it, and does it in the boss&rsquo;s name. HCI has a word for the moment a tool announces itself by going wrong &mdash; Winograd and Flores called it a <em>breakdown</em> &mdash; and the trouble with a compound system is that the breakdown surfaces at the end while its cause sits somewhere upstream. Was that a diarization error, an addressee error, or an authority error? From the outside they produce the identical wrong behavior.
+      </p>
+      <p>
+        So you can&rsquo;t evaluate an interaction model as a black box that emits a score. You need it instrumented &mdash; every stage&rsquo;s decision logged and inspectable &mdash; so a single end-to-end failure decomposes into <em>which rung gave way.</em> This also serves the two readers of an eval. The per-component metrics are <strong>formative</strong>: they tell the model team the one stage to fix. The experience KPI is <strong>summative</strong>: it is the ship gate the buyer reads. A good eval lets you walk from the gate that failed down to the part that failed it, in one trace.
+      </p>
+
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">The Lab Is Not the Room</h3>
+      <p>
+        One more, because it&rsquo;s the failure that quietly voids all the others. An eval built from clean single-speaker clips is measuring a different task than the one the product does &mdash; a quiet lab is not a standup with three people cutting each other off, a baby in the background, and someone dialing in from a car. Every metric above is only as trustworthy as the room it was measured in. The HCI name for taking this seriously is evaluation <em>in the wild</em>: you study a system where it actually lives, not where it&rsquo;s convenient to measure. So you build the eval out of real, messy, multi-party rooms &mdash; captured or adversarially synthesized &mdash; because a benchmark that strips out the crosstalk has quietly stripped out the whole problem the interaction model exists to solve.
+      </p>
+
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">Measured on Whom?</h3>
+      <p>
+        Every threshold in an eval like this is a number attached to a population, and the population is a design choice most evals never say out loud. Measure addressee accuracy on a few fluent speakers taking clean turns and the score is easy. Measure it on the people the loud room already talks over &mdash; someone speaking a second language, someone who stutters, a Deaf participant reading captions a beat behind the audio, an autistic speaker whose turn-taking timing doesn&rsquo;t match what the model learned a &ldquo;turn&rdquo; sounds like &mdash; and the number you were about to ship is a fiction for exactly the people the system was most likely to fail.
+      </p>
+      <p>
+        This is why equity can&rsquo;t sit in a footnote. An always-on agent gives the floor to whoever grabs it fastest. That was never the group that needed help being heard. Continuous interaction is, quietly, a tax on everyone who can&rsquo;t compete for the floor in real time. So the equity metric is not a nice-to-have next to the accuracy metric. It is a check on whether the accuracy metric is even valid. A precision score reported without the population it was measured on is not a strong result. It is just an untested claim with a number attached. So you report every metric disaggregated by group &mdash; language, disability, seniority, speaking style &mdash; not as one aggregate, and you let the worst group set the score. A number that only holds for the people the room already favored is not the number you ship on.
+      </p>
+
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">It&rsquo;s a Loop, Not a Gate</h3>
+      <p>
+        There&rsquo;s a trap folded into &ldquo;the failure is the thing you measure&rdquo;: you can only measure the failures you already imagined. Six archetypes is a taxonomy, and every taxonomy is a closed list pretending the world is closed too. Deployment will produce a seventh &mdash; a room you didn&rsquo;t picture, a failure that fits none of your categories &mdash; and by construction your eval is silent on exactly the thing about to hurt you, because you built it to grade the six.
+      </p>
+      <p>
+        So the eval can&rsquo;t be a gate you clear once. It has to be a loop. The in-the-wild rooms that stress the metrics also feed them: a surprising failure in production isn&rsquo;t just a bug to patch, it&rsquo;s a missing archetype to add, a metric that didn&rsquo;t exist yesterday, a counter-metric you now need. You reassess and repeat. Red-team for the categories you haven&rsquo;t named yet; log the outputs that surprised you and treat the pile of surprises as the backlog for the next version of the eval. An eval that never changes is grading a product that stopped moving &mdash; and none of these have stopped moving. The taxonomy is a snapshot of what you understand so far, and the whole discipline is staying honest about how little that still is.
+      </p>
+
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">The Eval Is the Spec</h3>
+      <p>
+        Notice what the eval turned into once you built it. It&rsquo;s not a report card you run at the end. It&rsquo;s the specification you should have started with &mdash; it names every behavior the product owes, every way it&rsquo;s allowed to fail, the threshold that separates shipping from not, and the population all of that was measured on. The same criteria that grade the listen decision also tell the model team what to train on and tell a buyer whether the thing clears the bar on the crowded call, not just the tidy one-on-one box.
+      </p>
+      <p>
+        That&rsquo;s why, when the software is free, this is the asset. Anyone can build the meeting agent. The house that survives the winter is the one that defined, in advance and in numbers, what it would mean for that agent to actually work &mdash; and then went and measured it.
+      </p>
+      <p>
+        The <a href="#who-owns-interaction" onclick="togglePost('who-owns-interaction')">companion essay</a> to this one asks the human question: when the assistant is in the room with everyone, <em>whose voice counts as yours?</em> This is the operational twin of that question. How would you even know if it got the answer right?
+      </p>
+      <p>
+        You&rsquo;d write the eval first. With models running in the wild, the eval is as much the product as the code &mdash; the code is what the thing does, and the eval is the only reason to believe it does it where it actually has to. Winter is coming.
+      </p>
+
+      <hr style="border:none;border-top:1px solid #ddd;margin:36px 0;">
+      <h3 style="font-size:14px;color:#888;margin-bottom:12px;">Further Reading</h3>
+      <ul>
+        <li>Thinking Machines Lab. <a href="https://thinkingmachines.ai/blog/interaction-models/">&ldquo;Interaction Models: A Scalable Approach to Human-AI Collaboration.&rdquo;</a> &mdash; The argument this post is in conversation with: interactivity should scale alongside intelligence, through continuous real-time audio, video, and text.</li>
+        <li>Arrow, K. (1951). <a href="https://plato.stanford.edu/entries/arrows-theorem/">&ldquo;Social Choice and Individual Values&rdquo;</a> (impossibility theorem). &mdash; No rule fairly aggregates conflicting preferences. Why some of what an interaction model does has no ground truth to grade against.</li>
+        <li>Winograd, T., &amp; Flores, F. (1986). <em>Understanding Computers and Cognition.</em> &mdash; Where the idea of a <em>breakdown</em> comes from: a tool becomes visible at the moment it fails. The &ldquo;when it breaks, which part broke?&rdquo; section, named.</li>
+        <li>Amershi, S., et al. (2019). <a href="https://dl.acm.org/doi/10.1145/3290605.3300233">&ldquo;Guidelines for Human-AI Interaction.&rdquo;</a> CHI. &mdash; Design guidelines for AI-infused systems; several bear directly on the addressivity and timing KPIs here.</li>
+        <li>Selbst, A., boyd, d., Friedler, S., Venkatasubramanian, S., &amp; Vertesi, J. (2019). <a href="https://dl.acm.org/doi/10.1145/3287560.3287598">&ldquo;Fairness and Abstraction in Sociotechnical Systems.&rdquo;</a> FAccT. &mdash; The &ldquo;portability&rdquo; and &ldquo;framing&rdquo; traps: a component measured apart from its social frame produces valid-looking, meaningless numbers. The formal version of &ldquo;measured on whom?&rdquo;</li>
+        <li>Mitchell, M., et al. (2019). <a href="https://dl.acm.org/doi/10.1145/3287560.3287596">&ldquo;Model Cards for Model Reporting.&rdquo;</a> FAccT. &mdash; Report performance <em>disaggregated by group</em>, as a norm. The method behind &ldquo;measured on whom?&rdquo;</li>
+        <li>Bender, E. M., &amp; Friedman, B. (2018). <a href="https://aclanthology.org/Q18-1041/">&ldquo;Data Statements for Natural Language Processing.&rdquo;</a> TACL. &mdash; Documenting <em>who is in your evaluation population</em> as a first-class artifact.</li>
+      </ul>
+    </div>
+
     <div class="pt-expanded" id="ai-youth-and-play">
       <span class="pt-close" onclick="togglePost('ai-youth-and-play')">&times; close</span>
       <h2>AI, Youth, and Play</h2>

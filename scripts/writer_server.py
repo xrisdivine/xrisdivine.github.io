@@ -20,7 +20,7 @@ and the browser offers to reload (your text is never silently clobbered).
 Run:   python3 scripts/writer_server.py [--port 8777]
 Open:  http://127.0.0.1:8777/?slug=<draft-slug>
 """
-import json, os, re, sys, hashlib
+import json, os, re, sys, time, hashlib
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlparse, parse_qs
 
@@ -36,6 +36,42 @@ def slug_ok(s):
 def md_path(slug):        return os.path.join(DRAFTS, slug + ".md")
 def comments_path(slug):  return os.path.join(DRAFTS, slug + ".comments.json")
 def review_path(slug):    return os.path.join(DRAFTS, slug + ".review-request")
+
+# How long the draft/comments must sit unchanged, after Claude last touched them,
+# before we treat a review as finished. Handles Claude editing incrementally
+# (many small writes) without clearing "Claude working…" on the very first edit.
+REVIEW_QUIET_SECS = 12
+# Hard ceiling: a marker never sits longer than this, even if Claude never edits
+# (e.g. an explicit "Check" that no one ends up processing). Prevents a permanently
+# stuck "Claude working…".
+REVIEW_STALE_SECS = 900
+
+def review_pending(slug):
+    """True while a review marker is live. Auto-clears the marker once Claude has
+    edited the .md or comments after the marker was dropped and then gone quiet —
+    so the "Claude working…" state resolves on its own without a separate watcher.
+    Also clears any marker older than REVIEW_STALE_SECS as a safety net."""
+    rp = review_path(slug)
+    if not os.path.exists(rp):
+        return False
+    try:
+        marker_mt = os.path.getmtime(rp)
+        now = time.time()
+        # Safety net: a marker that has sat too long is stale — clear it.
+        if (now - marker_mt) > REVIEW_STALE_SECS:
+            os.remove(rp)
+            return False
+        edited_mt = 0.0
+        for p in (md_path(slug), comments_path(slug)):
+            if os.path.isfile(p):
+                edited_mt = max(edited_mt, os.path.getmtime(p))
+        # Claude has written since the marker was dropped, and it's been quiet since.
+        if edited_mt > marker_mt and (now - edited_mt) > REVIEW_QUIET_SECS:
+            os.remove(rp)
+            return False
+    except OSError:
+        pass
+    return True
 
 def list_drafts():
     if not os.path.isdir(DRAFTS):
@@ -112,7 +148,7 @@ class Handler(BaseHTTPRequestHandler):
             return self._send(200, {
                 "slug": slug, "markdown": md, "hash": md_hash(md),
                 "comments": read_comments(slug),
-                "reviewPending": os.path.exists(review_path(slug)),
+                "reviewPending": review_pending(slug),
             })
         return self._send(404, {"error": "not found"})
 

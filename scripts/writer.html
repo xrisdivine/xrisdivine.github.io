@@ -98,6 +98,7 @@ let base = null;            // disk hash we last loaded
 let dirty = false;         // unsaved local edits
 let comments = [];
 let reviewPending = false;
+let lastInput = 0;         // ts of last keystroke in the editor
 let saveTimer = null, pollTimer = null, composeAnchor = null, autoReviewTimer = null;
 
 function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
@@ -150,13 +151,27 @@ async function loadDraft(force){
   comments = d.comments || []; renderComments();
   const wasPending = reviewPending;
   reviewPending = !!d.reviewPending;
-  if(wasPending && !reviewPending) setStatus('Claude updated ✓');
+  const claudeDone = wasPending && !reviewPending;
   reflectReview();
-  if(force || !dirty){
+
+  const diskChanged = d.hash !== base;
+  const typingNow = (Date.now() - lastInput) < 2500;
+  // Pull Claude's disk edits into the editor whenever we safely can: on a forced
+  // load, when the local buffer is clean, or when disk changed and the user isn't
+  // mid-keystroke. Only a live typing collision falls through to the banner — so
+  // Claude's edits + replies stream in live instead of being blocked by a stale
+  // dirty flag (the old `!dirty` gate was the bug).
+  const shouldApply = force || !dirty || (diskChanged && !typingNow);
+
+  if(shouldApply){
     if(editor.value !== d.markdown){ editor.value = d.markdown; renderPreview(); }
-    base = d.hash; dirty = false; hideBanner(); if(!(wasPending && !reviewPending)) setStatus('saved');
-  } else if(d.hash !== base){
-    showBanner("Claude edited this draft on disk while you were writing.");
+    base = d.hash; dirty = false; hideBanner();
+    setStatus(claudeDone ? 'Claude updated ✓' : (reviewPending ? '⏳ Claude working…' : 'saved'));
+  } else if(diskChanged){
+    showBanner(reviewPending
+      ? "Claude is updating this draft — pause typing to see the changes."
+      : "Claude edited this draft on disk while you were writing.");
+    if(claudeDone) setStatus('Claude updated ✓');
   }
 }
 function reflectReview(){
@@ -230,11 +245,14 @@ async function submitComment(){
   const r = await fetch('/api/comment', {method:'POST', headers:{'Content-Type':'application/json'},
     body: JSON.stringify({slug, anchor: composeAnchor, text, created})});
   const d = await r.json(); comments = d.comments || []; $('#composeWrap').innerHTML=''; renderComments();
-  scheduleAutoReview();   // adding a comment auto-pings Claude (batched)
+  // Adding a comment no longer auto-drops a review marker. Nothing consumes that
+  // marker in the chat-driven flow, so it only produced a stuck "Claude working…"
+  // state. The "▶ Check (ask Claude)" button still lets you signal explicitly.
+  setStatus('comment saved');
 }
 
 /* wiring */
-editor.addEventListener('input', () => { renderPreview(); scheduleSave(); });
+editor.addEventListener('input', () => { lastInput = Date.now(); renderPreview(); scheduleSave(); });
 editor.addEventListener('blur', () => { if(dirty) save(false); });
 document.addEventListener('visibilitychange', () => { if(document.hidden && dirty) save(false); });
 setInterval(() => { if(dirty) save(false); }, 3000);   // continuous autosave safety net

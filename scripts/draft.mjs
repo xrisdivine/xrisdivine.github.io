@@ -48,35 +48,60 @@ function inline(s) {
     .replace(/(^|[^*])\*([^*]+)\*/g, '$1<em>$2</em>')
     .replace(/`([^`]+)`/g, '<code>$1</code>');
 }
+// Raw block-level HTML the author embeds (figures, svg, style…) passes through
+// verbatim so the preview renders it exactly as the published page will.
+const RAW_BLOCK = /^<(figure|style|div|svg|section|table|ol|ul|p|iframe|img|aside|details|blockquote|pre|h[1-6])[\s>]/i;
 function renderBody(lines) {
   const out = [];
-  let para = [], list = [], further = false;
+  let para = [], ul = [], ol = [], further = false;
   const flushPara = () => { if (para.length) { out.push(`<p>${inline(para.join(' '))}</p>`); para = []; } };
-  const flushList = () => {
-    if (list.length) {
+  const flushUl = () => {
+    if (ul.length) {
       const cls = further ? ' class="further-list"' : '';
-      out.push(`<ul${cls}>${list.map(li => `<li>${inline(li)}</li>`).join('')}</ul>`);
-      list = [];
+      out.push(`<ul${cls}>${ul.map(li => `<li>${inline(li)}</li>`).join('')}</ul>`); ul = [];
     }
   };
-  for (const raw of lines) {
-    const line = raw.replace(/\s+$/, '');
+  const flushOl = () => { if (ol.length) { out.push(`<ol>${ol.map(li => `<li>${inline(li)}</li>`).join('')}</ol>`); ol = []; } };
+  const flushAll = () => { flushPara(); flushUl(); flushOl(); };
+  let i = 0;
+  while (i < lines.length) {
+    const line = lines[i].replace(/\s+$/, '');
+    const t = line.trim();
+    if (t === '') { flushPara(); i++; continue; } // blank ends a paragraph but not a list, so loose lists still render 1..n
+    if (!para.length && RAW_BLOCK.test(t)) {
+      flushUl(); flushOl();
+      const buf = [];
+      while (i < lines.length && lines[i].trim() !== '') { buf.push(lines[i]); i++; }
+      out.push(buf.join('\n'));
+      continue;
+    }
+    if (/^>\s?/.test(t)) {
+      flushAll();
+      const bq = [];
+      while (i < lines.length && /^>\s?/.test(lines[i].trim())) {
+        bq.push(inline(lines[i].trim().replace(/^>\s?/, '')));
+        i++;
+      }
+      out.push(`<blockquote>${bq.join('<br>')}</blockquote>`);
+      continue;
+    }
     if (/^##\s+/.test(line)) {
-      flushPara(); flushList();
+      flushAll();
       const title = line.replace(/^##\s+/, '');
       further = /further reading/i.test(title);
       out.push(`<h3${further ? ' class="further"' : ''}>${inline(title)}</h3>`);
     } else if (/^-\s+/.test(line)) {
-      flushPara(); list.push(line.replace(/^-\s+/, ''));
+      flushPara(); flushOl(); ul.push(line.replace(/^-\s+/, ''));
+    } else if (/^\d+\.\s+/.test(line)) {
+      flushPara(); flushUl(); ol.push(line.replace(/^\d+\.\s+/, ''));
     } else if (/^---+\s*$/.test(line)) {
-      flushPara(); flushList(); out.push('<hr>');
-    } else if (line.trim() === '') {
-      flushPara(); flushList();
+      flushAll(); out.push('<hr>');
     } else {
-      flushList(); para.push(line.trim());
+      flushUl(); flushOl(); para.push(t);
     }
+    i++;
   }
-  flushPara(); flushList();
+  flushAll();
   return out.join('\n');
 }
 
@@ -127,11 +152,15 @@ function toHtml(md, slug) {
   ul{padding-left:1.3em}
   .further-list{font-size:14px;color:#666;line-height:1.6}
   code{background:#f3f3f0;padding:1px 5px;border-radius:4px;font-size:14px}
+  blockquote{border-left:3px solid #ddd;margin:22px 0;padding:8px 18px;color:#444;font-size:15px}
+  blockquote em{color:#222}
   @media (prefers-color-scheme:dark){
     body{background:#161618;color:#e5e5e5}
     .draft-banner{background:#2a2210;border-color:#a16207;color:#fbbf24}
     hr{border-top-color:#333}
     code{background:#26262a}
+    blockquote{border-left-color:#3a3a3a;color:#bbb}
+    blockquote em{color:#e5e5e5}
   }
 </style></head><body>
 <div class="draft-banner">DRAFT PREVIEW — not published · ${esc(meta)}</div>

@@ -582,6 +582,14 @@
     <div class="pt-grid">
       <!-- cards ordered newest first (chronological rule: always maintain this order) -->
 
+      <div class="pt-card cat-societal" onclick="togglePost('users-benchmarks')">
+        <div class="pt-symbol">Ub</div>
+        <div class="pt-title">Your Users Don&rsquo;t (Really) Care About Benchmarks</div>
+        <div class="pt-preview">Most AI labs are fighting over benchmark scores users can&rsquo;t even feel. The speed and the price tag? Those they feel instantly&hellip;</div>
+        <div class="pt-date">August 18, 2026</div>
+        <span class="pt-tag">societal</span>
+      </div>
+
       <div class="pt-card cat-interactivity" onclick="togglePost('present-the-patient')">
         <div class="pt-symbol">Pt</div>
         <div class="pt-title">Present the Patient</div>
@@ -683,6 +691,119 @@
     </div>
 
     <!-- expanded posts -->
+    <div class="pt-expanded" id="users-benchmarks">
+      <span class="pt-close" onclick="togglePost('users-benchmarks')">&times; close</span>
+      <h2>Your Users Don&rsquo;t (Really) Care About Benchmarks</h2>
+      <div class="pt-date-full">August 18, 2026</div>
+      <p style="font-style:italic;color:#888;margin-bottom:20px;font-size:15px;">
+        Most AI labs are fighting over benchmark scores users can&rsquo;t even feel. The speed and the price tag? Those they feel instantly. And the only benchmark that ever mattered &mdash; did you walk away with the thing you came for &mdash; is one nobody publishes.
+      </p>
+
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">The Fight Nobody Can Feel</h3>
+      <p>
+        Every model launch comes with the same slide now. The labs are locked in a war over benchmark deltas &mdash; two points on GPQA, a few Elo on the Arena, a decimal on SWE-bench. I don&rsquo;t doubt the work; the work is real. But from where the user sits, that entire war is invisible.
+      </p>
+      <p>
+        You know what&rsquo;s perceptible? Speed and price. One lands in your patience, the other in your wallet, and both arrive within seconds of opening the product. Usability and effectiveness are felt too &mdash; just on a longer clock: over the session, over the week, at the moment you find out whether the advice actually held up. The industry competes hardest on the thing users can <em>never</em> feel, and treats the things they feel instantly &mdash; or eventually &mdash; as an afterthought. That asymmetry is where the story starts.
+      </p>
+
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">What the User Actually Cares About</h3>
+      <p>
+        Not a score. It&rsquo;s <strong>time</strong>. It&rsquo;s <strong>energy</strong>. It&rsquo;s the feeling of thoroughness &mdash; that you&rsquo;re talking to one of the best in the world at this thing. It&rsquo;s being <strong>understood</strong>: it gets you, your context, what you actually meant, not the literal words you fumbled out. And it&rsquo;s getting the answer in an <em>appropriate</em> amount of time.
+      </p>
+      <p>
+        Read that list again and notice: not one item on it appears on a leaderboard.
+      </p>
+
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">&ldquo;Appropriate Time&rdquo; Is the Tell</h3>
+      <p>
+        Appropriate is doing a lot of work in that sentence, because appropriate is <em>super</em> subjective. Three seconds is an eternity for &ldquo;what&rsquo;s the capital of France&rdquo; and a miracle for &ldquo;review this contract.&rdquo; And because it&rsquo;s subjective, it&rsquo;s hard to measure &mdash; and because it&rsquo;s hard to measure, the industry doesn&rsquo;t compete on it. We optimize what benchmarks can hold, not what users can feel. It&rsquo;s the old streetlight problem: the drunk looks for his keys under the lamp, not because he dropped them there, but because that&rsquo;s where the light is.
+      </p>
+
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">Five People on One Street</h3>
+      <p>
+        Take five people on my street. Different AI fluency. Different use cases. Different patience, different stakes, different hours in the day. The rushed parent wants the fast good-enough answer. The researcher wants the model to think for three minutes and show its work. The first-timer needs it to be forgiving about a badly phrased question. The developer wants it terse. The fifth neighbor uses a screen reader, and for her, verbosity isn&rsquo;t a style preference &mdash; it&rsquo;s minutes of her life, read aloud, one word at a time.
+      </p>
+      <p>
+        That last one generalizes: &ldquo;appropriate&rdquo; varies most exactly where ability varies. When typing is the bottleneck, every clarifying round-trip has a physical cost. When working memory is the bottleneck, the wall-of-text answer doesn&rsquo;t inform, it excludes. The felt layer isn&rsquo;t a nicety at the margins &mdash; it&rsquo;s most acute for the people the leaderboard was never going to see.
+      </p>
+      <p>
+        One leaderboard cannot rank for all five &mdash; not because ranking is hard, but because &ldquo;best&rdquo; was never a single question.
+      </p>
+
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">What You Walk Away With: A Taxonomy</h3>
+      <p>
+        I started listing what people actually come to a model for &mdash; sorted by what you walk away with &mdash; and every request I could think of kept landing in the same five branches:
+      </p>
+      <p>
+        <strong>1. Make me something.</strong> Code, a website, a diagram, a document, an email. You walk away with an artifact that didn&rsquo;t exist before. <em>Done</em> means the artifact works, reads, looks right &mdash; the most verifiable branch, which is exactly why coding benchmarks are the least-bad benchmarks we have.
+      </p>
+      <p>
+        <strong>2. Tell me something.</strong> Information, explanations, summaries, what-does-this-mean. You walk away knowing something you didn&rsquo;t. <em>Done</em> means you actually understand &mdash; which depends on you: your level, your framing, your fluency. The same answer completes the task for one neighbor and fails it for the one next door. This is where the five people on one street live.
+      </p>
+      <p>
+        <strong>3. Help me decide.</strong> Advice, recommendations, tradeoffs, should-I-take-this-job. You walk away with a decision, or confidence in one. <em>Done</em> means you moved forward and it held up &mdash; the slowest feedback loop of all, invisible to benchmarks, and almost entirely about being understood.
+      </p>
+      <p>
+        <strong>4. Do it for me.</strong> Book it, send it, fix it, run it across my tools. You walk away with the world changed and your hands never touched it. <em>Done</em> is at its most literal here: it happened, correctly, without babysitting.
+      </p>
+      <p>
+        <strong>5. Think it through with me.</strong> Brainstorming, rubber-ducking, working a problem out loud. You walk away with better thoughts than you brought. <em>Done</em> is the fuzziest of all &mdash; the interaction itself is the product. No benchmark will ever touch this branch.
+      </p>
+      <p>
+        And across all five runs the felt layer &mdash; time, energy, thoroughness, expertise, being understood. Those aren&rsquo;t a sixth branch; they&rsquo;re the live mix over every branch &mdash; the faders riding on top of whatever you came for. What you came for, times how it felt getting it: that&rsquo;s the real grid. A benchmark score captures maybe one cell of it.
+      </p>
+      <p>
+        The reason &ldquo;best&rdquo; fragments per person isn&rsquo;t just fluency. It&rsquo;s that your five neighbors aren&rsquo;t even on the same branch &mdash; and neither are you, hour to hour. (Treat the five as a hypothesis, not a census &mdash; anyone sitting on real usage logs could test it, and I hope someone does.)
+      </p>
+
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">Best Is Personal</h3>
+      <p>
+        Here&rsquo;s the part I keep coming back to. Users still want the best model &mdash; of course they do. But when a user says <em>the best</em>, they mean <em>the best for them, right now, for this</em>. Best is indexical, like &ldquo;here&rdquo; or &ldquo;now.&rdquo; It points at the person saying it.
+      </p>
+      <p>
+        So don&rsquo;t hand them a model picker and a benchmark chart. Don&rsquo;t tell them which one is 3% faster or 2 points better on an eval they&rsquo;ve never heard of. Just give them the best one for them &mdash; silently. &ldquo;This is the best for you&rdquo; is the product. The comparison table is homework you&rsquo;ve outsourced to the customer.
+      </p>
+      <p>
+        Every dropdown with six model names in it is a quiet confession: we haven&rsquo;t done the routing work, so you do it. Nobody picks their Netflix encoder. The endgame is models as infrastructure &mdash; invisible selection, tuned to your task, your fluency, your patience &mdash; where the felt result is just: it&rsquo;s fast, it gets me, it&rsquo;s worth it. And yes, power users, this includes you: lovingly maintaining a mental map of which model to use for what <em>is</em> the router&rsquo;s job, done by hand, for free.
+      </p>
+      <p>
+        One guardrail, though, because my own argument cuts both ways: if you can&rsquo;t feel a benchmark, you also can&rsquo;t feel a quiet downgrade. Silent routing is exactly how a provider protects its margins &mdash; you get the cheap model on a hard day and never know, precisely <em>because</em> the difference sits below perception. So the rule is: silent by default, inspectable on demand. The router decides; the receipt exists. Invisible choice is a feature. Unauditable choice is a trap.
+      </p>
+      <p>
+        Two more things I wrestle with. The fifth branch of the taxonomy resists routing entirely: when the interaction itself is the product, continuity &mdash; not optimality &mdash; is what the user wants, and swapping the model mid-relationship swaps the product. Some people will rightly want to pick their model and keep it; the router owes them that. And the router that knows your patience had to learn it from somewhere &mdash; the model <em>of you</em> deserves the same rule as the model choice: inspectable on demand.
+      </p>
+
+      <h3 style="font-size:16px;margin-top:28px;margin-bottom:8px;">The Entire Scorecard</h3>
+      <p>
+        The last benchmark that matters is the one no lab <em>ranks</em> on: <strong>task completion, as judged by the person who had the task.</strong> I came for code, for advice, for a diagram, for an explanation, for a website &mdash; did I leave with that thing achieved? In the time I had, at a price I didn&rsquo;t notice, feeling understood along the way?
+      </p>
+      <p>
+        And here&rsquo;s the uncomfortable part: this isn&rsquo;t unmeasured terrain. HCI has been measuring exactly this for decades &mdash; SUS has scored user-judged usability since the eighties, NASA-TLX made &ldquo;it&rsquo;s energy&rdquo; an operational instrument in 1988, and Google&rsquo;s HEART framework put <em>task success</em> &mdash; the literal letter T &mdash; into production metrics at scale back in 2010. The benchmark nobody publishes isn&rsquo;t unmeasurable. It&rsquo;s <em>unranked</em> &mdash; because it&rsquo;s expensive, it&rsquo;s slow, and it refuses to collapse into a single number you can tweet. So the charge isn&rsquo;t that we can&rsquo;t measure what users feel. The measurements exist. Nobody competes on them.
+      </p>
+      <p>
+        One caveat, and it&rsquo;s a real one: the user&rsquo;s verdict is the right authority, not an infallible one. A fluent model is very good at producing the <em>feeling</em> of understanding without the substance &mdash; perceived completion and actual completion can diverge, and the confident wrong answer is exactly where they do. That gap is real, and design choices control its size. But given the choice between a proxy that never asks the person and a verdict that occasionally flatters them, the authority still belongs with the person.
+      </p>
+      <p>
+        That&rsquo;s the entire scorecard. Everything else is proxy.
+      </p>
+      <p>
+        The lab that wins the consumer war won&rsquo;t be the one at the top of the leaderboard. It&rsquo;ll be the one that made the leaderboard irrelevant to the person using it.
+      </p>
+
+      <h3 style="font-size:14px;color:#888;margin-bottom:12px;">Further Reading</h3>
+      <ul>
+        <li>Nielsen, J. (1993). <a href="https://www.nngroup.com/articles/response-times-3-important-limits/">&ldquo;Response Times: The 3 Important Limits.&rdquo;</a> &mdash; 0.1s, 1s, 10s: the perceptual thresholds of waiting, established thirty years before anyone streamed a token. Why speed is felt, not read.</li>
+        <li>Simon, H. (1956). <a href="https://psycnet.apa.org/doi/10.1037/h0042769">&ldquo;Rational Choice and the Structure of the Environment.&rdquo;</a> &mdash; Satisficing: real people don&rsquo;t optimize, they take the first option that clears their bar. &ldquo;Best for them&rdquo; is satisficing, formalized seventy years ago.</li>
+        <li>Christensen, C., Hall, T., Dillon, K., &amp; Duncan, D. (2016). <a href="https://hbr.org/2016/09/know-your-customers-jobs-to-be-done">&ldquo;Know Your Customers&rsquo; &lsquo;Jobs to Be Done.&rsquo;&rdquo;</a> &mdash; People don&rsquo;t buy products, they hire them for a job. The taxonomy above is a jobs-to-be-done map for models.</li>
+        <li>Singh, S., et al. (2025). <a href="https://arxiv.org/abs/2504.20879">&ldquo;The Leaderboard Illusion.&rdquo;</a> &mdash; What the Arena actually measures and who it favors. The case that even the benchmark designed to capture preference doesn&rsquo;t capture yours.</li>
+        <li>Strathern, M. (1997). <a href="https://en.wikipedia.org/wiki/Goodhart%27s_law">&ldquo;&lsquo;Improving Ratings&rsquo;: Audit in the British University System&rdquo;</a> (via Goodhart&rsquo;s law). &mdash; &ldquo;When a measure becomes a target, it ceases to be a good measure.&rdquo; Goodhart&rsquo;s law, as lived by institutions that optimized the score instead of the thing.</li>
+        <li>Rodden, K., Hutchinson, H., &amp; Fu, X. (2010). <a href="https://dl.acm.org/doi/10.1145/1753326.1753687">&ldquo;Measuring the User Experience on a Large Scale: User-Centered Metrics for Web Applications.&rdquo;</a> CHI. &mdash; The HEART framework: happiness, engagement, adoption, retention, task success. The &ldquo;unpublished&rdquo; benchmark, operationalized sixteen years ago; the question is why it never became a leaderboard.</li>
+        <li>Hart, S. &amp; Staveland, L. (1988). <a href="https://ntrs.nasa.gov/citations/19890006123">&ldquo;Development of NASA-TLX: Results of Empirical and Theoretical Research.&rdquo;</a> &mdash; Subjective workload &mdash; effort, frustration, time pressure &mdash; as a validated instrument. &ldquo;It&rsquo;s energy,&rdquo; measured since 1988.</li>
+        <li>Bu&ccedil;inca, Z., Malaya, M., &amp; Gajos, K. (2021). <a href="https://dl.acm.org/doi/10.1145/3449287">&ldquo;To Trust or to Think: Cognitive Forcing Functions Can Reduce Overreliance on AI in AI-assisted Decision-making.&rdquo;</a> CSCW. &mdash; Perceived success and actual success diverge, and design controls the gap. The check on treating the user&rsquo;s feeling as ground truth.</li>
+      </ul>
+    </div>
+
     <div class="pt-expanded" id="present-the-patient">
       <span class="pt-close" onclick="togglePost('present-the-patient')">&times; close</span>
       <h2>Present the Patient</h2>
